@@ -1,0 +1,21 @@
+﻿<fw:AcrylicWindow xmlns:Wpf="clr-namespace:Microsoft.Web.WebView2.Wpf;assembly=Microsoft.Web.WebView2.Wpf"  x:Class="ptypedfrees.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
+        xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+        xmlns:fw="clr-namespace:SourceChord.FluentWPF;assembly=FluentWPF"
+        xmlns:local="clr-namespace:ptypedfrees"
+        mc:Ignorable="d"
+        Title="DeepFrees | Admin" Height="450" Width="800">
+    <StackPanel Orientation="Horizontal">
+        <StackPanel Width="75" Background="#7FE4E4E4">
+            <Button Height="50" Width="50" Style="{DynamicResource MahApps.Styles.Button.Circle}" Content="{iconPacks:FeatherIcons Kind=Play, Height=20, Width=20}" Margin="0,5,0,0" BorderBrush="#FF424242"/>
+            <Button Height="50" Width="50" Style="{DynamicResource MahApps.Styles.Button.Circle}" Content="{iconPacks:BoxIcons Kind=RegularUser}" Margin="0,5,0,0" BorderBrush="#FF424242"/>
+            <Button Height="50" Width="50" Style="{DynamicResource MahApps.Styles.Button.Circle}" Content="{iconPacks:Microns Kind=Plus, Height=20, Width=20}" Margin="0,5,0,0" BorderBrush="#FF424242"/>
+            <Button Height="50" Width="50" Style="{DynamicResource MahApps.Styles.Button.Circle}" Content="{iconPacks:FeatherIcons Kind=Play, Height=20, Width=20}" Margin="0,5,0,0" BorderBrush="#FF424242"/>
+        </StackPanel>
+        <Wpf:WebView2 x:Name="MainView"/>
+    </StackPanel>
+</fw:AcrylicWindow>
