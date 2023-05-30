@@ -4,9 +4,12 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DFShell.View"
+        xmlns:fw="clr-namespace:SourceChord.FluentWPF;assembly=FluentWPF"
+        xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
         mc:Ignorable="d"
-        Title="Shell" Height="768" Width="1366">
-    <Grid>
+        Title="Shell" Height="768" Width="1366"
+        fw:AcrylicWindow.Enabled="True">
+    <Grid fw:PointerTracker.Enabled="True">
         
     </Grid>
 </Window>
