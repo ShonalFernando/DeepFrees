@@ -7,11 +7,17 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
+    <Compile Update="View\AuthWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="View\Shell.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Page Update="View\AuthWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="View\Shell.xaml">
       <SubType>Designer</SubType>
     </Page>

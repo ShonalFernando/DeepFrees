@@ -8,25 +8,53 @@
         xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
         mc:Ignorable="d"
         Title="Deepfreez|Admin"
-        xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
-        Height="768" Width="1366"
-        >
+        xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls" 
+        xmlns:viewmodel="clr-namespace:DFShell.ViewModel" 
+        d:DataContext="{d:DesignInstance Type=viewmodel:MainViewModel}"
+        Height="768" Width="1366">
 
+    <Window.Resources>
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+    </Window.Resources>
+    
     <mah:MetroWindow.Flyouts>
         <mah:FlyoutsControl>
             <mah:Flyout Theme="Accent" x:Name="LeftFlyout" Header="DeepFrees" Position="Left" IsOpen="True" Width="350">
-                <!-- The content goes here -->
-            </mah:Flyout>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="75"/>
+                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="1*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
+                    </Grid.ColumnDefinitions>
 
+                    <Rectangle Grid.Column="0" Grid.Row="0" Fill="Aquamarine" Margin="5"/> <!--User Image-->
+                    <StackPanel Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="3"> <!--User Details-->
+                        <Label Style="{DynamicResource MahApps.Styles.Label}" FontSize="20" Content="Shonal Fernando" />
+                        <Label Style="{DynamicResource MahApps.Styles.Label}" FontSize="18" Content="Admin" FontFamily="Segoe UI Light" Margin="0,-10,0,0"/>
+                    </StackPanel>
+
+                    <StackPanel Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="3"> <!--Auxillary Functions-->
+                        <Label Style="{DynamicResource MahApps.Styles.Label}" FontSize="20" Content="Shonal Fernando" />
+                        <Label Style="{DynamicResource MahApps.Styles.Label}" FontSize="18" Content="Admin" FontFamily="Segoe UI Light" Margin="0,-10,0,0"/>
+                    </StackPanel>
+
+                </Grid>
+            </mah:Flyout>
         </mah:FlyoutsControl>
     </mah:MetroWindow.Flyouts>
 
-    <Grid >
+    <Grid>
         <Grid.RowDefinitions>
                 <RowDefinition Height="75"/>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="25"/>
-            </Grid.RowDefinitions>
+        </Grid.RowDefinitions>
 
             <StackPanel Grid.Row="0" Grid.Column="0" Orientation="Horizontal" >
                 <StackPanel.Background>
@@ -35,11 +63,11 @@
                         <GradientStop Color="#7FDADADA" Offset="1"/>
                     </LinearGradientBrush>
                 </StackPanel.Background>
-            <Button Style="{DynamicResource MahApps.Styles.Button.Circle}" Width="40" Height="40" Margin="25,0,0,0" Content="{iconPacks:Unicons Kind=Draggabledots, Height=20, Width=20}"/>
+                <Button Style="{DynamicResource MahApps.Styles.Button.Circle}" Width="40" Height="40" Margin="25,0,0,0" Content="{iconPacks:Unicons Kind=Draggabledots, Height=20, Width=20}" x:Name="OpenFlyout" Click="OpenFlyout_Click"/>
                 <Button Style="{DynamicResource MahApps.Styles.Button.Circle}" Width="40" Height="40" Margin="25,0,0,0" Content="{iconPacks:BootstrapIcons Kind=PlusLg, Height=20, Width=20}"/>
                 <Button Style="{DynamicResource MahApps.Styles.Button.Circle}" Width="40" Height="40" Margin="25,0,0,0" Content="{iconPacks:BootstrapIcons Kind=Magic,Height=20, Width=20}"/>
                 <Button Style="{DynamicResource MahApps.Styles.Button.Circle}" Width="40" Height="40" Margin="25,0,0,0" Content="{iconPacks:BootstrapIcons Kind=Sliders, Height=20, Width=20}"/>
-                <ToggleButton  Style="{DynamicResource MahApps.Styles.ToggleButton.Flat}" Width="100" VerticalAlignment="Stretch" Margin="35,0,0,0" Content="Toggle1"/>
+                <ToggleButton Style="{DynamicResource MahApps.Styles.ToggleButton.Flat}" Width="100" VerticalAlignment="Stretch" Margin="35,0,0,0" Content="Toggle1"/>
             <ToggleButton  Style="{DynamicResource MahApps.Styles.ToggleButton.Flat}" Width="100" VerticalAlignment="Stretch" Margin="0,0,0,0" Content="Toggle2"/>
             <ToggleButton  Style="{DynamicResource MahApps.Styles.ToggleButton.Flat}" Width="100" VerticalAlignment="Stretch" Margin="0,0,0,0" Content="Toggle3"/>
             </StackPanel>

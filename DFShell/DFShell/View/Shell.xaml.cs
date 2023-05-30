@@ -23,5 +23,11 @@ namespace DFShell.View
         {
             InitializeComponent();
         }
+
+        //Click Events are only for the basic Navbar functions All others are handled by commands and command bindings
+        private void OpenFlyout_Click(object sender, RoutedEventArgs e)
+        {
+            LeftFlyout.IsOpen = true;
+        }
     }
 }

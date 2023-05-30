@@ -41,7 +41,6 @@
     <Folder Include="Model\" />
     <Folder Include="Helper\" />
     <Folder Include="AppCore\" />
-    <Folder Include="ViewModel\" />
     <Folder Include="Session\" />
   </ItemGroup>
 
