@@ -14,6 +14,14 @@
     <None Remove="Assets\Icons\house-chimney %281%29.png" />
     <None Remove="Assets\Icons\house-chimney.png" />
     <None Remove="Assets\Icons\menu.png" />
+    <None Remove="Assets\Logos\Extended.PNG" />
+    <None Remove="Assets\Logos\MainTP.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Assets\Logos\Extended.PNG">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
 
   <ItemGroup>
@@ -33,6 +41,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Assets\Icons\menu.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\Logos\MainTP.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
   </ItemGroup>
