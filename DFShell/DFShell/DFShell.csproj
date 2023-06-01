@@ -16,6 +16,9 @@
     <None Remove="Assets\Icons\menu.png" />
     <None Remove="Assets\Logos\Extended.PNG" />
     <None Remove="Assets\Logos\MainTP.png" />
+    <None Remove="Assets\UIImages\cloud1.png" />
+    <None Remove="Assets\UIImages\cloud2.png" />
+    <None Remove="Assets\UIImages\cloud3.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -44,6 +47,15 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Assets\Logos\MainTP.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\UIImages\cloud1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\UIImages\cloud2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\UIImages\cloud3.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
   </ItemGroup>
