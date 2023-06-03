@@ -5,6 +5,7 @@
     <TargetFramework>net6.0-windows</TargetFramework>
     <Nullable>enable</Nullable>
     <UseWPF>true</UseWPF>
+    <ApplicationIcon>Assets\Icons\Main-removebg-preview.ico</ApplicationIcon>
   </PropertyGroup>
 
   <ItemGroup>
@@ -13,6 +14,7 @@
     <None Remove="Assets\Icons\home-button.png" />
     <None Remove="Assets\Icons\house-chimney %281%29.png" />
     <None Remove="Assets\Icons\house-chimney.png" />
+    <None Remove="Assets\Icons\Main-removebg-preview.ico" />
     <None Remove="Assets\Icons\menu.png" />
     <None Remove="Assets\Logos\Extended.PNG" />
     <None Remove="Assets\Logos\MainTP.png" />
@@ -22,6 +24,13 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Include="Assets\Icons\Main-removebg-preview.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Assets\Icons\Main-removebg-preview.ico">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Assets\Logos\Extended.PNG">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>

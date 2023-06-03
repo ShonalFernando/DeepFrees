@@ -23,5 +23,15 @@ namespace DFShell.View
         {
             InitializeComponent();
         }
+
+
+        //Remove this event handler after bindings
+        //For testing purposes only
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            Shell MainWindow = new Shell();
+            MainWindow.Show();
+            this.Hide();
+        }
     }
 }

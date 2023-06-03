@@ -60,7 +60,7 @@
                                 </LinearGradientBrush>
                             </TextBox.BorderBrush>
                         </TextBox>
-                        <Button Content="Click to Login" Width="150" Height="30" Style="{StaticResource MahApps.Styles.Button.MetroSquare.Accent}" Margin="200,20,0,0"/>
+                        <Button Content="Click to Login" Width="150" Height="30" Style="{StaticResource MahApps.Styles.Button.MetroSquare.Accent}" Margin="200,20,0,0" Click="Button_Click"/>
 
                         <Border Margin="0,165,10,0" Height="50">
                             <Border.Background>
@@ -75,7 +75,6 @@
                                     <Label Content="If you have any trouble logging in or a new employee &#xA;contact DeepFrees Human Resource Team" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="White"/>
                                 </StackPanel>
                             </StackPanel>
-                            
                         </Border>
                     </StackPanel>
                 </Border>

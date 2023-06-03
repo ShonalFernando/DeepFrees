@@ -64,13 +64,14 @@
                     </LinearGradientBrush>
                 </StackPanel.Background>
                 <Button Style="{DynamicResource MahApps.Styles.Button.Circle}" Width="40" Height="40" Margin="25,0,0,0" Content="{iconPacks:Unicons Kind=Draggabledots, Height=20, Width=20}" x:Name="OpenFlyout" Click="OpenFlyout_Click"/>
-                <Button Style="{DynamicResource MahApps.Styles.Button.Circle}" Width="40" Height="40" Margin="25,0,0,0" Content="{iconPacks:BootstrapIcons Kind=PlusLg, Height=20, Width=20}"/>
-                <Button Style="{DynamicResource MahApps.Styles.Button.Circle}" Width="40" Height="40" Margin="25,0,0,0" Content="{iconPacks:BootstrapIcons Kind=Magic,Height=20, Width=20}"/>
-                <Button Style="{DynamicResource MahApps.Styles.Button.Circle}" Width="40" Height="40" Margin="25,0,0,0" Content="{iconPacks:BootstrapIcons Kind=Sliders, Height=20, Width=20}"/>
-                <ToggleButton Style="{DynamicResource MahApps.Styles.ToggleButton.Flat}" Width="100" VerticalAlignment="Stretch" Margin="35,0,0,0" Content="Toggle1"/>
-            <ToggleButton  Style="{DynamicResource MahApps.Styles.ToggleButton.Flat}" Width="100" VerticalAlignment="Stretch" Margin="0,0,0,0" Content="Toggle2"/>
-            <ToggleButton  Style="{DynamicResource MahApps.Styles.ToggleButton.Flat}" Width="100" VerticalAlignment="Stretch" Margin="0,0,0,0" Content="Toggle3"/>
-            </StackPanel>
+                <Button Style="{DynamicResource MahApps.Styles.Button.Circle}" Width="40" Height="40" Margin="25,0,0,0" Content="{iconPacks:Material Kind=AccountArrowUp, Height=20, Width=20}"/>
+                <Button Style="{DynamicResource MahApps.Styles.Button.Circle}" Width="40" Height="40" Margin="25,0,0,0" Content="{iconPacks:Material Kind=ChartLine,Height=20, Width=20}"/>
+                <Button Style="{DynamicResource MahApps.Styles.Button.Circle}" Width="40" Height="40" Margin="25,0,0,0" Content="{iconPacks:Material Kind=FileTree, Height=20, Width=20}"/>
+                <Button Style="{DynamicResource MahApps.Styles.Button.Circle}" Width="40" Height="40" Margin="25,0,0,0" Content="{iconPacks:Material Kind=Overscan, Height=20, Width=20}"/>
+                <Button Style="{DynamicResource MahApps.Styles.Button.Circle}" Width="40" Height="40" Margin="25,0,0,0" Content="{iconPacks:Material Kind=FolderSearch, Height=20, Width=20}"/>
+                <Button Style="{DynamicResource MahApps.Styles.Button.Circle}" Width="40" Height="40" Margin="25,0,0,0" Content="{iconPacks:Material Kind=ChartPie, Height=20, Width=20}"/>
+                <ToggleButton Style="{DynamicResource MahApps.Styles.ToggleButton.Flat}" Width="100" VerticalAlignment="Stretch" Margin="35,0,0,0" Content="Live"/>
+        </StackPanel>
             <StatusBar Grid.Row="2"/>
 
 

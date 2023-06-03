@@ -61,3 +61,4 @@ D:\Source\Repos\DeepFrees\DFShell\DFShell\bin\Debug\net6.0-windows\Microsoft.Xam
 D:\Source\Repos\DeepFrees\DFShell\DFShell\bin\Debug\net6.0-windows\de\MahApps.Metro.resources.dll
 D:\Source\Repos\DeepFrees\DFShell\DFShell\obj\Debug\net6.0-windows\View\AuthWindow.g.cs
 D:\Source\Repos\DeepFrees\DFShell\DFShell\obj\Debug\net6.0-windows\View\AuthWindow.baml
+D:\Source\Repos\DeepFrees\DFShell\DFShell\obj\Debug\net6.0-windows\DFShell_Content.g.cs
