@@ -1,0 +1,15 @@
+{
+  "version": 2,
+  "dgSpecHash": "YX6Jy48rGQ8IRiD5RhJ3e+MAMsZwQ/hYM1Nh3P0GddZYi2rxZG4ZfVJdMeNGTWDp2la4imbYqcR1Ch04ENFDjQ==",
+  "success": true,
+  "projectFilePath": "D:\\Source\\Repos\\DeepFrees\\DeepFrees\\DeepFreesAccountsServices\\DeepFreesAccountsServices.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Shonal Fernando\\.nuget\\packages\\microsoft.extensions.apidescription.server\\3.0.0\\microsoft.extensions.apidescription.server.3.0.0.nupkg.sha512",
+    "C:\\Users\\Shonal Fernando\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",
+    "C:\\Users\\Shonal Fernando\\.nuget\\packages\\swashbuckle.aspnetcore\\6.2.3\\swashbuckle.aspnetcore.6.2.3.nupkg.sha512",
+    "C:\\Users\\Shonal Fernando\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\6.2.3\\swashbuckle.aspnetcore.swagger.6.2.3.nupkg.sha512",
+    "C:\\Users\\Shonal Fernando\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\6.2.3\\swashbuckle.aspnetcore.swaggergen.6.2.3.nupkg.sha512",
+    "C:\\Users\\Shonal Fernando\\.nuget\\packages\\swashbuckle.aspnetcore.swaggerui\\6.2.3\\swashbuckle.aspnetcore.swaggerui.6.2.3.nupkg.sha512"
+  ],
+  "logs": []
+}

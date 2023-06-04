@@ -40,7 +40,7 @@
                     </StackPanel>
 
                     <StackPanel Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="4"> <!--Auxillary Functions-->
-                        <TextBlock Style="{DynamicResource MahApps.Styles.Label}" FontSize="20" >
+                        <TextBlock Style="{DynamicResource BaseTextBlockStyle}" FontSize="20" >
                                     Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                                     Praesent efficitur at lacus a tempor. Nulla pharetra laoreet libero,
                                     ut lacinia nibh ultrices sit amet. Donec metus tellus, elementum 
