@@ -62,3 +62,5 @@ D:\Source\Repos\DeepFrees\DFShell\DFShell\bin\Debug\net6.0-windows\de\MahApps.Me
 D:\Source\Repos\DeepFrees\DFShell\DFShell\obj\Debug\net6.0-windows\View\AuthWindow.g.cs
 D:\Source\Repos\DeepFrees\DFShell\DFShell\obj\Debug\net6.0-windows\View\AuthWindow.baml
 D:\Source\Repos\DeepFrees\DFShell\DFShell\obj\Debug\net6.0-windows\DFShell_Content.g.cs
+D:\Source\Repos\DeepFrees\DFShell\DFShell\obj\Debug\net6.0-windows\View\Pages\HomePage.g.cs
+D:\Source\Repos\DeepFrees\DFShell\DFShell\obj\Debug\net6.0-windows\View\Pages\HomePage.baml

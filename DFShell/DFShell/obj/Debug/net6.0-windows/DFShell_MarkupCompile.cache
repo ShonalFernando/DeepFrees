@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NET;NET6_0;NETCOREAPP
 D:\Source\Repos\DeepFrees\DFShell\DFShell\App.xaml
-2479001576
+3-466243980
 1811211711
-11553823175
+12156123006
 2311733388083
-View\AuthWindow.xaml;View\Shell.xaml;
+View\AuthWindow.xaml;View\Pages\HomePage.xaml;View\Shell.xaml;
 
 False
 
