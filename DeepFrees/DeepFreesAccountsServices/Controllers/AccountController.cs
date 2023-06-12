@@ -1,4 +1,5 @@
 ﻿using DeepFreesAccountsServices.Model;
+using DeepFreesAccountsServices.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -8,16 +9,18 @@ namespace DeepFreesAccountsServices.Controllers
     [ApiController]
     public class AccountController : ControllerBase
     {
-        public AccountController()
+        private readonly UserAccountService _UserAccountServices;
+
+        public AccountController(UserAccountService userAccountService)
         {
-            _AuthService = AuthService;
+            _UserAccountServices = userAccountService;
         }
 
         //Get UserDetails
         [HttpGet("{Username}")]
         public async Task<ActionResult<UserAccount>> Get(string Username)
         {
-            var uacc = await _AuthService.GetAsync(Username);
+            var uacc = await _UserAccountServices.GetAsync(Username);
 
             if (uacc is null)
             {
@@ -33,15 +36,16 @@ namespace DeepFreesAccountsServices.Controllers
         {
             try
             {
-                await _ShoppinzService.CreateAsync(newuser);
+                await _UserAccountServices.CreateAsync(newuser);
 
                 return Created(nameof(Get), newuser);
             }
             catch (Exception e)
             {
 
-                return BadRequest();
+                return BadRequest(e);
             }
 
         }
     }
+}
