@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "uEpjt+k5neSmpzMwgLtDnJDySrj8xxtpVjUfSWlVNzGmucIYjXIHrmG5/XbnRg0Y1HPJ78mLUb8OvxJfeLkD+w==",
+  "dgSpecHash": "8YbbZ20CEmVnLR9iCpwEFoQX9FKFlpwz/UReB4RNIZnDhg5Wq02V7DqRuAGQF1y47H2mNKVkYV3eZ4t24MTHWg==",
   "success": true,
   "projectFilePath": "D:\\Source\\Repos\\DeepFrees\\DFShell\\DFShell\\DFShell.csproj",
   "expectedPackageFiles": [
@@ -8,6 +8,7 @@
     "C:\\Users\\Shonal Fernando\\.nuget\\packages\\fluentwpf\\0.10.2\\fluentwpf.0.10.2.nupkg.sha512",
     "C:\\Users\\Shonal Fernando\\.nuget\\packages\\mahapps.metro\\2.4.9\\mahapps.metro.2.4.9.nupkg.sha512",
     "C:\\Users\\Shonal Fernando\\.nuget\\packages\\mahapps.metro.iconpacks\\4.11.0\\mahapps.metro.iconpacks.4.11.0.nupkg.sha512",
+    "C:\\Users\\Shonal Fernando\\.nuget\\packages\\microsoft.web.webview2\\1.0.1823.32\\microsoft.web.webview2.1.0.1823.32.nupkg.sha512",
     "C:\\Users\\Shonal Fernando\\.nuget\\packages\\microsoft.xaml.behaviors.wpf\\1.1.19\\microsoft.xaml.behaviors.wpf.1.1.19.nupkg.sha512",
     "C:\\Users\\Shonal Fernando\\.nuget\\packages\\system.text.json\\4.7.2\\system.text.json.4.7.2.nupkg.sha512"
   ],

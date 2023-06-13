@@ -1,4 +1,6 @@
 using DeepFreez.WebApp.Data;
+using DeepFreez.WebApp.Model.SettingModels;
+using DeepFreez.WebApp.Service;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 
@@ -8,6 +10,9 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
 builder.Services.AddSingleton<WeatherForecastService>();
+builder.Services.Configure<DeepFreesDatabaseSettings>(builder.Configuration.GetSection("DeepFreesDatabase"));
+
+builder.Services.AddSingleton<EmployeeService>();
 
 var app = builder.Build();
 

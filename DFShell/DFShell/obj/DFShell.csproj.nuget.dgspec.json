@@ -56,6 +56,10 @@
             "MahApps.Metro.IconPacks": {
               "target": "Package",
               "version": "[4.11.0, )"
+            },
+            "Microsoft.Web.WebView2": {
+              "target": "Package",
+              "version": "[1.0.1823.32, )"
             }
           },
           "imports": [

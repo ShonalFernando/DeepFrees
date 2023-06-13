@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SchedulingServices", "Sched
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PayrollServices", "PayrollServices\PayrollServices.csproj", "{8B76EE89-D5FA-4A3E-A3AB-8DA2679E00BF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DeepFreez.WebApp", "DeepFreez.WebApp\DeepFreez.WebApp.csproj", "{0802A074-AA75-41C9-968D-52B3D24A3328}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DeepFreez.WebApp", "DeepFreez.WebApp\DeepFreez.WebApp.csproj", "{0802A074-AA75-41C9-968D-52B3D24A3328}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

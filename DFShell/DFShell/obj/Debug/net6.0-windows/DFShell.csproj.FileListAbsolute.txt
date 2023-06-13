@@ -64,3 +64,9 @@ D:\Source\Repos\DeepFrees\DFShell\DFShell\obj\Debug\net6.0-windows\View\AuthWind
 D:\Source\Repos\DeepFrees\DFShell\DFShell\obj\Debug\net6.0-windows\DFShell_Content.g.cs
 D:\Source\Repos\DeepFrees\DFShell\DFShell\obj\Debug\net6.0-windows\View\Pages\HomePage.g.cs
 D:\Source\Repos\DeepFrees\DFShell\DFShell\obj\Debug\net6.0-windows\View\Pages\HomePage.baml
+D:\Source\Repos\DeepFrees\DFShell\DFShell\bin\Debug\net6.0-windows\runtimes\win-x86\native\WebView2Loader.dll
+D:\Source\Repos\DeepFrees\DFShell\DFShell\bin\Debug\net6.0-windows\runtimes\win-x64\native\WebView2Loader.dll
+D:\Source\Repos\DeepFrees\DFShell\DFShell\bin\Debug\net6.0-windows\runtimes\win-arm64\native\WebView2Loader.dll
+D:\Source\Repos\DeepFrees\DFShell\DFShell\bin\Debug\net6.0-windows\Microsoft.Web.WebView2.Core.dll
+D:\Source\Repos\DeepFrees\DFShell\DFShell\bin\Debug\net6.0-windows\Microsoft.Web.WebView2.WinForms.dll
+D:\Source\Repos\DeepFrees\DFShell\DFShell\bin\Debug\net6.0-windows\Microsoft.Web.WebView2.Wpf.dll
