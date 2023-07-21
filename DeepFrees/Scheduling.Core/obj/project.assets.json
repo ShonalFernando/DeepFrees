@@ -14,9 +14,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Source\\Repos\\DeepFrees\\DeepFrees\\Scheduling.Core\\Scheduling.Core.csproj",
-      "projectName": "Scheduling.Core",
-      "projectPath": "D:\\Source\\Repos\\DeepFrees\\DeepFrees\\Scheduling.Core\\Scheduling.Core.csproj",
+      "projectUniqueName": "D:\\Source\\Repos\\DeepFrees\\DeepFrees\\Scheduling.Core\\DeepFrees.Core.csproj",
+      "projectName": "DeepFrees.Core",
+      "projectPath": "D:\\Source\\Repos\\DeepFrees\\DeepFrees\\Scheduling.Core\\DeepFrees.Core.csproj",
       "packagesPath": "C:\\Users\\Shonal Fernando\\.nuget\\packages\\",
       "outputPath": "D:\\Source\\Repos\\DeepFrees\\DeepFrees\\Scheduling.Core\\obj\\",
       "projectStyle": "PackageReference",
