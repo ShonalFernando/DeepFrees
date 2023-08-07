@@ -1,37 +1,41 @@
-from flask import Flask, jsonify
-from flask_caching import Cache
-import mysql.connector
+from flask import Flask, request, jsonify
+import json
 
-# Create Flask app instance
 app = Flask(__name__)
 
-#define cahce
-app.config['CACHE_TYPE'] = 'simple'  # Use in-memory caching
-app.config['CACHE_DEFAULT_TIMEOUT'] = 300  # Set cache timeout to 300 seconds (5 minutes)
+def schedule_employees(employees, tasks):
+    schedule = {}
 
-cache = Cache(app)
+    for task in tasks:
+        best_employee = None
+        best_score = float('inf')
 
-# Define a route and its corresponding view function
-@app.route('/Schedule/<int:id>')
-@cache.cached()
-def get_data(id):
-    #cache check if exist
-    cached_data = cache.get(str(id))
-    if cached_data:
-        return cached_data
-    
+        for employee in employees:
+            if employee['availability'] >= task['duration']:
+                score = employee['workload']
+                if score < best_score:
+                    best_score = score
+                    best_employee = employee
 
+        if best_employee:
+            if best_employee['workload'] + task['duration'] <= best_employee['availability']:
+                best_employee['workload'] += task['duration']
+                if best_employee['id'] not in schedule:
+                    schedule[best_employee['id']] = []
+                schedule[best_employee['id']].append(task['id'])
 
+    return schedule
 
-    # Return the data as JSON
-    return jsonify(data)
+@app.route('/schedule', methods=['POST'])
+def generate_schedule():
+    data = request.json
+
+    employees = data.get('employees', [])
+    tasks = data.get('tasks', [])
+
+    schedule = schedule_employees(employees, tasks)
+
+    return jsonify(schedule)
 
 if __name__ == '__main__':
-    import os
-    HOST = os.environ.get('SERVER_HOST', 'localhost')
-    try:
-        PORT = int(os.environ.get('SERVER_PORT', '5555'))
-    except ValueError:
-        PORT = 5555
-    app.run(HOST, PORT)
-
+    app.run(debug=True)
