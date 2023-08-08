@@ -65,8 +65,8 @@
         </Grid.ColumnDefinitions>
 
 
-        <Border  Grid.Row="1"  Grid.Column="1">
-            <Wpf:WebView2 Source="https://localhost:7035/"/>
+        <Border  Grid.Row="1" Grid.ColumnSpan="2">
+            <Wpf:WebView2 x:Name="mainView" Source="https://localhost:7035/"/>
         </Border>
 
 

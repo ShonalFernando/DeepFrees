@@ -22,6 +22,7 @@ namespace DFShell.View
         public Shell()
         {
             InitializeComponent();
+            
         }
 
         //Click Events are only for the basic Navbar functions All others are handled by commands and command bindings
