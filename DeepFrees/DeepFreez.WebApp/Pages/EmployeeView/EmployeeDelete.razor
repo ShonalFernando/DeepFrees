@@ -1,0 +1,26 @@
+﻿@page "/DeleteEmployee"
+
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="#">Home</a></li>
+        <li class="breadcrumb-item"><a href="#">Library</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Data</li>
+    </ol>
+</nav>
+
+<h3>Are you sure you want to delete employee #######?</h3>
+
+<form>
+    <div class="form-group">
+        <label for="retypename">Re-type Username for security</label>
+        <input type="text" class="form-control" id="retypename" placeholder="Username">
+    </div>
+    <br/>
+    <button type="button" class="btn btn-danger">Delete</button>
+    <button type="button" class="btn btn-secondary">Cancel</button>
+</form>
+
+
+@code {
+
+}

@@ -11,6 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Pages\SchedulerView\" />
     <Folder Include="Service\" />
   </ItemGroup>
 
