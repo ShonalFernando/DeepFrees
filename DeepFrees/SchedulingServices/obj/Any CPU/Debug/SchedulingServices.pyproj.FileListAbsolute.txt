@@ -1,0 +1,2 @@
+D:\Source\Repos\DeepFrees\DeepFrees\SchedulingServices\obj\Any CPU\Debug\SchedulingServices.pyproj.SuggestedBindingRedirects.cache
+D:\Source\Repos\DeepFrees\DeepFrees\SchedulingServices\obj\Any CPU\Debug\SchedulingServices.pyproj.CoreCompileInputs.cache

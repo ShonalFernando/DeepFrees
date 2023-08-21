@@ -20,6 +20,10 @@ build_property._RazorSourceGeneratorDebug =
 build_metadata.AdditionalFiles.TargetPath = QXBwLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
+[D:/Source/Repos/DeepFrees/DeepFrees/DeepFreez.WebApp/Pages/Components/DispatchAvailabilityTable.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ29tcG9uZW50c1xEaXNwYXRjaEF2YWlsYWJpbGl0eVRhYmxlLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/Source/Repos/DeepFrees/DeepFrees/DeepFreez.WebApp/Pages/Components/EmployeeViewTable.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ29tcG9uZW50c1xFbXBsb3llZVZpZXdUYWJsZS5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
@@ -34,6 +38,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [D:/Source/Repos/DeepFrees/DeepFrees/DeepFreez.WebApp/Pages/Components/ManagerScheduleTable.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ29tcG9uZW50c1xNYW5hZ2VyU2NoZWR1bGVUYWJsZS5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Source/Repos/DeepFrees/DeepFrees/DeepFreez.WebApp/Pages/DispatcherView/LiveDispatchView.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRGlzcGF0Y2hlclZpZXdcTGl2ZURpc3BhdGNoVmlldy5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/Source/Repos/DeepFrees/DeepFrees/DeepFreez.WebApp/Pages/EmployeeView/EmployeeCreate.razor]
@@ -56,8 +64,8 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSW5kZXgucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Source/Repos/DeepFrees/DeepFrees/DeepFreez.WebApp/Pages/WorkTaskView.razor]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcV29ya1Rhc2tWaWV3LnJhem9y
+[D:/Source/Repos/DeepFrees/DeepFrees/DeepFreez.WebApp/Pages/SchedulerView/WorkTaskView.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2NoZWR1bGVyVmlld1xXb3JrVGFza1ZpZXcucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/Source/Repos/DeepFrees/DeepFrees/DeepFreez.WebApp/Shared/SurveyPrompt.razor]

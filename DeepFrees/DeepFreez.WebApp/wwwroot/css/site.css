@@ -95,13 +95,13 @@ a, .btn-link {
 
     .fl-table thead th {
         color: #ffffff;
-        background: #4FC3A1;
+        background: rgba(0,150,199,1);
     }
 
 
         .fl-table thead th:nth-child(1) {
             color: #ffffff;
-            background: #324960;
+            background: rgba(0,116,255,1);
         }
 
     .fl-table tr {

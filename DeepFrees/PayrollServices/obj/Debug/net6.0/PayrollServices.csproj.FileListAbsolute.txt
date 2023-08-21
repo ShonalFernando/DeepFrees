@@ -29,6 +29,11 @@ D:\Source\Repos\DeepFrees\DeepFrees\PayrollServices\obj\Debug\net6.0\PayrollServ
 D:\Source\Repos\DeepFrees\DeepFrees\PayrollServices\obj\Debug\net6.0\PayrollServices.csproj.CoreCompileInputs.cache
 D:\Source\Repos\DeepFrees\DeepFrees\PayrollServices\obj\Debug\net6.0\PayrollServices.MvcApplicationPartsAssemblyInfo.cs
 D:\Source\Repos\DeepFrees\DeepFrees\PayrollServices\obj\Debug\net6.0\PayrollServices.MvcApplicationPartsAssemblyInfo.cache
+D:\Source\Repos\DeepFrees\DeepFrees\PayrollServices\obj\Debug\net6.0\staticwebassets\msbuild.PayrollServices.Microsoft.AspNetCore.StaticWebAssets.props
+D:\Source\Repos\DeepFrees\DeepFrees\PayrollServices\obj\Debug\net6.0\staticwebassets\msbuild.build.PayrollServices.props
+D:\Source\Repos\DeepFrees\DeepFrees\PayrollServices\obj\Debug\net6.0\staticwebassets\msbuild.buildMultiTargeting.PayrollServices.props
+D:\Source\Repos\DeepFrees\DeepFrees\PayrollServices\obj\Debug\net6.0\staticwebassets\msbuild.buildTransitive.PayrollServices.props
+D:\Source\Repos\DeepFrees\DeepFrees\PayrollServices\obj\Debug\net6.0\staticwebassets.pack.json
 D:\Source\Repos\DeepFrees\DeepFrees\PayrollServices\obj\Debug\net6.0\staticwebassets.build.json
 D:\Source\Repos\DeepFrees\DeepFrees\PayrollServices\obj\Debug\net6.0\staticwebassets.development.json
 D:\Source\Repos\DeepFrees\DeepFrees\PayrollServices\obj\Debug\net6.0\scopedcss\bundle\PayrollServices.styles.css

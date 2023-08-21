@@ -1,0 +1,12 @@
+D:\Source\Repos\DeepFrees\DeepFrees\Scheduling.Core\bin\Debug\net6.0\DeepFrees.Core.deps.json
+D:\Source\Repos\DeepFrees\DeepFrees\Scheduling.Core\bin\Debug\net6.0\DeepFrees.Core.dll
+D:\Source\Repos\DeepFrees\DeepFrees\Scheduling.Core\bin\Debug\net6.0\DeepFrees.Core.pdb
+D:\Source\Repos\DeepFrees\DeepFrees\Scheduling.Core\obj\Debug\net6.0\DeepFrees.Core.csproj.AssemblyReference.cache
+D:\Source\Repos\DeepFrees\DeepFrees\Scheduling.Core\obj\Debug\net6.0\DeepFrees.Core.GeneratedMSBuildEditorConfig.editorconfig
+D:\Source\Repos\DeepFrees\DeepFrees\Scheduling.Core\obj\Debug\net6.0\DeepFrees.Core.AssemblyInfoInputs.cache
+D:\Source\Repos\DeepFrees\DeepFrees\Scheduling.Core\obj\Debug\net6.0\DeepFrees.Core.AssemblyInfo.cs
+D:\Source\Repos\DeepFrees\DeepFrees\Scheduling.Core\obj\Debug\net6.0\DeepFrees.Core.csproj.CoreCompileInputs.cache
+D:\Source\Repos\DeepFrees\DeepFrees\Scheduling.Core\obj\Debug\net6.0\DeepFrees.Core.dll
+D:\Source\Repos\DeepFrees\DeepFrees\Scheduling.Core\obj\Debug\net6.0\refint\DeepFrees.Core.dll
+D:\Source\Repos\DeepFrees\DeepFrees\Scheduling.Core\obj\Debug\net6.0\DeepFrees.Core.pdb
+D:\Source\Repos\DeepFrees\DeepFrees\Scheduling.Core\obj\Debug\net6.0\ref\DeepFrees.Core.dll
