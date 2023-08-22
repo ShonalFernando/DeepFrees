@@ -20,6 +20,14 @@ build_property._RazorSourceGeneratorDebug =
 build_metadata.AdditionalFiles.TargetPath = QXBwLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
+[D:/Source/Repos/DeepFrees/DeepFrees/DeepFreez.WebApp/Pages/CallCenterView/LiveCallViewer.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ2FsbENlbnRlclZpZXdcTGl2ZUNhbGxWaWV3ZXIucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Source/Repos/DeepFrees/DeepFrees/DeepFreez.WebApp/Pages/Components/CallListView.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ29tcG9uZW50c1xDYWxsTGlzdFZpZXcucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/Source/Repos/DeepFrees/DeepFrees/DeepFreez.WebApp/Pages/Components/DispatchAvailabilityTable.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ29tcG9uZW50c1xEaXNwYXRjaEF2YWlsYWJpbGl0eVRhYmxlLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
