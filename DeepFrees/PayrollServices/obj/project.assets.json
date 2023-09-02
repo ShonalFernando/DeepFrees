@@ -970,9 +970,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Source\\Repos\\DeepFrees\\DeepFrees\\PayrollServices\\PayrollServices.csproj",
-      "projectName": "PayrollServices",
-      "projectPath": "D:\\Source\\Repos\\DeepFrees\\DeepFrees\\PayrollServices\\PayrollServices.csproj",
+      "projectUniqueName": "D:\\Source\\Repos\\DeepFrees\\DeepFrees\\PayrollServices\\DeepFrees.PayrollServices.csproj",
+      "projectName": "DeepFrees.PayrollServices",
+      "projectPath": "D:\\Source\\Repos\\DeepFrees\\DeepFrees\\PayrollServices\\DeepFrees.PayrollServices.csproj",
       "packagesPath": "C:\\Users\\Shonal Fernando\\.nuget\\packages\\",
       "outputPath": "D:\\Source\\Repos\\DeepFrees\\DeepFrees\\PayrollServices\\obj\\",
       "projectStyle": "PackageReference",

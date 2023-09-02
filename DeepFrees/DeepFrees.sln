@@ -3,17 +3,19 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.3.32929.385
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DeepFreesAccountsServices", "DeepFreesAccountsServices\DeepFreesAccountsServices.csproj", "{235FEB8C-9F9C-48FD-BDCA-DE36EC0E9333}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DeepFrees.Accounts", "DeepFreesAccountsServices\DeepFrees.Accounts.csproj", "{235FEB8C-9F9C-48FD-BDCA-DE36EC0E9333}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PayrollServices", "PayrollServices\PayrollServices.csproj", "{8B76EE89-D5FA-4A3E-A3AB-8DA2679E00BF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DeepFrees.PayrollServices", "PayrollServices\DeepFrees.PayrollServices.csproj", "{8B76EE89-D5FA-4A3E-A3AB-8DA2679E00BF}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DeepFreez.WebApp", "DeepFreez.WebApp\DeepFreez.WebApp.csproj", "{0802A074-AA75-41C9-968D-52B3D24A3328}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DeepFrees.Core", "Scheduling.Core\DeepFrees.Core.csproj", "{8DD34C7C-8807-4266-849D-88DDCBEB63D6}"
 EndProject
-Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "SchedulingServices", "SchedulingServices\SchedulingServices.pyproj", "{AE1E23B1-B3DD-4038-ACE2-DA3C769EC101}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DeepFrees.Scheduler", "DeepFrees.Scheduler\DeepFrees.Scheduler.csproj", "{3E2A32DE-1094-4FD2-B16F-2AF8CF22C880}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DeepFrees.Scheduler", "DeepFrees.Scheduler\DeepFrees.Scheduler.csproj", "{3E2A32DE-1094-4FD2-B16F-2AF8CF22C880}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DeepFrees.Dispatcher", "DeepFrees.Dispatcher\DeepFrees.Dispatcher.csproj", "{6D89D48B-F9D6-4CA9-BE70-A4A04518072B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DeepFrees.CallDirecting", "DeepFrees.CallDirecting\DeepFrees.CallDirecting.csproj", "{635F7C9B-E482-4651-BCBF-0322F66168BD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -37,14 +39,18 @@ Global
 		{8DD34C7C-8807-4266-849D-88DDCBEB63D6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8DD34C7C-8807-4266-849D-88DDCBEB63D6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8DD34C7C-8807-4266-849D-88DDCBEB63D6}.Release|Any CPU.Build.0 = Release|Any CPU
-		{AE1E23B1-B3DD-4038-ACE2-DA3C769EC101}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{AE1E23B1-B3DD-4038-ACE2-DA3C769EC101}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{AE1E23B1-B3DD-4038-ACE2-DA3C769EC101}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{AE1E23B1-B3DD-4038-ACE2-DA3C769EC101}.Release|Any CPU.Build.0 = Release|Any CPU
 		{3E2A32DE-1094-4FD2-B16F-2AF8CF22C880}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{3E2A32DE-1094-4FD2-B16F-2AF8CF22C880}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3E2A32DE-1094-4FD2-B16F-2AF8CF22C880}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3E2A32DE-1094-4FD2-B16F-2AF8CF22C880}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6D89D48B-F9D6-4CA9-BE70-A4A04518072B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6D89D48B-F9D6-4CA9-BE70-A4A04518072B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6D89D48B-F9D6-4CA9-BE70-A4A04518072B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6D89D48B-F9D6-4CA9-BE70-A4A04518072B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{635F7C9B-E482-4651-BCBF-0322F66168BD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{635F7C9B-E482-4651-BCBF-0322F66168BD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{635F7C9B-E482-4651-BCBF-0322F66168BD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{635F7C9B-E482-4651-BCBF-0322F66168BD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

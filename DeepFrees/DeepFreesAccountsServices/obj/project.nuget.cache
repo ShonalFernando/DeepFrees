@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "9WIUWW2BZrN8Vs/H6b/mbil7uBuPIBCp1HR/K8aZJoDsx+U/SFwpETDZapzSp0em1wYL6RVdndVS68er1HuvBg==",
+  "dgSpecHash": "XGnsVtnfKfgO7jSjXA+aALo4tOxpDouhRS9X5MMOf/WqtjDOU4pNU/q4BjQXGEW7VHIzEYLf7HP3/sJcUHqT5Q==",
   "success": true,
-  "projectFilePath": "D:\\Source\\Repos\\DeepFrees\\DeepFrees\\DeepFreesAccountsServices\\DeepFreesAccountsServices.csproj",
+  "projectFilePath": "D:\\Source\\Repos\\DeepFrees\\DeepFrees\\DeepFreesAccountsServices\\DeepFrees.Accounts.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Shonal Fernando\\.nuget\\packages\\awssdk.core\\3.7.100.14\\awssdk.core.3.7.100.14.nupkg.sha512",
     "C:\\Users\\Shonal Fernando\\.nuget\\packages\\awssdk.securitytoken\\3.7.100.14\\awssdk.securitytoken.3.7.100.14.nupkg.sha512",

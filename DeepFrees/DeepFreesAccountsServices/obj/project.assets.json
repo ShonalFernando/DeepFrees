@@ -970,9 +970,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Source\\Repos\\DeepFrees\\DeepFrees\\DeepFreesAccountsServices\\DeepFreesAccountsServices.csproj",
-      "projectName": "DeepFreesAccountsServices",
-      "projectPath": "D:\\Source\\Repos\\DeepFrees\\DeepFrees\\DeepFreesAccountsServices\\DeepFreesAccountsServices.csproj",
+      "projectUniqueName": "D:\\Source\\Repos\\DeepFrees\\DeepFrees\\DeepFreesAccountsServices\\DeepFrees.Accounts.csproj",
+      "projectName": "DeepFrees.Accounts",
+      "projectPath": "D:\\Source\\Repos\\DeepFrees\\DeepFrees\\DeepFreesAccountsServices\\DeepFrees.Accounts.csproj",
       "packagesPath": "C:\\Users\\Shonal Fernando\\.nuget\\packages\\",
       "outputPath": "D:\\Source\\Repos\\DeepFrees\\DeepFrees\\DeepFreesAccountsServices\\obj\\",
       "projectStyle": "PackageReference",

@@ -1,10 +1,11 @@
 ﻿using DeepFrees.Scheduler.Model;
 using Google.OrTools.Sat;
+using OperationsResearch;
 
 namespace DeepFrees.Scheduler.MicroService
 {
     public class WorkTaskScheduler
-    {    
+    {
         private class AssignedTask : IComparable
         {
             public int jobID;
@@ -38,110 +39,41 @@ namespace DeepFrees.Scheduler.MicroService
             }
         }
 
-        public void Schedule(String[] args)
+        public static List<TaskSolution> Shuffle(List<Job> allJobs)
         {
-            JobRequestModel jrmodel = new JobRequestModel();
-            jrmodel.empCatogery = 0;
-            jrmodel.taskDuration = 3; 
-            
-            JobRequestModel jrmodel1 = new JobRequestModel();
-            jrmodel1.empCatogery = 1;
-            jrmodel1.taskDuration = 2;
+            List<TaskSolution> solutions = new List<TaskSolution>();
 
-            JobRequestModel jrmodel2 = new JobRequestModel();
-            jrmodel2.empCatogery = 2;
-            jrmodel2.taskDuration = 2;
-
-            JobRequestModel jrmodel3 = new JobRequestModel();
-            jrmodel3.empCatogery = 0;
-            jrmodel3.taskDuration = 2;
-
-            JobRequestModel jrmodel4 = new JobRequestModel();
-            jrmodel4.empCatogery = 2;
-            jrmodel4.taskDuration = 1;
-
-            JobRequestModel jrmodel5 = new JobRequestModel();
-            jrmodel5.empCatogery = 1;
-            jrmodel5.taskDuration = 4;
-
-            JobRequestModel jrmodel6 = new JobRequestModel();
-            jrmodel6.empCatogery = 1;
-            jrmodel6.taskDuration = 4;
-
-            JobRequestModel jrmodel7 = new JobRequestModel();
-            jrmodel7.empCatogery = 2;
-            jrmodel7.taskDuration = 3;
-
-            List<JobRequestModel> jrmlist = new List<JobRequestModel>();
-            jrmlist.Add(jrmodel);
-            jrmlist.Add(jrmodel1);
-            jrmlist.Add(jrmodel2);
-
-            List<JobRequestModel> jrmlist1 = new List<JobRequestModel>();
-            jrmlist1.Add(jrmodel3);
-            jrmlist1.Add(jrmodel4);
-            jrmlist1.Add(jrmodel5);
-
-            List<JobRequestModel> jrmlist2 = new List<JobRequestModel>();
-            jrmlist2.Add(jrmodel6);
-            jrmlist2.Add(jrmodel7);
-
-            List<List<JobRequestModel>> allJobs = new List<List<JobRequestModel>>();
-            allJobs.Add(jrmlist);
-            allJobs.Add(jrmlist1);
-            allJobs.Add(jrmlist2);
-
-            foreach(var aj in allJobs)
-            {
-                foreach(var a in aj)
-                {
-                    Console.WriteLine(a.empCatogery.ToString() + " : " + a.taskDuration.ToString());
-                }
-            }
-
-            Console.WriteLine("CHECK");
-
-            var allJobsa =
-                new[] 
-                {
-                    new[] 
-                    {
-                        // job0
-                        new { machine = 0, duration = 3 }, // task0
-                        new { machine = 1, duration = 2 }, // task1
-                        new { machine = 2, duration = 2 }, // task2
-                    }.ToList(),
-
-                    new[] 
-                    {
-                        // job1
-                        new { machine = 0, duration = 2 }, // task0
-                        new { machine = 2, duration = 1 }, // task1
-                        new { machine = 1, duration = 4 }, // task2
-                    }.ToList(),
-
-                    new[] 
-                    {
-                        // job2
-                        new { machine = 1, duration = 4 }, // task0
-                        new { machine = 2, duration = 3 }, // task1
-                    }.ToList(),
-                }.ToList();
-
-            foreach (var aj in allJobsa)
-            {
-                foreach (var a in aj)
-                {
-                    Console.WriteLine(a.machine.ToString() + " : " + a.duration.ToString());
-                }
-            }
+            //var allJobs =
+            //    new[] {
+            //    new[] {
+            //        // job0
+            //        new { machine = 0, duration = 3 }, // task0
+            //        new { machine = 1, duration = 2 }, // task1
+            //        new { machine = 2, duration = 2 }, // task2
+            //    }
+            //        .ToList(),
+            //    new[] {
+            //        // job1
+            //        new { machine = 0, duration = 2 }, // task0
+            //        new { machine = 2, duration = 1 }, // task1
+            //        new { machine = 1, duration = 4 }, // task2
+            //    }
+            //        .ToList(),
+            //    new[] {
+            //        // job2
+            //        new { machine = 1, duration = 4 }, // task0
+            //        new { machine = 2, duration = 3 }, // task1
+            //    }
+            //        .ToList(),
+            //    }
+            //        .ToList();
 
             int numMachines = 0;
             foreach (var job in allJobs)
             {
-                foreach (var task in job)
+                foreach (var task in job.Tasks)
                 {
-                    numMachines = Math.Max(numMachines, 1 + task.empCatogery);
+                    numMachines = Math.Max(numMachines, 1 + task.Machine);
                 }
             }
             int[] allMachines = Enumerable.Range(0, numMachines).ToArray();
@@ -150,9 +82,9 @@ namespace DeepFrees.Scheduler.MicroService
             int horizon = 0;
             foreach (var job in allJobs)
             {
-                foreach (var task in job)
+                foreach (var task in job.Tasks)
                 {
-                    horizon += task.taskDuration;
+                    horizon += task.Duration;
                 }
             }
 
@@ -165,20 +97,20 @@ namespace DeepFrees.Scheduler.MicroService
             for (int jobID = 0; jobID < allJobs.Count(); ++jobID)
             {
                 var job = allJobs[jobID];
-                for (int taskID = 0; taskID < job.Count(); ++taskID)
+                for (int taskID = 0; taskID < job.Tasks.Count(); ++taskID)
                 {
-                    var task = job[taskID];
+                    var task = job.Tasks[taskID];
                     String suffix = $"_{jobID}_{taskID}";
                     IntVar start = model.NewIntVar(0, horizon, "start" + suffix);
                     IntVar end = model.NewIntVar(0, horizon, "end" + suffix);
-                    IntervalVar interval = model.NewIntervalVar(start, task.taskDuration, end, "interval" + suffix);
+                    IntervalVar interval = model.NewIntervalVar(start, task.Duration, end, "interval" + suffix);
                     var key = Tuple.Create(jobID, taskID);
                     allTasks[key] = Tuple.Create(start, end, interval);
-                    if (!machineToIntervals.ContainsKey(task.empCatogery))
+                    if (!machineToIntervals.ContainsKey(task.Machine))
                     {
-                        machineToIntervals.Add(task.empCatogery, new List<IntervalVar>());
+                        machineToIntervals.Add(task.Machine, new List<IntervalVar>());
                     }
-                    machineToIntervals[task.empCatogery].Add(interval);
+                    machineToIntervals[task.Machine].Add(interval);
                 }
             }
 
@@ -192,7 +124,7 @@ namespace DeepFrees.Scheduler.MicroService
             for (int jobID = 0; jobID < allJobs.Count(); ++jobID)
             {
                 var job = allJobs[jobID];
-                for (int taskID = 0; taskID < job.Count() - 1; ++taskID)
+                for (int taskID = 0; taskID < job.Tasks.Count() - 1; ++taskID)
                 {
                     var key = Tuple.Create(jobID, taskID);
                     var nextKey = Tuple.Create(jobID, taskID + 1);
@@ -207,7 +139,7 @@ namespace DeepFrees.Scheduler.MicroService
             for (int jobID = 0; jobID < allJobs.Count(); ++jobID)
             {
                 var job = allJobs[jobID];
-                var key = Tuple.Create(jobID, job.Count() - 1);
+                var key = Tuple.Create(jobID, job.Tasks.Count() - 1);
                 ends.Add(allTasks[key].Item2);
             }
             model.AddMaxEquality(objVar, ends);
@@ -218,8 +150,6 @@ namespace DeepFrees.Scheduler.MicroService
             CpSolverStatus status = solver.Solve(model);
             Console.WriteLine($"Solve status: {status}");
 
-            List<EmployeeShedule> lsmscdhle = new List<EmployeeShedule>();
-
             if (status == CpSolverStatus.Optimal || status == CpSolverStatus.Feasible)
             {
                 Console.WriteLine("Solution:");
@@ -228,50 +158,57 @@ namespace DeepFrees.Scheduler.MicroService
                 for (int jobID = 0; jobID < allJobs.Count(); ++jobID)
                 {
                     var job = allJobs[jobID];
-                    for (int taskID = 0; taskID < job.Count(); ++taskID)
+                    for (int taskID = 0; taskID < job.Tasks.Count(); ++taskID)
                     {
-                        var task = job[taskID];
+                        var task = job.Tasks[taskID];
                         var key = Tuple.Create(jobID, taskID);
                         int start = (int)solver.Value(allTasks[key].Item1);
-                        if (!assignedJobs.ContainsKey(task.empCatogery))
+                        if (!assignedJobs.ContainsKey(task.Machine))
                         {
-                            assignedJobs.Add(task.empCatogery, new List<AssignedTask>());
+                            assignedJobs.Add(task.Machine, new List<AssignedTask>());
                         }
-                        assignedJobs[task.empCatogery].Add(new AssignedTask(jobID, taskID, start, task.taskDuration));
+                        assignedJobs[task.Machine].Add(new AssignedTask(jobID, taskID, start, task.Duration));
                     }
                 }
-
-                
 
                 // Create per machine output lines.
                 String output = "";
                 foreach (int machine in allMachines)
                 {
+                    TaskSolution solution = new TaskSolution
+                    {
+                        Machine = machine
+                    };
+
                     // Sort by starting time.
                     assignedJobs[machine].Sort();
-                    String solLineTasks = $"Employee {machine}: ";
+                    String solLineTasks = $"Machine {machine}: ";
                     String solLine = "           ";
-                    
 
+                    List<TaskSession> taskSessions = new List<TaskSession>();
                     foreach (var assignedTask in assignedJobs[machine])
                     {
-                        EmployeeShedule empschdl = new EmployeeShedule();
-                    empschdl.EmpID = machine.ToString();
+                        TaskSession taskSession = new TaskSession();
 
                         String name = $"job_{assignedTask.jobID}_task_{assignedTask.taskID}";
                         // Add spaces to output to align columns.
                         solLineTasks += $"{name,-15}";
+                        taskSession.JobID = assignedTask.jobID;
+                        taskSession.TaskID = assignedTask.taskID;
 
                         String solTmp = $"[{assignedTask.start},{assignedTask.start + assignedTask.duration}]";
                         // Add spaces to output to align columns.
                         solLine += $"{solTmp,-15}";
-                        empschdl.StartSpan = assignedTask.start;
-                        empschdl.EndSpan = assignedTask.start + assignedTask.duration; ;
+                        taskSession.TaskStart = assignedTask.start;
+                        taskSession.TaskEnd = assignedTask.duration + assignedTask.start;
 
-                        lsmscdhle.Add(empschdl);
+                        taskSessions.Add(taskSession);
                     }
+                    solution.TaskList = taskSessions;
                     output += solLineTasks + "\n";
                     output += solLine + "\n";
+
+                    solutions.Add(solution);
                 }
                 // Finally print the solution found.
                 Console.WriteLine($"Optimal Schedule Length: {solver.ObjectiveValue}");
@@ -287,10 +224,7 @@ namespace DeepFrees.Scheduler.MicroService
             Console.WriteLine($"  branches : {solver.NumBranches()}");
             Console.WriteLine($"  wall time: {solver.WallTime()}s");
 
-            foreach(var eeeeee in lsmscdhle)
-            {
-                Console.WriteLine("Employee: " + eeeeee.EmpID + ", Time Start: " + eeeeee.StartSpan.ToString() + ", Time Complete:" + eeeeee.EndSpan.ToString()); ;
-            }
+            return solutions;
         }
     }
 }

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "++T+EC0ObwDT5JYeZU7Yv9yOWy4/UQiICQxbd/9FNLmyc0tpUo+iLdcqvX0KJeUXV/ZagvZFdStGyD8sbe966A==",
+  "dgSpecHash": "ipdim/Q3g+H6CK9MGJbBy4GP26ZVmLK/SABRfJvrdgRziulpALXWGfcRkz0i/03lwKCYpT+hBWq4VhHu1GDKEw==",
   "success": true,
-  "projectFilePath": "D:\\Source\\Repos\\DeepFrees\\DeepFrees\\PayrollServices\\PayrollServices.csproj",
+  "projectFilePath": "D:\\Source\\Repos\\DeepFrees\\DeepFrees\\PayrollServices\\DeepFrees.PayrollServices.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Shonal Fernando\\.nuget\\packages\\awssdk.core\\3.7.100.14\\awssdk.core.3.7.100.14.nupkg.sha512",
     "C:\\Users\\Shonal Fernando\\.nuget\\packages\\awssdk.securitytoken\\3.7.100.14\\awssdk.securitytoken.3.7.100.14.nupkg.sha512",

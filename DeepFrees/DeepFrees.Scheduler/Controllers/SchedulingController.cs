@@ -15,27 +15,18 @@ namespace DeepFrees.Scheduler.Controllers
             _WorkTaskScheduler = workTaskScheduler;
         }
 
-        [HttpGet]
-        public IActionResult ScheduleTasks()
+        [HttpPost]
+        public IActionResult ShuffleSchedule(List<Job> JobListing)
         {
-
             try
             {
-                _WorkTaskScheduler.Schedule(new string[] { "asas", "asasas" });
-                return Ok();
+                return Ok(WorkTaskScheduler.Shuffle(JobListing));
             }
             catch (Exception e)
             {
 
                 return BadRequest(e.Message);
             }
-        }
-
-
-        public class SchedulerInput
-        {
-            public List<EmployeeSlot> Employees { get; set; }
-            public List<WorkTask> Tasks { get; set; }
         }
     }
 }
