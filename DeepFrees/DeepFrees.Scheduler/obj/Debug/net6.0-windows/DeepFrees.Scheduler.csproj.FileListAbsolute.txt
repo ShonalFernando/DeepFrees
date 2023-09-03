@@ -55,3 +55,16 @@ D:\Source\Repos\DeepFrees\DeepFrees\DeepFrees.Scheduler\bin\Debug\net6.0-windows
 D:\Source\Repos\DeepFrees\DeepFrees\DeepFrees.Scheduler\bin\Debug\net6.0-windows\Microsoft.Extensions.Primitives.dll
 D:\Source\Repos\DeepFrees\DeepFrees\DeepFrees.Scheduler\bin\Debug\net6.0-windows\MySqlConnector.dll
 D:\Source\Repos\DeepFrees\DeepFrees\DeepFrees.Scheduler\bin\Debug\net6.0-windows\Pomelo.EntityFrameworkCore.MySql.dll
+D:\Source\Repos\DeepFrees\DeepFrees\DeepFrees.Scheduler\bin\Debug\net6.0-windows\AWSSDK.Core.dll
+D:\Source\Repos\DeepFrees\DeepFrees\DeepFrees.Scheduler\bin\Debug\net6.0-windows\AWSSDK.SecurityToken.dll
+D:\Source\Repos\DeepFrees\DeepFrees\DeepFrees.Scheduler\bin\Debug\net6.0-windows\DnsClient.dll
+D:\Source\Repos\DeepFrees\DeepFrees\DeepFrees.Scheduler\bin\Debug\net6.0-windows\MongoDB.Bson.dll
+D:\Source\Repos\DeepFrees\DeepFrees\DeepFrees.Scheduler\bin\Debug\net6.0-windows\MongoDB.Driver.dll
+D:\Source\Repos\DeepFrees\DeepFrees\DeepFrees.Scheduler\bin\Debug\net6.0-windows\MongoDB.Driver.Core.dll
+D:\Source\Repos\DeepFrees\DeepFrees\DeepFrees.Scheduler\bin\Debug\net6.0-windows\MongoDB.Libmongocrypt.dll
+D:\Source\Repos\DeepFrees\DeepFrees\DeepFrees.Scheduler\bin\Debug\net6.0-windows\SharpCompress.dll
+D:\Source\Repos\DeepFrees\DeepFrees\DeepFrees.Scheduler\bin\Debug\net6.0-windows\Snappier.dll
+D:\Source\Repos\DeepFrees\DeepFrees\DeepFrees.Scheduler\bin\Debug\net6.0-windows\ZstdSharp.dll
+D:\Source\Repos\DeepFrees\DeepFrees\DeepFrees.Scheduler\bin\Debug\net6.0-windows\runtimes\linux\native\libmongocrypt.so
+D:\Source\Repos\DeepFrees\DeepFrees\DeepFrees.Scheduler\bin\Debug\net6.0-windows\runtimes\osx\native\libmongocrypt.dylib
+D:\Source\Repos\DeepFrees\DeepFrees\DeepFrees.Scheduler\bin\Debug\net6.0-windows\runtimes\win\native\mongocrypt.dll

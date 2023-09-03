@@ -1,4 +1,10 @@
-﻿
+﻿@using DeepFreez.WebApp.Helper;
+@using DeepFreez.WebApp.Model;
+@using DeepFreez.WebApp.Service;
+
+@inject EmployeeService EmployeeService
+@inject EmployeeDataContext EmployeeDataContext
+
 <h5>@empname</h5>
 <div class="table-wrapper">
     <table class="fl-table">
@@ -9,19 +15,22 @@
                 <th>Email</th>
                 <th>Mobile</th>
                 <th>Role</th>
-                <th>More</th>
+                <th>Edit</th>
+                <th>Delete</th>
             </tr>
         </thead>
         <tbody>
-            @for(int i = 0 ; i < 10; i++)
+
+            @foreach(var Emp in EmpList)
             {
                 <tr>
-                    <td>Content @i</td>
-                    <td>Content @i</td>
-                    <td>Content @i</td>
-                    <td>Content @i</td>
-                    <td>Content @i</td>
-                    <td><a href="/DeleteEmployee">More</a></td>
+                    <td>@Emp.NIC</td>
+                    <td>@Emp.Contact.PhysicalAddress</td>
+                    <td>@Emp.Contact.EmailAddress</td>
+                    <td>@Emp.Contact.Mobile</td>
+                    <td>@Emp.Roles.EmployeeRole</td>
+                    <td><a href="/UpdateEmployee/@Emp.NIC">More</a></td>
+                    <td><a href="/DeleteEmployee/@Emp.NIC">More</a></td>
                 </tr>
             }
         </tbody>
@@ -30,10 +39,18 @@
 
 @code {
     private string empname;
-    private void testclk
-    ()
+
+    private List<Employee> EmpList= new List<Employee>();
+
+    protected override async Task OnInitializedAsync()
     {
-        empname = "asdasd";
+        EmpList = await EmployeeDataContext.GetAll();
         StateHasChanged();
+    }
+
+
+    private void testclk()
+    {
+        
     }
 }

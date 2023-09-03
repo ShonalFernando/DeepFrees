@@ -9,7 +9,7 @@
     public class DispatchRequestList
     {
         public int WeekID { get; set; }
-        public List<DispatchRequest> dpList { get; set; }
+        public List<DispatchRequest>? dpList { get; set; }
         public int MaxCat { get; set; }
     }
 

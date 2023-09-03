@@ -6,8 +6,9 @@ namespace DeepFreez.WebApp.Model
     public class Employee
     {
         [BsonId]
-        public ObjectId? _id { get; set; }
+        public ObjectId _id { get; set; }
 
+        public string Name { get; set; } = null!;
         public string NIC { get; set; } = null!;
         public Contact Contact { get; set; } = null!;
         public Roles Roles { get; set; } = null!;

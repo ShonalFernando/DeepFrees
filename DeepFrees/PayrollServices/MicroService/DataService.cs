@@ -37,4 +37,4 @@ namespace DeepFrees.PayrollServices.MicroService
             await _SallaryModels.DeleteOneAsync(x => x.EmpID == EmpID);
     }
 }
-}
+

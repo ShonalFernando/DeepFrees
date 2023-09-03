@@ -1,4 +1,5 @@
 using DeepFreez.WebApp.Data;
+using DeepFreez.WebApp.Helper;
 using DeepFreez.WebApp.Model.SettingModels;
 using DeepFreez.WebApp.Service;
 using Microsoft.AspNetCore.Components;
@@ -11,10 +12,15 @@ builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
 builder.Services.AddSingleton<WeatherForecastService>();
 builder.Services.Configure<DeepFreesDatabaseSettings>(builder.Configuration.GetSection("DeepFreesDatabase"));
-builder.Services.AddScoped<DFAccounts>();
-builder.Services.AddScoped<DFCallDiv>();
-builder.Services.AddScoped<DFDispatchSolver>();
-builder.Services.AddScoped<DFScheduler>();
+builder.Services.AddScoped<EmployeeService>();
+builder.Services.AddScoped<EmployeeDataContext>();
+builder.Services.AddScoped<CallPoolDataContext>();
+builder.Services.AddScoped<CallCenterService>();
+builder.Services.AddScoped<DispatchService>();
+builder.Services.AddScoped<WorkTaskService>();
+builder.Services.AddScoped<HttpClient>();
+builder.Services.AddScoped<CallCenterDataContext>();
+builder.Services.AddScoped<WorkTaskRequestDataService>();
 
 
 var app = builder.Build();

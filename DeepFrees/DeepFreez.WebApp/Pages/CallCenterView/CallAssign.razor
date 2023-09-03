@@ -1,0 +1,38 @@
+﻿@page "/CallAssign"
+@using DeepFreez.WebApp.Helper;
+@using static DeepFreez.WebApp.Model.CallTechModel;
+
+@inject CallPoolDataContext CallPoolDataContext
+<h3>Call Assign</h3>
+
+<form>
+    <div class="form-group">
+        <label for="Name">Caller Name</label>
+        <input type="text" class="form-control" id="Name" placeholder="Name" @bind="Name" />
+    </div>
+    <br />
+
+    <div class="form-group">
+        <label for="Username">Category</label>
+        <input type="text" class="form-control" id="Category" placeholder="Category" @bind="Category" />
+    </div>
+    <br
+    <button type="button" class="btn btn-primary" @onclick="CreateUser">Create Account</button>
+</form>
+
+
+@code {
+    private string Name;
+    private string Category;
+
+    private async void CreateUser()
+    {
+        var CallsList = await CallPoolDataContext.GetAsync();
+        Call Call = new Call
+            {
+                CallerName = Name,
+                CallID = 0/*CallsList.LastOrDefault().CallID + 1*/,
+                RequestedCategory = Category
+            };
+    }
+}

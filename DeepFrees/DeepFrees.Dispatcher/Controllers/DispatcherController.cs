@@ -39,7 +39,7 @@ namespace DeepFrees.Dispatcher.Controllers
                 {
                     var DispatchSolutions = DispatcherService.Shuffle(DispatchRequestList, DispatchRequestList.WeekID);
                     await _DispatcherDataService.CreateAsync(DispatchSolutions);
-                    return Ok("Successfully Created Task Mapping");
+                    return Ok(DispatchSolutions);
                 }
                 catch (Exception e)
                 {
@@ -62,7 +62,7 @@ namespace DeepFrees.Dispatcher.Controllers
                 {
                     var DispatchSolutions = DispatcherService.Shuffle(DispatchRequestList, DispatchRequestList.WeekID);
                     await _DispatcherDataService.CreateAsync(DispatchSolutions);
-                    return Ok("Successfully Created Task Mapping");
+                    return Ok(DispatchSolutions);
                 }
                 catch (Exception e)
                 {

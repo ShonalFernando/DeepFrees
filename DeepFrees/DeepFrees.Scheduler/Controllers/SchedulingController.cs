@@ -17,7 +17,7 @@ namespace DeepFrees.Scheduler.Controllers
         }
 
         //Get UserDetails
-        [HttpGet("{TaskID}")]
+        [HttpGet("{WeekID}")]
         public async Task<IActionResult> Get(int WeekID)
         {
             var uacc = await _DataService.GetAsync(WeekID);
@@ -40,7 +40,7 @@ namespace DeepFrees.Scheduler.Controllers
                 {
                     var DispatchSolutions = WorkTaskScheduler.Shuffle(WeeklyJob);
                     await _DataService.CreateAsync(DispatchSolutions);
-                    return Ok("Successfully Created Employee Task Mapping");
+                    return Ok(DispatchSolutions);
                 }
                 catch (Exception e)
                 {
@@ -63,7 +63,7 @@ namespace DeepFrees.Scheduler.Controllers
                 {
                     var DispatchSolutions = WorkTaskScheduler.Shuffle(WeeklyJob);
                     await _DataService.CreateAsync(DispatchSolutions);
-                    return Ok("Successfully Updated Employee Work Task Mapping");
+                    return Ok(DispatchSolutions);
                 }
                 catch (Exception e)
                 {

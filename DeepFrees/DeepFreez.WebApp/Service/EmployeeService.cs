@@ -15,7 +15,7 @@ namespace DeepFreez.WebApp.Service
         // View: Get data from the API
         public async Task<Employee> GetEmployee(string id)
         {
-            var Emp = await _httpClient.GetFromJsonAsync<Employee>($"api/mydata/{id}");
+            var Emp = await _httpClient.GetFromJsonAsync<Employee>($"https://localhost:7107/api/Employee/{id}");
             if (Emp != null)
             {
                 return Emp; 
@@ -29,19 +29,19 @@ namespace DeepFreez.WebApp.Service
         // Create
         public async Task CreateEmployee(Employee Employee)
         {
-            await _httpClient.PostAsJsonAsync($"api/mydata/", Employee);
+            await _httpClient.PostAsJsonAsync($"https://localhost:7107/api/Employee", Employee);
         }
 
         // Delete
-        public async Task DeleteEmployee(string id)
+        public async Task DeleteEmployee(string NIC)
         {
-            await _httpClient.DeleteAsync($"api/mydata/{id}");
+            await _httpClient.DeleteAsync($"https://localhost:7107/api/Employee/{NIC}");
         }
 
         // Update
-        public async Task UpdateEmployee(string id, Employee Employee)
+        public async Task UpdateEmployee(string NIC, Employee Employee)
         {
-            await _httpClient.PutAsJsonAsync($"api/mydata/{id}", Employee);
+            await _httpClient.PutAsJsonAsync($"https://localhost:7107/api/Employee/{NIC}", Employee);
         }
     }
 }

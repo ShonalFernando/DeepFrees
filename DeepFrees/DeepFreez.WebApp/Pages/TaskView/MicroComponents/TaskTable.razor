@@ -1,0 +1,45 @@
+﻿@using DeepFreez.WebApp.Helper;
+@using DeepFreez.WebApp.Model;
+@inject WorkTaskRequestDataService WorkTaskRequestDataService
+
+<div class="table-wrapper">
+    <table class="fl-table">
+        <thead>
+            <tr>
+                <th>Week ID</th>
+                <th>Target</th>
+                <th>Duration</th>
+                <th>Employee</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+            @foreach (var WeekJob in WeeklyJobs)
+            {
+            <td>@WeekJob.WeekID</td>
+                @foreach(var Jobs in WeekJob.JobList)
+                {
+
+                    @foreach(var Tasks in Jobs.Tasks)
+                    {
+                    <td>@Tasks.Employee</td>
+                            <td>@Tasks.Duration</td>
+                            <td>@Tasks.Employee</td>
+                    }
+                }
+
+                }
+            </tr>
+        </tbody>
+    </table>
+</div>
+@code {
+    private List<WeeklyJob> WeeklyJobs;
+    private List<Job> JobList;
+    private List<SWorkTask> TaskList;
+    protected override async Task OnInitializedAsync()
+    {
+        WeeklyJobs = await WorkTaskRequestDataService.GetAll();
+        StateHasChanged();
+    }
+}

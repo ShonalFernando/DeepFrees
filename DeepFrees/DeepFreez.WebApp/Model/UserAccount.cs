@@ -1,4 +1,7 @@
-﻿namespace DeepFreez.WebApp.Model
+﻿using MongoDB.Bson.Serialization.Attributes;
+using MongoDB.Bson;
+
+namespace DeepFreez.WebApp.Model
 {
     public class UserAccount
     {

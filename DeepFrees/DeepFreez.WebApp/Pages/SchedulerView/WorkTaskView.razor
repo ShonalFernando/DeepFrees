@@ -1,49 +1,11 @@
 ﻿@page "/WorkTask"
 
-@using DeepFreez.WebApp.Pages.Components
+@using DeepFreez.WebApp.Pages.SchedulerView.MicroComponents
+
 <h3>Employee Schedules</h3>
 
+<EngineerScheduleTable />
 
-
-<div class="row">
-    <div class="col-6 col-md-4"><h4>Manager Schedules</h4></div>
-    <div class="col-12 col-md-8">
-        <label class="switch">
-            <input type="checkbox" @bind="isManager">
-            <span class="slider round"></span>
-        </label>
-    </div>
-</div>
-@if (isManager)
-{
-    <ManagerScheduleTable />
-}
-<div class="row">
-    <div class="col-6 col-md-4"><h4>Engineer Schedules</h4></div>
-    <div class="col-12 col-md-8">
-        <label class="switch">
-            <input type="checkbox" @bind="isEng">
-            <span class="slider round"></span>
-        </label>
-    </div>
-</div>
-@if (isEng)
-{
-    <EngineerScheduleTable />
-}
-<div class="row">
-    <div class="col-6 col-md-4"><h4>Finance Schedules</h4></div>
-    <div class="col-12 col-md-8">
-        <label class="switch">
-            <input type="checkbox" @bind="isFin">
-            <span class="slider round"></span>
-        </label>
-    </div>
-</div>
-@if (isFin)
-{
-    <FinanceScheduleTable />
-}
 
 <style>
     /* The switch - the box around the slider */

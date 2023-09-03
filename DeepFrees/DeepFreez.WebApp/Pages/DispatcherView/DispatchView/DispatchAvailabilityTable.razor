@@ -1,0 +1,48 @@
+﻿@using DeepFreez.WebApp.Model;
+@using DeepFreez.WebApp.Service;
+
+@inject DispatchService DispatchService
+
+<h3>DispatchScheduleTable</h3>
+
+<div class="table-wrapper">
+    <table class="fl-table">
+        <thead>
+            <tr>
+                <th>Employee</th>
+                <th>Task</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var EmpDisp in WeeklyDispatchSolutions)
+            {
+                <tr>
+                    <td>@EmpDisp.EmpID</td>
+                    <td>@EmpDisp.TaskID</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+@code {
+    DispatchRequestList DispatchRequestList;
+
+    DispatchSolutions DispatchSolutions;
+    List<DispatchSolution> WeeklyDispatchSolutions;
+
+    private int WeekID;
+
+    protected async override void OnInitialized()
+    {
+        DispatchRequestList = new DispatchRequestList();
+        DispatchSolutions = await DispatchService.CreateAccount(DispatchRequestList);
+
+        WeeklyDispatchSolutions = DispatchSolutions.DispatchSolutionList;
+
+        if(WeeklyDispatchSolutions == null)
+        {
+            WeeklyDispatchSolutions = new List<DispatchSolution>();
+        }
+    }
+}

@@ -1,11 +1,23 @@
 {
   "Version": 1,
-  "Hash": "DhKw8h6ZgkJAS+wJCWWhdlbkghdv+nzVzCIH/Gce2SE=",
+  "Hash": "yu1Dm5HBIt72DjHUaBHww9lh94Rj/UFVrtuW7C/NExg=",
   "Source": "DeepFrees.CallDirecting",
   "BasePath": "_content/DeepFrees.CallDirecting",
   "Mode": "Default",
   "ManifestType": "Build",
-  "ReferencedProjectsConfiguration": [],
+  "ReferencedProjectsConfiguration": [
+    {
+      "Identity": "D:\\Source\\Repos\\DeepFrees\\DeepFrees\\DeepFreesAccountsServices\\DeepFrees.Accounts.csproj",
+      "Version": 2,
+      "Source": "DeepFrees.Accounts",
+      "GetPublishAssetsTargets": "ComputeReferencedStaticWebAssetsPublishManifest;GetCurrentProjectPublishStaticWebAssetItems",
+      "AdditionalPublishProperties": "Configuration=Debug;Platform=AnyCPU",
+      "AdditionalPublishPropertiesToRemove": "WebPublishProfileFile;TargetFramework",
+      "GetBuildAssetsTargets": "GetCurrentProjectBuildStaticWebAssetItems",
+      "AdditionalBuildProperties": "Configuration=Debug;Platform=AnyCPU",
+      "AdditionalBuildPropertiesToRemove": "WebPublishProfileFile;TargetFramework"
+    }
+  ],
   "DiscoveryPatterns": [],
   "Assets": []
 }

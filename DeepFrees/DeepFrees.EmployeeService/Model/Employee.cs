@@ -7,9 +7,10 @@ namespace DeepFrees.EmployeeService.Model
     public class Employee
     {
         [BsonId]
-        public ObjectId? _id { get; set; }
+        public ObjectId _id { get; set; }
 
         public string NIC { get; set; } = null!;
+        public string Name { get; set; } = null!;
         public Contact Contact { get; set; } = null!;
         public Roles Roles { get; set; } = null!;
         public List<WorkTask>? WorkTasks { get; set; } = null!;

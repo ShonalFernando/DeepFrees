@@ -1,5 +1,9 @@
-﻿@page "/UpdateEmployee"
+﻿@page "/UpdateEmployee/{NIC}"
+@using DeepFreez.WebApp.Service;
+@using DeepFreez.WebApp.Model;
 
+
+@inject EmployeeService EmployeeService
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="#">Home</a></li>
@@ -8,26 +12,88 @@
     </ol>
 </nav>
 
-<h3>EmployeeUpdate</h3>
+<h3>Employee Update</h3>
+<p>Please Edit the necessary information</p>
 
 <form>
     <div class="form-group">
-        <label for="exampleInputEmail1">Email address</label>
-        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+        <label for="Username">Username</label>
+        <input type="text" class="form-control" id="Username" placeholder="Username" @bind="Username" />
     </div>
+    <br />
+
     <div class="form-group">
-        <label for="exampleInputPassword1">Password</label>
-        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+        <label for="NIC">NIC</label>
+        <input type="text" class="form-control" id="NIC" placeholder="NIC" @bind="NIC" disabled>
     </div>
-    <div class="form-check">
-        <input type="checkbox" class="form-check-input" id="exampleCheck1">
-        <label class="form-check-label" for="exampleCheck1">Check me out</label>
+    <br />
+
+    <div class="form-group">
+        <label for="Mobile">Mobile</label>
+        <input type="text" class="form-control" id="Mobile" placeholder="Mobile" @bind="Mobile">
     </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
+    <br />
+
+    <div class="form-group">
+        <label for="Email">Email Address</label>
+        <input type="text" class="form-control" id="Email" placeholder="Email" @bind="Email">
+    </div>
+    <br />
+
+    <div class="form-group">
+        <label for="Physical">Physical Address</label>
+        <input type="text" class="form-control" id="Physical" placeholder="Physical" @bind="Physical">
+    </div>
+    <br />
+
+    <div class="form-group">
+        <label for="Role">Employee Role</label>
+        <input type="text" class="form-control" id="Role" placeholder="Role" @bind="Role">
+    </div>
+    <br />
+
+    <div class="form-group">
+        <label for="Privilege">Privilege</label>
+        <input type="text" class="form-control" id="Privilege" placeholder="Privilege" @bind="Privilege">
+    </div>
+    <br />
+    <button type="button" class="btn btn-primary" @onclick="UpdateUser">Update Account</button>
 </form>
 
 
 @code {
+    [Parameter]
+    public string NIC { get; set; }
 
+    private string Username;
+    private string Mobile;
+    private string Physical;
+    private string Role;
+    private string Privilege;
+    private string Email;
+
+    protected override async Task OnInitializedAsync()
+    {
+        Employee Employee = await EmployeeService.GetEmployee(NIC);
+
+        NIC = Employee.NIC;
+        Username = Employee.Name;
+        Email = Employee.Contact.EmailAddress;
+        Mobile = Employee.Contact.Mobile;
+        Physical = Employee.Contact.PhysicalAddress;
+        Privilege = Employee.Roles.Privilege;
+        Role = Employee.Roles.EmployeeRole;
+    }
+    private async void UpdateUser()
+    {
+        Employee Employee = new Employee();
+
+        Employee.NIC = NIC;
+        Employee.Name = Username;
+        Employee.Contact = new Contact() { EmailAddress = Email, Mobile = Mobile, PhysicalAddress = Physical };
+        Employee.Roles = new Roles() { EmployeeRole = Role, Privilege = Privilege };
+        Employee.WorkTasks = new List<WorkTask>();
+
+        await EmployeeService.UpdateEmployee(NIC,Employee);
+    }
 }

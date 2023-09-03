@@ -14,10 +14,11 @@ namespace DeepFreez.WebApp.Service
         // View
         public async Task<UserAccount> GetAccount(int id)
         {
-            var Emp = await _httpClient.GetFromJsonAsync<UserAccount>($"api/mydata/{id}");
-            if (Emp != null)
+            var Acc = await _httpClient.GetFromJsonAsync<UserAccount>($"api/mydata/{id}");
+
+            if (Acc != null)
             {
-                return Emp;
+                return Acc;
             }
             else
             {

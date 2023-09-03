@@ -35,7 +35,7 @@ namespace DeepFrees.EmployeeService.Controllers
         {
             try
             {
-                if (await _EmployeeAccountsService.GetAsync(NewEmployee.NIC) == null!)
+                if (await _EmployeeAccountsService.GetAsync(NewEmployee.NIC) != null)
                 {
                     return BadRequest("Employee Already Exist");
                 }
@@ -55,21 +55,24 @@ namespace DeepFrees.EmployeeService.Controllers
         }
 
         //Account Update
-        [HttpPut]
-        public async Task<IActionResult> Update(Employee Employee)
+        [HttpPut("{NIC}")]
+        public async Task<IActionResult> Update(string NIC, [FromBody]Employee Employee)
         {
             try
             {
-                if (await _EmployeeAccountsService.GetAsync(Employee.NIC) != null)
+                if (await _EmployeeAccountsService.GetAsync(NIC) != null)
                 {
                     try
                     {
+                        var _id = (await _EmployeeAccountsService.GetAsync(NIC))._id;
+                        Employee._id = _id;
+                        await _EmployeeAccountsService.UpdateAsync(NIC, Employee);
                         return Ok(" Employee Updated Succesfully");
                     }
                     catch (Exception e)
                     {
 
-                        return BadRequest(e);
+                        return BadRequest(e.Message);
                     }
                 }
                 else
@@ -79,12 +82,12 @@ namespace DeepFrees.EmployeeService.Controllers
             }
             catch (Exception e)
             {
-                return BadRequest(e);
+                return BadRequest(e.Message);
             }
         }
 
         //Account Update
-        [HttpDelete]
+        [HttpDelete("{NIC}")]
         public async Task<IActionResult> Delete(string NIC)
         {
             var uacc = await _EmployeeAccountsService.GetAsync(NIC);

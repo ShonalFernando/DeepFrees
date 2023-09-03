@@ -1,0 +1,65 @@
+﻿@using DeepFreez.WebApp.Helper;
+@using DeepFreez.WebApp.Service;
+@using static DeepFreez.WebApp.Model.CallTechModel;
+
+@inject CallCenterDataContext CallCenterDataContext
+@inject CallCenterService CallCenterService
+@inject CallPoolDataContext CallPoolDataContext
+@inject EmployeeDataContext EmployeeDataContext
+
+<div class="table-wrapper">
+    <table class="fl-table">
+        <thead>
+            <tr>
+                <th>Call ID</th>
+                <th>Allocated Agent</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var solution in solutions)
+            {
+                <tr>
+                    <td>@solution.CallID</td>
+                    <td>@solution.EmpID</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+@code {
+    List<CallPoolSolution> solutions = new List<CallPoolSolution>();
+
+    protected override async Task OnInitializedAsync()
+    {
+        solutions = await CallCenterDataContext.GetAsync();
+        StateHasChanged();
+    }
+
+    private async void ShuffleGet()
+    {
+        List<Call> Calls = await CallPoolDataContext.GetAsync();
+        List<CallCenterEmployee> CallTeks = new List<CallCenterEmployee>();
+
+        var Allemps = await EmployeeDataContext.GetAll();
+
+        foreach (var calltek in Allemps)
+        {
+            if(calltek.Roles.EmployeeRole == "CallAgent")
+            {
+                CallCenterEmployee ctek = new CallCenterEmployee();
+                ctek.Name = calltek.Name;
+                ctek.IsAvailable = true;
+                ctek.EmpID = Convert.ToDouble(calltek.NIC);
+                CallTeks.Add(ctek);
+            }
+        }
+
+        CallPool CallPool = new CallPool()
+            {
+                CallList = Calls,
+                EmpList = CallTeks
+            };
+
+        solutions = await CallCenterService.CreatePool(CallPool);
+    }
+}

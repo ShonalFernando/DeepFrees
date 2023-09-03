@@ -2,7 +2,7 @@
 {
     public class CallCenterEmployee
     {
-        public int EmpID { get; set; }
+        public double EmpID { get; set; }
         public string Name { get; set; }
         public bool IsAvailable { get; set; }
         public string Category { get; set; }
@@ -23,7 +23,7 @@
 
     public class CallPoolSolution
     {
-        public int EmpID { get; set; }
+        public double EmpID { get; set; }
         public int CallID { get; set; }
     }
 }

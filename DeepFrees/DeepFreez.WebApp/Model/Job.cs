@@ -1,6 +1,6 @@
 ﻿namespace DeepFreez.WebApp.Model
 {
-    public class WorkTask
+    public class SWorkTask
     {
         public int Employee { get; set; }
         public int Duration { get; set; }
@@ -8,7 +8,7 @@
 
     public class Job
     {
-        public List<WorkTask> Tasks { get; set; }
+        public List<SWorkTask> Tasks { get; set; }
     }
 
     public class WeeklyJob

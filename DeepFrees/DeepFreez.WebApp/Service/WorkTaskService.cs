@@ -12,9 +12,9 @@ namespace DeepFreez.WebApp.Service
         }
 
         // View
-        public async Task<WeeklyTaskSolutions> GetAccount(int id)
+        public async Task<WeeklyTaskSolutions> GetSolutions(int Weekid)
         {
-            var Emp = await _httpClient.GetFromJsonAsync<WeeklyTaskSolutions>($"api/mydata/{id}");
+            var Emp = await _httpClient.GetFromJsonAsync<WeeklyTaskSolutions>($"https://localhost:7296/api/Scheduling/{Weekid}");
             if (Emp != null)
             {
                 return Emp;
@@ -26,21 +26,49 @@ namespace DeepFreez.WebApp.Service
         }
 
         // Create
-        public async Task CreateAccount(WeeklyJob WeeklyJob)
+        public async Task<DispatchSolutions> CreateSolutions(WeeklyJob WeeklyJob)
         {
             await _httpClient.PostAsJsonAsync($"api/mydata/", WeeklyJob);
+
+            HttpResponseMessage response = await _httpClient.PostAsJsonAsync($"https://localhost:7296/api/Scheduling/", WeeklyJob);
+
+            if (response.IsSuccessStatusCode)
+            {
+                // Deserialize the response content
+                return await response.Content.ReadFromJsonAsync<DispatchSolutions>();
+            }
+            else
+            {
+                // Handle error response
+                // You can throw an exception or return an error model, depending on your API design
+                throw new Exception("Error creating or updating data.");
+            }
         }
 
         // Delete
-        public async Task DeleteAccount(int id)
+        public async Task DeleteSolution(int Weekid)
         {
-            await _httpClient.DeleteAsync($"api/mydata/{id}");
+            await _httpClient.DeleteAsync($"https://localhost:7296/api/Scheduling/{Weekid}");
         }
 
         // Update
-        public async Task UpdateAccount(int id, WeeklyJob WeeklyJob)
+        public async Task<DispatchSolutions> UpdateSolution(WeeklyJob WeeklyJob)
         {
-            await _httpClient.PutAsJsonAsync($"api/mydata/{id}", WeeklyJob);
+            await _httpClient.PostAsJsonAsync($"https://localhost:7296/api/Scheduling/", WeeklyJob);
+
+            HttpResponseMessage response = await _httpClient.PostAsJsonAsync($"https://localhost:7296/api/Scheduling/", WeeklyJob);
+
+            if (response.IsSuccessStatusCode)
+            {
+                // Deserialize the response content
+                return await response.Content.ReadFromJsonAsync<DispatchSolutions>();
+            }
+            else
+            {
+                // Handle error response
+                // You can throw an exception or return an error model, depending on your API design
+                throw new Exception("Error creating or updating data.");
+            }
         }
     }
 }

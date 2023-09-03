@@ -20,28 +20,20 @@ build_property._RazorSourceGeneratorDebug =
 build_metadata.AdditionalFiles.TargetPath = QXBwLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
+[D:/Source/Repos/DeepFrees/DeepFrees/DeepFreez.WebApp/Pages/CallCenterView/CallAssign.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ2FsbENlbnRlclZpZXdcQ2FsbEFzc2lnbi5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/Source/Repos/DeepFrees/DeepFrees/DeepFreez.WebApp/Pages/CallCenterView/LiveCallViewer.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ2FsbENlbnRlclZpZXdcTGl2ZUNhbGxWaWV3ZXIucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Source/Repos/DeepFrees/DeepFrees/DeepFreez.WebApp/Pages/Components/CallListView.razor]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ29tcG9uZW50c1xDYWxsTGlzdFZpZXcucmF6b3I=
+[D:/Source/Repos/DeepFrees/DeepFrees/DeepFreez.WebApp/Pages/CallCenterView/MicroComponents/CallListView.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ2FsbENlbnRlclZpZXdcTWljcm9Db21wb25lbnRzXENhbGxMaXN0Vmlldy5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Source/Repos/DeepFrees/DeepFrees/DeepFreez.WebApp/Pages/Components/DispatchAvailabilityTable.razor]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ29tcG9uZW50c1xEaXNwYXRjaEF2YWlsYWJpbGl0eVRhYmxlLnJhem9y
-build_metadata.AdditionalFiles.CssScope = 
-
-[D:/Source/Repos/DeepFrees/DeepFrees/DeepFreez.WebApp/Pages/Components/EngineerScheduleTable.razor]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ29tcG9uZW50c1xFbmdpbmVlclNjaGVkdWxlVGFibGUucmF6b3I=
-build_metadata.AdditionalFiles.CssScope = 
-
-[D:/Source/Repos/DeepFrees/DeepFrees/DeepFreez.WebApp/Pages/Components/FinanceScheduleTable.razor]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ29tcG9uZW50c1xGaW5hbmNlU2NoZWR1bGVUYWJsZS5yYXpvcg==
-build_metadata.AdditionalFiles.CssScope = 
-
-[D:/Source/Repos/DeepFrees/DeepFrees/DeepFreez.WebApp/Pages/Components/ManagerScheduleTable.razor]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ29tcG9uZW50c1xNYW5hZ2VyU2NoZWR1bGVUYWJsZS5yYXpvcg==
+[D:/Source/Repos/DeepFrees/DeepFrees/DeepFreez.WebApp/Pages/DispatcherView/DispatchView/DispatchAvailabilityTable.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRGlzcGF0Y2hlclZpZXdcRGlzcGF0Y2hWaWV3XERpc3BhdGNoQXZhaWxhYmlsaXR5VGFibGUucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/Source/Repos/DeepFrees/DeepFrees/DeepFreez.WebApp/Pages/DispatcherView/LiveDispatchView.razor]
@@ -76,8 +68,20 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSW5kZXgucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
+[D:/Source/Repos/DeepFrees/DeepFrees/DeepFreez.WebApp/Pages/SchedulerView/MicroComponents/EngineerScheduleTable.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2NoZWR1bGVyVmlld1xNaWNyb0NvbXBvbmVudHNcRW5naW5lZXJTY2hlZHVsZVRhYmxlLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/Source/Repos/DeepFrees/DeepFrees/DeepFreez.WebApp/Pages/SchedulerView/WorkTaskView.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2NoZWR1bGVyVmlld1xXb3JrVGFza1ZpZXcucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Source/Repos/DeepFrees/DeepFrees/DeepFreez.WebApp/Pages/TaskView/AllTasksView.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVGFza1ZpZXdcQWxsVGFza3NWaWV3LnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Source/Repos/DeepFrees/DeepFrees/DeepFreez.WebApp/Pages/TaskView/MicroComponents/TaskTable.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVGFza1ZpZXdcTWljcm9Db21wb25lbnRzXFRhc2tUYWJsZS5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/Source/Repos/DeepFrees/DeepFrees/DeepFreez.WebApp/Shared/SurveyPrompt.razor]

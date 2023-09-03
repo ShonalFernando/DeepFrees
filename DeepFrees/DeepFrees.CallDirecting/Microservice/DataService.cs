@@ -26,11 +26,11 @@ namespace DeepFrees.CallDirecting.Microservice
         public async Task<CallPoolSolution?> GetAsync(int EmpID) =>
             await _CallPoolSolutions.Find(x => x.EmpID == EmpID).FirstOrDefaultAsync();
 
-        public async Task CreateAsync(CallPoolSolution newuser) =>
-            await _CallPoolSolutions.InsertOneAsync(newuser);
+        public async Task CreateAsync(CallPoolSolution CallPoolSolution) =>
+            await _CallPoolSolutions.InsertOneAsync(CallPoolSolution);
 
-        public async Task UpdateAsync(int EmpID, CallPoolSolution updateuser) =>
-            await _CallPoolSolutions.ReplaceOneAsync(x => x.EmpID == EmpID, updateuser);
+        public async Task UpdateAsync(int EmpID, CallPoolSolution CallPoolSolution) =>
+            await _CallPoolSolutions.ReplaceOneAsync(x => x.EmpID == EmpID, CallPoolSolution);
 
         public async Task RemoveAsync(int EmpID) =>
             await _CallPoolSolutions.DeleteOneAsync(x => x.EmpID == EmpID);

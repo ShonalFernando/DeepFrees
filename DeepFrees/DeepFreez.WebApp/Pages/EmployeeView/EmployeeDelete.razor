@@ -1,5 +1,10 @@
-﻿@page "/DeleteEmployee"
+﻿@page "/DeleteEmployee/{NIC}"
 
+@using DeepFreez.WebApp.Service;
+@using DeepFreez.WebApp.Model;
+
+
+@inject EmployeeService EmployeeService
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="#">Home</a></li>
@@ -8,19 +13,29 @@
     </ol>
 </nav>
 
-<h3>Are you sure you want to delete employee #######?</h3>
+<h3>Are you sure you want to delete employee @NIC ?</h3>
 
 <form>
     <div class="form-group">
         <label for="retypename">Re-type Username for security</label>
-        <input type="text" class="form-control" id="retypename" placeholder="Username">
+        <input type="text" class="form-control" id="retypename" placeholder="Username" @bind="Username">
     </div>
     <br/>
-    <button type="button" class="btn btn-danger">Delete</button>
-    <button type="button" class="btn btn-secondary">Cancel</button>
+    <button type="button" class="btn btn-danger" @onclick="DeleteEmployee">Delete</button>
 </form>
 
 
 @code {
+    [Parameter]
+    public string NIC { get; set; }
 
+    public string Username { get; set; }
+
+    private async void DeleteEmployee()
+    {
+        if (Username == (await EmployeeService.GetEmployee(NIC)).Name)
+        {
+            await EmployeeService.DeleteEmployee(NIC);
+        }
+    }
 }
