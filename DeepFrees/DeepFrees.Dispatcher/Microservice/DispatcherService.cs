@@ -7,7 +7,7 @@ namespace DeepFrees.Dispatcher.Microservice
 {
     public class DispatcherService
     {
-        public static List<DispatchSolutions> Shuffle(DispatchRequestList RequestList)
+        public static DispatchSolutions Shuffle(DispatchRequestList RequestList, int WeekID)
         {
             int[,] requestsarray = new int[RequestList.dpList.Count(), RequestList.MaxCat];
 
@@ -79,7 +79,7 @@ namespace DeepFrees.Dispatcher.Microservice
             CpSolverStatus status = solver.Solve(model);
             Console.WriteLine($"Solve status: {status}");
 
-            List<DispatchSolutions> dispSolutions = new List<DispatchSolutions>();
+            List<DispatchSolution> dispSolutions = new List<DispatchSolution>();
 
             // Print solution.
             // Check that the problem has a feasible solution.
@@ -93,7 +93,7 @@ namespace DeepFrees.Dispatcher.Microservice
                         if (solver.Value(x[i, j]) > 0.5)
                         {
                             Console.WriteLine($"Worker {i} assigned to task {j}. Cost: {requestsarray[i, j]}");
-                            DispatchSolutions dispSolution = new DispatchSolutions()
+                            DispatchSolution dispSolution = new DispatchSolution()
                             {
                                 EmpID = i,
                                 TaskID = j
@@ -115,8 +115,12 @@ namespace DeepFrees.Dispatcher.Microservice
             Console.WriteLine($"  - conflicts : {solver.NumConflicts()}");
             Console.WriteLine($"  - branches  : {solver.NumBranches()}");
             Console.WriteLine($"  - wall time : {solver.WallTime()}s");
-            
-            return dispSolutions;
+
+            return new DispatchSolutions()
+            {
+                DispatchSolutionList = dispSolutions,
+                WeekID = WeekID
+            };
         }
     }
 }

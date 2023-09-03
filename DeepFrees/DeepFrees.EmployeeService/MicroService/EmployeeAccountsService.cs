@@ -17,7 +17,7 @@ namespace DeepFrees.EmployeeService.MicroService
                 deepfreesDatabaseSettings.Value.DatabaseName);
 
             _UserAccountsCollection = mongoDatabase.GetCollection<Employee>(
-                deepfreesDatabaseSettings.Value.ShoppinzUsersCollectionName[1]);
+                deepfreesDatabaseSettings.Value.ShoppinzUsersCollectionName[3]);
         }
 
         public async Task<List<Employee>> GetAsync() =>

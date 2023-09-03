@@ -16,10 +16,10 @@ namespace DeepFrees.Dispatcher.Controllers
         }
 
         //Get UserDetails
-        [HttpGet("{Username}")]
-        public async Task<IActionResult> Get(int TaskID)
+        [HttpGet("{TaskID}")]
+        public async Task<IActionResult> Get(int WeekID)
         {
-            var uacc = await _DispatcherDataService.GetAsync(TaskID);
+            var uacc = await _DispatcherDataService.GetAsync(WeekID);
 
             if (uacc is null)
             {
@@ -31,74 +31,69 @@ namespace DeepFrees.Dispatcher.Controllers
 
         //Account Creation
         [HttpPost]
-        public async Task<IActionResult> Post(DispatchSolution DispatchSolution)
+        public async Task<IActionResult> Post(DispatchRequestList DispatchRequestList)
         {
-            try
+            if (_DispatcherDataService.GetAsync(DispatchRequestList.WeekID) == null)
             {
-                if (await _DispatcherDataService.GetAsync(DispatchSolution.TaskID) != null) 
+                try
                 {
-                    return BadRequest("Task Already Allocated");
+                    var DispatchSolutions = DispatcherService.Shuffle(DispatchRequestList, DispatchRequestList.WeekID);
+                    await _DispatcherDataService.CreateAsync(DispatchSolutions);
+                    return Ok("Successfully Created Task Mapping");
                 }
-                else
+                catch (Exception e)
                 {
-                    await _DispatcherDataService.CreateAsync(DispatchSolution);
-                    return Created(nameof(Get), DispatchSolution);
-                }
-
+                    return Problem(e.Message);
+                } 
             }
-            catch (Exception e)
+            else
             {
-
-                return BadRequest(e);
+                return BadRequest("Weekly Scheduled Already Exist");
             }
-
         }
 
         //Account Update
         [HttpPut]
-        public async Task<IActionResult> Update(DispatchSolution DispatchSolution)
+        public async Task<IActionResult> Update(DispatchRequestList DispatchRequestList)
         {
-            try
+            if (_DispatcherDataService.GetAsync(DispatchRequestList.WeekID) != null)
             {
-                if (await _DispatcherDataService.GetAsync(DispatchSolution.TaskID) != null)
+                try
                 {
-                    await _DispatcherDataService.UpdateAsync(DispatchSolution.TaskID, DispatchSolution);
-
-                    try
-                    {
-                        return Ok("Task Allocation Updated Succesfully");
-                    }
-                    catch (Exception e)
-                    {
-
-                        return BadRequest(e);
-                    }
+                    var DispatchSolutions = DispatcherService.Shuffle(DispatchRequestList, DispatchRequestList.WeekID);
+                    await _DispatcherDataService.CreateAsync(DispatchSolutions);
+                    return Ok("Successfully Created Task Mapping");
                 }
-                else
+                catch (Exception e)
                 {
-                    return BadRequest("Task Allocation Does not Exist");
+                    return Problem(e.Message);
                 }
             }
-            catch (Exception e)
+            else
             {
-                return BadRequest(e);
+                return BadRequest("Weekly Scheduled Does not Exist");
             }
         }
 
         //Account Update
         [HttpDelete]
-        public async Task<IActionResult> Delete(DispatchSolution DispatchSolution)
+        public async Task<IActionResult> Delete(int WeekID)
         {
-            var uacc = await _DispatcherDataService.GetAsync(DispatchSolution.TaskID);
-
-            if (uacc is null)
+            if (_DispatcherDataService.GetAsync(WeekID) != null)
             {
-                return NotFound();
+                try
+                {
+                    await _DispatcherDataService.RemoveAsync(WeekID);
+                    return Ok("Successfully Removed Weekly Task Mapping");
+                }
+                catch (Exception e)
+                {
+                    return Problem(e.Message);
+                }
             }
             else
             {
-                await _DispatcherDataService.RemoveAsync(DispatchSolution.TaskID);
-                return Ok("Task Allocation Removed");
+                return BadRequest("Weekly Scheduled Does not Exist");
             }
         }
     }

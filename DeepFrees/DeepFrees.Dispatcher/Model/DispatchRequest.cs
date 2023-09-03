@@ -8,13 +8,20 @@
 
     public class DispatchRequestList
     {
+        public int WeekID { get; set; }
         public List<DispatchRequest> dpList { get; set; }
         public int MaxCat { get; set; }
     }
 
-    public class DispatchSolutions
+    public class DispatchSolution
     {
         public int EmpID { get; set; }
         public int TaskID { get; set; }
+    }
+
+    public class DispatchSolutions
+    {
+        public int WeekID { get; set; }
+        public List<DispatchSolution>? DispatchSolutionList { get; set; }
     }
 }

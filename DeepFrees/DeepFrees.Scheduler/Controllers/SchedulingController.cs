@@ -5,28 +5,96 @@ using System.Threading.Tasks;
 
 namespace DeepFrees.Scheduler.Controllers
 {
+    [Route("api/[controller]")]
     [ApiController]
-    [Route("[controller]")]
-    public class SchedulingController : Controller
+    public class SchedulingController : ControllerBase
     {
-        private readonly WorkTaskScheduler _WorkTaskScheduler;
+        private readonly DataService _DataService;
 
-        public SchedulingController(WorkTaskScheduler workTaskScheduler)
+        public SchedulingController(DataService dataService)
         {
-            _WorkTaskScheduler = workTaskScheduler;
+            _DataService = dataService;
         }
 
-        [HttpPost]
-        public IActionResult ShuffleSchedule(List<Job> JobListing)
+        //Get UserDetails
+        [HttpGet("{TaskID}")]
+        public async Task<IActionResult> Get(int WeekID)
         {
-            try
-            {
-                return Ok(WorkTaskScheduler.Shuffle(JobListing));
-            }
-            catch (Exception e)
-            {
+            var uacc = await _DataService.GetAsync(WeekID);
 
-                return BadRequest(e.Message);
+            if (uacc is null)
+            {
+                return NotFound();
+            }
+
+            return Ok(uacc);
+        }
+
+        //Account Creation
+        [HttpPost]
+        public async Task<IActionResult> Post(WeeklyJob WeeklyJob)
+        {
+            if (_DataService.GetAsync(WeeklyJob.WeekID) == null)
+            {
+                try
+                {
+                    var DispatchSolutions = WorkTaskScheduler.Shuffle(WeeklyJob);
+                    await _DataService.CreateAsync(DispatchSolutions);
+                    return Ok("Successfully Created Employee Task Mapping");
+                }
+                catch (Exception e)
+                {
+                    return Problem(e.Message);
+                }
+            }
+            else
+            {
+                return BadRequest("Weekly Employee Task Scheduled Already Exist");
+            }
+        }
+
+        //Account Update
+        [HttpPut]
+        public async Task<IActionResult> Update(WeeklyJob WeeklyJob)
+        {
+            if (_DataService.GetAsync(WeeklyJob.WeekID) != null)
+            {
+                try
+                {
+                    var DispatchSolutions = WorkTaskScheduler.Shuffle(WeeklyJob);
+                    await _DataService.CreateAsync(DispatchSolutions);
+                    return Ok("Successfully Updated Employee Work Task Mapping");
+                }
+                catch (Exception e)
+                {
+                    return Problem(e.Message);
+                }
+            }
+            else
+            {
+                return BadRequest("Weekly Schedule Does not Exist");
+            }
+        }
+
+        //Account Update
+        [HttpDelete]
+        public async Task<IActionResult> Delete(int WeekID)
+        {
+            if (_DataService.GetAsync(WeekID) != null)
+            {
+                try
+                {
+                    await _DataService.RemoveAsync(WeekID);
+                    return Ok("Successfully Removed Weekly Task Mapping");
+                }
+                catch (Exception e)
+                {
+                    return Problem(e.Message);
+                }
+            }
+            else
+            {
+                return BadRequest("Weekly Scheduled Does not Exist");
             }
         }
     }

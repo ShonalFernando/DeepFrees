@@ -1,17 +1,32 @@
 ﻿namespace DeepFreez.WebApp.Model
 {
-    public class CallCenterEmployee
+    public class CallTechModel
     {
-        public int EmpID { get; set; }
-        public string Name { get; set; }
-        public bool IsAvailable { get; set; }
-        public string Category { get; set; }
-    }
+        public class CallCenterEmployee
+        {
+            public int EmpID { get; set; }
+            public string Name { get; set; }
+            public bool IsAvailable { get; set; }
+            public string Category { get; set; }
+        }
 
-    public class Call
-    {
-        public int CallID { get; set; }
-        public string CallerName { get; set; }
-        public string RequestedCategory { get; set; }
+        public class Call
+        {
+            public int CallID { get; set; }
+            public string? CallerName { get; set; }
+            public string RequestedCategory { get; set; }
+        }
+
+        public class CallPool
+        {
+            public List<Call> CallList { get; set; }
+            public List<CallCenterEmployee> EmpList { get; set; }
+        }
+
+        public class CallPoolSolution
+        {
+            public int EmpID { get; set; }
+            public int CallID { get; set; }
+        }
     }
 }

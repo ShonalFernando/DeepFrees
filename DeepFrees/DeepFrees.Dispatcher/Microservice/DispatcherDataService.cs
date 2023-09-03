@@ -6,7 +6,7 @@ namespace DeepFrees.Dispatcher.Microservice
 {
     public class DispatcherDataService
     {
-        private readonly IMongoCollection<DispatchSolution> _UserAccountsCollection;
+        private readonly IMongoCollection<DispatchSolutions> _DispatchSolutions;
 
         public DispatcherDataService(IOptions<DBSettings> deepfreesDatabaseSettings)
         {
@@ -16,23 +16,23 @@ namespace DeepFrees.Dispatcher.Microservice
             var mongoDatabase = mongoClient.GetDatabase(
                 deepfreesDatabaseSettings.Value.DatabaseName);
 
-            _UserAccountsCollection = mongoDatabase.GetCollection<DispatchSolution>(
-                deepfreesDatabaseSettings.Value.ShoppinzUsersCollectionName[0]);
+            _DispatchSolutions = mongoDatabase.GetCollection<DispatchSolutions>(
+                deepfreesDatabaseSettings.Value.ShoppinzUsersCollectionName[2]);
         }
 
-        public async Task<List<DispatchSolution>> GetAsync() =>
-            await _UserAccountsCollection.Find(_ => true).ToListAsync();
+        public async Task<List<DispatchSolutions>> GetAsync() =>
+            await _DispatchSolutions.Find(_ => true).ToListAsync();
 
-        public async Task<DispatchSolution?> GetAsync(int TaskID) =>
-            await _UserAccountsCollection.Find(x => x.TaskID == TaskID).FirstOrDefaultAsync();
+        public async Task<DispatchSolutions?> GetAsync(int WeekID) =>
+            await _DispatchSolutions.Find(x => x.WeekID == WeekID).FirstOrDefaultAsync();
 
-        public async Task CreateAsync(DispatchSolution DispatchSolution) =>
-            await _UserAccountsCollection.InsertOneAsync(DispatchSolution);
+        public async Task CreateAsync(DispatchSolutions DispatchSolutions) =>
+            await _DispatchSolutions.InsertOneAsync(DispatchSolutions);
 
-        public async Task UpdateAsync(int TaskID, DispatchSolution UpdatedDispatchSolution) =>
-            await _UserAccountsCollection.ReplaceOneAsync(x => x.TaskID == TaskID, UpdatedDispatchSolution);
+        public async Task UpdateAsync(int WeekID, DispatchSolutions DispatchSolutions) =>
+            await _DispatchSolutions.ReplaceOneAsync(x => x.WeekID == WeekID, DispatchSolutions);
 
-        public async Task RemoveAsync(int TaskID) =>
-            await _UserAccountsCollection.DeleteOneAsync(x => x.TaskID == TaskID);
+        public async Task RemoveAsync(int WeekID) =>
+            await _DispatchSolutions.DeleteOneAsync(x => x.WeekID == WeekID);
     }
 }

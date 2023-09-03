@@ -14,4 +14,16 @@
         public string? CallerName { get; set; }
         public string RequestedCategory { get; set; }
     }
+
+    public class CallPool
+    {
+        public List<Call> CallList { get; set; }
+        public List<CallCenterEmployee> EmpList { get; set; }
+    }
+
+    public class CallPoolSolution
+    {
+        public int EmpID { get; set; }
+        public int CallID { get; set; }
+    }
 }

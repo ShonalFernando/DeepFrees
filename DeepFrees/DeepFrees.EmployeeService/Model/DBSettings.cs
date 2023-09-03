@@ -6,6 +6,6 @@
 
         public string DatabaseName { get; set; } = "DeepFrees";
 
-        public string[] ShoppinzUsersCollectionName { get; set; } = new string[] { "UserAccount", "Employee", "DeepFreesPay", "DeepFreesSchedules" };
+        public string[] ShoppinzUsersCollectionName { get; set; } = new string[] { "UserAccount", "Employee", "DeepFreesPay", "Employee" };
 }
 }

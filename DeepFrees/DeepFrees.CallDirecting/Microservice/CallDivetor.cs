@@ -1,32 +1,34 @@
 ﻿using DeepFrees.CallDirecting.Model;
+using System.Collections.Generic;
 
 namespace DeepFrees.CallDirecting.Microservice
 {
     public class CallDivetor
     {
-        //Should Get From Database
-        private List<CallCenterEmployee> employees = new List<CallCenterEmployee>
+        public static List<CallPoolSolution> CallPoolSolver (CallPool CallPool)
         {
-            new CallCenterEmployee { EmpID = 1, Name = "Employee 1", IsAvailable = true, Category = "repairs" },
-            new CallCenterEmployee { EmpID = 2, Name = "Employee 2", IsAvailable = true, Category = "consulting" },
-            new CallCenterEmployee { EmpID = 3, Name = "Employee 3", IsAvailable = false, Category = "repairs" },
-        };
-
-        private int nextEmployeeIndex = 0;
-
-        public CallCenterEmployee GetNextAvailableEmployee(string requestedCategory)
-        {
-            for (int i = 0; i < employees.Count; i++)
+            int nextEmployeeIndex = 0;
+            List<CallCenterEmployee> employees = CallPool.EmpList;
+            List<Call> Calls = CallPool.CallList;
+            List<CallPoolSolution> CallPoolSolutions = new List<CallPoolSolution>();
+            foreach (var call in Calls)
             {
-                int index = (nextEmployeeIndex + i) % employees.Count;
-                if (employees[index].IsAvailable && employees[index].Category == requestedCategory)
+                for (int i = 0; i < employees.Count; i++)
                 {
-                    nextEmployeeIndex = (index + 1) % employees.Count;
-                    return employees[index];
+                    int index = (nextEmployeeIndex + i) % employees.Count;
+                    if (employees[index].IsAvailable && employees[index].Category == call.RequestedCategory)
+                    {
+                        CallPoolSolution CallPoolSolution = new CallPoolSolution();
+                        employees[index].IsAvailable = false;
+                        nextEmployeeIndex = (index + 1) % employees.Count;
+                        CallPoolSolution.CallID = call.CallID;
+                        CallPoolSolution.EmpID = employees[index].EmpID;
+                        CallPoolSolutions.Add(CallPoolSolution);
+                    }
                 }
             }
 
-            return null;
+            return CallPoolSolutions;
         }
     }
 }
