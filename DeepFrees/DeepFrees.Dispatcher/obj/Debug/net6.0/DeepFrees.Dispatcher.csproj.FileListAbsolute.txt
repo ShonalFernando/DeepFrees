@@ -41,3 +41,17 @@ D:\Source\Repos\DeepFrees\DeepFrees\DeepFrees.Dispatcher\obj\Debug\net6.0\refint
 D:\Source\Repos\DeepFrees\DeepFrees\DeepFrees.Dispatcher\obj\Debug\net6.0\DeepFrees.Dispatcher.pdb
 D:\Source\Repos\DeepFrees\DeepFrees\DeepFrees.Dispatcher\obj\Debug\net6.0\DeepFrees.Dispatcher.genruntimeconfig.cache
 D:\Source\Repos\DeepFrees\DeepFrees\DeepFrees.Dispatcher\obj\Debug\net6.0\ref\DeepFrees.Dispatcher.dll
+D:\Source\Repos\DeepFrees\DeepFrees\DeepFrees.Dispatcher\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.dll
+D:\Source\Repos\DeepFrees\DeepFrees\DeepFrees.Dispatcher\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Abstractions.dll
+D:\Source\Repos\DeepFrees\DeepFrees\DeepFrees.Dispatcher\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Relational.dll
+D:\Source\Repos\DeepFrees\DeepFrees\DeepFrees.Dispatcher\bin\Debug\net6.0\Microsoft.Extensions.Caching.Abstractions.dll
+D:\Source\Repos\DeepFrees\DeepFrees\DeepFrees.Dispatcher\bin\Debug\net6.0\Microsoft.Extensions.Caching.Memory.dll
+D:\Source\Repos\DeepFrees\DeepFrees\DeepFrees.Dispatcher\bin\Debug\net6.0\Microsoft.Extensions.Configuration.Abstractions.dll
+D:\Source\Repos\DeepFrees\DeepFrees\DeepFrees.Dispatcher\bin\Debug\net6.0\Microsoft.Extensions.DependencyInjection.dll
+D:\Source\Repos\DeepFrees\DeepFrees\DeepFrees.Dispatcher\bin\Debug\net6.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+D:\Source\Repos\DeepFrees\DeepFrees\DeepFrees.Dispatcher\bin\Debug\net6.0\Microsoft.Extensions.Logging.dll
+D:\Source\Repos\DeepFrees\DeepFrees\DeepFrees.Dispatcher\bin\Debug\net6.0\Microsoft.Extensions.Logging.Abstractions.dll
+D:\Source\Repos\DeepFrees\DeepFrees\DeepFrees.Dispatcher\bin\Debug\net6.0\Microsoft.Extensions.Options.dll
+D:\Source\Repos\DeepFrees\DeepFrees\DeepFrees.Dispatcher\bin\Debug\net6.0\Microsoft.Extensions.Primitives.dll
+D:\Source\Repos\DeepFrees\DeepFrees\DeepFrees.Dispatcher\bin\Debug\net6.0\MySqlConnector.dll
+D:\Source\Repos\DeepFrees\DeepFrees\DeepFrees.Dispatcher\bin\Debug\net6.0\Pomelo.EntityFrameworkCore.MySql.dll

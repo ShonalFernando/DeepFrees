@@ -1,8 +1,8 @@
 {
   "Version": 1,
-  "Hash": "MVTVGVs7SkDiq8G32SYjAwQgvUkR4n19yy4Vc+nWqDg=",
-  "Source": "DeepFreesAccountsServices",
-  "BasePath": "_content/DeepFreesAccountsServices",
+  "Hash": "wywxcOiUcK06PvarFtNxtczCfbaWF7ZCwoIkROsWIHA=",
+  "Source": "DeepFrees.Accounts",
+  "BasePath": "_content/DeepFrees.Accounts",
   "Mode": "Default",
   "ManifestType": "Build",
   "ReferencedProjectsConfiguration": [],

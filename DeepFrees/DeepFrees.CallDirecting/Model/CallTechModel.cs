@@ -11,7 +11,7 @@
     public class Call
     {
         public int CallID { get; set; }
-        public string CallerName { get; set; }
+        public string? CallerName { get; set; }
         public string RequestedCategory { get; set; }
     }
 }

@@ -41,3 +41,17 @@ D:\Source\Repos\DeepFrees\DeepFrees\DeepFrees.Scheduler\obj\Debug\net6.0-windows
 D:\Source\Repos\DeepFrees\DeepFrees\DeepFrees.Scheduler\obj\Debug\net6.0-windows\DeepFrees.Scheduler.pdb
 D:\Source\Repos\DeepFrees\DeepFrees\DeepFrees.Scheduler\obj\Debug\net6.0-windows\DeepFrees.Scheduler.genruntimeconfig.cache
 D:\Source\Repos\DeepFrees\DeepFrees\DeepFrees.Scheduler\obj\Debug\net6.0-windows\ref\DeepFrees.Scheduler.dll
+D:\Source\Repos\DeepFrees\DeepFrees\DeepFrees.Scheduler\bin\Debug\net6.0-windows\Microsoft.EntityFrameworkCore.dll
+D:\Source\Repos\DeepFrees\DeepFrees\DeepFrees.Scheduler\bin\Debug\net6.0-windows\Microsoft.EntityFrameworkCore.Abstractions.dll
+D:\Source\Repos\DeepFrees\DeepFrees\DeepFrees.Scheduler\bin\Debug\net6.0-windows\Microsoft.EntityFrameworkCore.Relational.dll
+D:\Source\Repos\DeepFrees\DeepFrees\DeepFrees.Scheduler\bin\Debug\net6.0-windows\Microsoft.Extensions.Caching.Abstractions.dll
+D:\Source\Repos\DeepFrees\DeepFrees\DeepFrees.Scheduler\bin\Debug\net6.0-windows\Microsoft.Extensions.Caching.Memory.dll
+D:\Source\Repos\DeepFrees\DeepFrees\DeepFrees.Scheduler\bin\Debug\net6.0-windows\Microsoft.Extensions.Configuration.Abstractions.dll
+D:\Source\Repos\DeepFrees\DeepFrees\DeepFrees.Scheduler\bin\Debug\net6.0-windows\Microsoft.Extensions.DependencyInjection.dll
+D:\Source\Repos\DeepFrees\DeepFrees\DeepFrees.Scheduler\bin\Debug\net6.0-windows\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+D:\Source\Repos\DeepFrees\DeepFrees\DeepFrees.Scheduler\bin\Debug\net6.0-windows\Microsoft.Extensions.Logging.dll
+D:\Source\Repos\DeepFrees\DeepFrees\DeepFrees.Scheduler\bin\Debug\net6.0-windows\Microsoft.Extensions.Logging.Abstractions.dll
+D:\Source\Repos\DeepFrees\DeepFrees\DeepFrees.Scheduler\bin\Debug\net6.0-windows\Microsoft.Extensions.Options.dll
+D:\Source\Repos\DeepFrees\DeepFrees\DeepFrees.Scheduler\bin\Debug\net6.0-windows\Microsoft.Extensions.Primitives.dll
+D:\Source\Repos\DeepFrees\DeepFrees\DeepFrees.Scheduler\bin\Debug\net6.0-windows\MySqlConnector.dll
+D:\Source\Repos\DeepFrees\DeepFrees\DeepFrees.Scheduler\bin\Debug\net6.0-windows\Pomelo.EntityFrameworkCore.MySql.dll

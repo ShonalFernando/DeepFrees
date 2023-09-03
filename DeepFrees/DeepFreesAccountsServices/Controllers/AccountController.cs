@@ -18,7 +18,7 @@ namespace DeepFreesAccountsServices.Controllers
 
         //Get UserDetails
         [HttpGet("{Username}")]
-        public async Task<ActionResult<UserAccount>> Get(string Username)
+        public async Task<IActionResult> Get(string Username)
         {
             var uacc = await _UserAccountServices.GetAsync(Username);
 
@@ -27,7 +27,7 @@ namespace DeepFreesAccountsServices.Controllers
                 return NotFound();
             }
 
-            return uacc;
+            return Ok(uacc);
         }
 
         //Account Creation
@@ -36,9 +36,16 @@ namespace DeepFreesAccountsServices.Controllers
         {
             try
             {
-                await _UserAccountServices.CreateAsync(newuser);
-
-                return Created(nameof(Get), newuser);
+                if(await _UserAccountServices.GetAsync(newuser.UserName.ToLower()) != null || await _UserAccountServices.GetAsync(newuser.UserName) != null)
+                {
+                    return BadRequest("Account Already Exist");
+                }
+                else
+                {
+                    await _UserAccountServices.CreateAsync(newuser);
+                    return Created(nameof(Get), newuser);
+                }
+                
             }
             catch (Exception e)
             {
@@ -46,6 +53,55 @@ namespace DeepFreesAccountsServices.Controllers
                 return BadRequest(e);
             }
 
+        }
+
+        //Account Update
+        [HttpPut]
+        public async Task<IActionResult> Update(UserAccount updateduser)
+        {
+            try
+            {
+                if (await _UserAccountServices.GetAsync(updateduser.UserName) != null)
+                {
+                    updateduser._id = (await _UserAccountServices.GetAsync(updateduser.UserName))._id;
+                    await _UserAccountServices.UpdateAsync(updateduser.UserName, updateduser);
+                    
+                    try
+                    {
+                        return Ok(" Account Updated Succesfully");
+                    }
+                    catch (Exception e)
+                    {
+
+                        return BadRequest(e);
+                    }
+                }
+                else
+                {
+                    return BadRequest("Account Does not Exist");
+                }
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e);
+            }
+        }
+
+        //Account Update
+        [HttpDelete]
+        public async Task<IActionResult> Delete(string Username)
+        {
+            var uacc = await _UserAccountServices.GetAsync(Username);
+
+            if (uacc is null)
+            {
+                return NotFound();
+            }
+            else
+            {
+                await _UserAccountServices.RemoveAsync(Username);
+                return Ok("Account Removed");
+            }
         }
     }
 }

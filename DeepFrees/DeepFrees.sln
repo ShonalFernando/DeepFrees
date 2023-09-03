@@ -13,9 +13,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DeepFrees.Core", "Schedulin
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DeepFrees.Scheduler", "DeepFrees.Scheduler\DeepFrees.Scheduler.csproj", "{3E2A32DE-1094-4FD2-B16F-2AF8CF22C880}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DeepFrees.Dispatcher", "DeepFrees.Dispatcher\DeepFrees.Dispatcher.csproj", "{6D89D48B-F9D6-4CA9-BE70-A4A04518072B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DeepFrees.Dispatcher", "DeepFrees.Dispatcher\DeepFrees.Dispatcher.csproj", "{6D89D48B-F9D6-4CA9-BE70-A4A04518072B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DeepFrees.CallDirecting", "DeepFrees.CallDirecting\DeepFrees.CallDirecting.csproj", "{635F7C9B-E482-4651-BCBF-0322F66168BD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DeepFrees.CallDirecting", "DeepFrees.CallDirecting\DeepFrees.CallDirecting.csproj", "{635F7C9B-E482-4651-BCBF-0322F66168BD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DeepFrees.EmployeeService", "DeepFrees.EmployeeService\DeepFrees.EmployeeService.csproj", "{136D0D87-883B-43F8-AB51-4B77F7BBC7C0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,6 +53,10 @@ Global
 		{635F7C9B-E482-4651-BCBF-0322F66168BD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{635F7C9B-E482-4651-BCBF-0322F66168BD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{635F7C9B-E482-4651-BCBF-0322F66168BD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{136D0D87-883B-43F8-AB51-4B77F7BBC7C0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{136D0D87-883B-43F8-AB51-4B77F7BBC7C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{136D0D87-883B-43F8-AB51-4B77F7BBC7C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{136D0D87-883B-43F8-AB51-4B77F7BBC7C0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,8 +1,8 @@
 {
   "Version": 1,
-  "Hash": "+QXYiF4tqG3tZxdgIPZlEKepyUNSYkfO5WMGbz8CYDc=",
-  "Source": "PayrollServices",
-  "BasePath": "_content/PayrollServices",
+  "Hash": "4mYFK2nLGJYHgnot+19ZfljK/AUIfKCj2q5crqtOoyM=",
+  "Source": "DeepFrees.PayrollServices",
+  "BasePath": "_content/DeepFrees.PayrollServices",
   "Mode": "Default",
   "ManifestType": "Build",
   "ReferencedProjectsConfiguration": [],
