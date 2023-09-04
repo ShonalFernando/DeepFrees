@@ -18,6 +18,8 @@ builder.Services.AddScoped<CallPoolDataContext>();
 builder.Services.AddScoped<CallCenterService>();
 builder.Services.AddScoped<DispatchService>();
 builder.Services.AddScoped<WorkTaskService>();
+builder.Services.AddScoped<DispJobsDataContext>();
+builder.Services.AddScoped<EmpJobsDataContext>();
 builder.Services.AddScoped<HttpClient>();
 builder.Services.AddScoped<CallCenterDataContext>();
 builder.Services.AddScoped<WorkTaskRequestDataService>();

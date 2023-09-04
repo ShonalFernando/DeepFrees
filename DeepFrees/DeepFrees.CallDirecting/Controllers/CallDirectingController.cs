@@ -60,7 +60,7 @@ namespace DeepFrees.CallDirecting.Controllers
                 var cps = CallDivetor.CallPoolSolver(CallPool);
                 foreach (var cp in cps)
                 {
-                    await _DataService.UpdateAsync(cp.EmpID, cp);
+                    await _DataService.UpdateAsync(Convert.ToInt32(cp.EmpID), cp);
                 }
                 return Ok(cps);
             }

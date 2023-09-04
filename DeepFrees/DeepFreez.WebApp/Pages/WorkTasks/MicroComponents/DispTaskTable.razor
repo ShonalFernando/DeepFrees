@@ -1,0 +1,44 @@
+﻿@using DeepFreez.WebApp.Helper;
+@using DeepFreez.WebApp.Model;
+@using System.Text.Json;
+
+@inject DispJobsDataContext DispJobsDataContext
+
+<div class="container">
+        <div class="row">
+        <textarea @bind="Newdrlstrn"></textarea>
+            <button @onclick="CreateDTask">Add to Dispatcher Tasks</button>
+        </div>
+</div>
+    <div class="container">
+    @foreach (var drl in DispatchRequestLists)
+    {
+            <div class="row">
+                <textarea>@JsonSerializer.Serialize(drl)</textarea>
+            </div>
+    }
+    </div>
+@code {
+    string Newdrlstrn = "";
+    DispatchRequestList Newdrlo;
+    List<DispatchRequestList> DispatchRequestLists;
+    protected async override Task OnInitializedAsync()
+    {
+        var aa = await DispJobsDataContext.GetAsync();
+        if(aa == null)
+        {
+            DispatchRequestLists = new List<DispatchRequestList>();
+        }
+        else
+        {
+            DispatchRequestLists = aa;
+        }
+    }
+
+    private async void CreateDTask()
+    {
+        Newdrlo = JsonSerializer.Deserialize<DispatchRequestList>(Newdrlstrn);
+        await DispJobsDataContext.CreateAsync(Newdrlo);
+        StateHasChanged();
+    }
+}

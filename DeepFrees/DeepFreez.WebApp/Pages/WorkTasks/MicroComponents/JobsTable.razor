@@ -1,0 +1,40 @@
+﻿@using DeepFreez.WebApp.Helper;
+@using DeepFreez.WebApp.Model;
+@using System.Text.Json;
+
+@inject EmpJobsDataContext EmpJobsDataContext
+<div class="container">
+    <div class="row">
+        <textarea @bind="Newdrlstrn"></textarea>
+        <button @onclick="CreateWTask">Add to Work Tasks</button>
+    </div>
+</div>
+<div class="table-wrapper">
+<div class="container">
+        @foreach (var wjobs in WeeklyJobsList)
+        {
+            <div class="row">
+                <textarea>@JsonSerializer.Serialize(wjobs)</textarea>
+            </div>
+        }
+ </div>
+</div>
+
+@code 
+{
+    string Newdrlstrn = "";
+    WeeklyJob Newdrlo;
+    List<DispatchRequestList> DispatchRequestLists;
+    List<WeeklyJob> WeeklyJobsList;
+    protected async override Task OnInitializedAsync()
+    {
+        WeeklyJobsList = await EmpJobsDataContext.GetAsync();
+    }
+
+    private async void CreateWTask()
+    {
+        Newdrlo = JsonSerializer.Deserialize<WeeklyJob>(Newdrlstrn);
+        await EmpJobsDataContext.CreateAsync(Newdrlo);
+        StateHasChanged();
+    }
+}

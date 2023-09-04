@@ -84,6 +84,22 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVGFza1ZpZXdcTWljcm9Db21wb25lbnRzXFRhc2tUYWJsZS5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
+[D:/Source/Repos/DeepFrees/DeepFrees/DeepFreez.WebApp/Pages/WorkTasks/AllDispatchJobs.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcV29ya1Rhc2tzXEFsbERpc3BhdGNoSm9icy5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Source/Repos/DeepFrees/DeepFrees/DeepFreez.WebApp/Pages/WorkTasks/AllJobs.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcV29ya1Rhc2tzXEFsbEpvYnMucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Source/Repos/DeepFrees/DeepFrees/DeepFreez.WebApp/Pages/WorkTasks/MicroComponents/DispTaskTable.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcV29ya1Rhc2tzXE1pY3JvQ29tcG9uZW50c1xEaXNwVGFza1RhYmxlLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Source/Repos/DeepFrees/DeepFrees/DeepFreez.WebApp/Pages/WorkTasks/MicroComponents/JobsTable.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcV29ya1Rhc2tzXE1pY3JvQ29tcG9uZW50c1xKb2JzVGFibGUucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/Source/Repos/DeepFrees/DeepFrees/DeepFreez.WebApp/Shared/SurveyPrompt.razor]
 build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXFN1cnZleVByb21wdC5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 

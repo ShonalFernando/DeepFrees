@@ -17,7 +17,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DeepFrees.Dispatcher", "Dee
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DeepFrees.CallDirecting", "DeepFrees.CallDirecting\DeepFrees.CallDirecting.csproj", "{635F7C9B-E482-4651-BCBF-0322F66168BD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DeepFrees.EmployeeService", "DeepFrees.EmployeeService\DeepFrees.EmployeeService.csproj", "{136D0D87-883B-43F8-AB51-4B77F7BBC7C0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DeepFrees.EmployeeService", "DeepFrees.EmployeeService\DeepFrees.EmployeeService.csproj", "{136D0D87-883B-43F8-AB51-4B77F7BBC7C0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
