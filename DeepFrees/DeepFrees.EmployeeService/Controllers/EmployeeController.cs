@@ -1,55 +1,98 @@
-﻿using DeepFrees.EmployeeService.MicroService;
+﻿using Commons.DeepFrees.NetworkConfiguration;
+using DeepFrees.EmployeeService.MicroService;
 using DeepFrees.EmployeeService.Model;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DeepFrees.EmployeeService.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     [ApiController]
     public class EmployeeController : ControllerBase
     {
-        private readonly EmployeeDBContext _EmployeeAccountsService;
+        private readonly EmployeeDBContext _EmployeeDataService;
 
         public EmployeeController(EmployeeDBContext employeeAccountsService)
         {
-            _EmployeeAccountsService = employeeAccountsService;
+            _EmployeeDataService = employeeAccountsService;
         }
 
-        //Get UserDetails
-        [HttpGet("{NIC}")]
-        public async Task<IActionResult> Get(string NIC)
-        {
-            var uacc = await _EmployeeAccountsService.GetAsync(NIC);
-
-            if (uacc is null)
-            {
-                return NotFound();
-            }
-
-            return Ok(uacc);
-        }
-
-        //Account Creation
-        [HttpPost]
-        public async Task<IActionResult> Post(Employee NewEmployee)
+        [HttpGet("GetEmployee")]
+        public async Task<IActionResult> Get()
         {
             try
             {
-                if (await _EmployeeAccountsService.GetAsync(NewEmployee.NIC) != null)
+                List<Employee> Employees = await _EmployeeDataService.GetAsync();
+                if (!Employees.Any())
                 {
-                    return BadRequest("Employee Already Exist");
+                    return NoContent();
                 }
                 else
                 {
-                    await _EmployeeAccountsService.CreateAsync(NewEmployee);
-                    return Created(nameof(Get), NewEmployee);
+                    return Ok(Employees);
                 }
-
             }
-            catch (Exception e)
+            catch (Exception error)
             {
 
-                return BadRequest(e);
+                return Problem(error.Message);
+            }
+        }
+
+        [HttpGet("GetEmployee/{NIC}")]
+        public async Task<IActionResult> Get(string? NIC)
+        {
+            try
+            {
+                if (string.IsNullOrEmpty(NIC))
+                {
+                    return BadRequest();
+                }
+                else
+                {
+                    Employee? Employees = await _EmployeeDataService.GetAsync(NIC);
+                    if (Employees == null)
+                    {
+                        return NoContent();
+                    }
+                    else
+                    {
+                        return Ok(Employees);
+                    }
+                }
+            }
+            catch (Exception error)
+            {
+
+                return Problem(error.Message);
+            }
+        }
+
+        //Account Creation
+        [HttpPost("CreateEmployee")]
+        public async Task<IActionResult> Post(Employee Employee)
+        {
+            if(Employee == null || String.IsNullOrEmpty(Employee.NIC))
+            {
+                return BadRequest();
+            }
+            else
+            {
+                if((await _EmployeeDataService.GetAsync(Employee.NIC)) == null)
+                {
+                    try
+                    {
+                        await _EmployeeDataService.CreateAsync(Employee);
+                        return Created(new Uri("https://" + Ports.EmployeePort + $"api/GetEmployee/{Employee.NIC}"), Employee);
+                    }
+                    catch (Exception error)
+                    {
+                        return Problem(error.Message);
+                    }
+                }
+                else
+                {
+                    return BadRequest($"Employee with {Employee.NIC} already exist");
+                }
             }
 
         }
@@ -60,13 +103,13 @@ namespace DeepFrees.EmployeeService.Controllers
         {
             try
             {
-                if (await _EmployeeAccountsService.GetAsync(NIC) != null)
+                if (await _EmployeeDataService.GetAsync(NIC) != null)
                 {
                     try
                     {
-                        var _id = (await _EmployeeAccountsService.GetAsync(NIC))._id;
+                        var _id = (await _EmployeeDataService.GetAsync(NIC))._id;
                         Employee._id = _id;
-                        await _EmployeeAccountsService.UpdateAsync(NIC, Employee);
+                        await _EmployeeDataService.UpdateAsync(NIC, Employee);
                         return Ok(" Employee Updated Succesfully");
                     }
                     catch (Exception e)
@@ -87,19 +130,33 @@ namespace DeepFrees.EmployeeService.Controllers
         }
 
         //Account Update
-        [HttpDelete("{NIC}")]
+        [HttpDelete("DeleteEmployee/{NIC}")]
         public async Task<IActionResult> Delete(string NIC)
         {
-            var uacc = await _EmployeeAccountsService.GetAsync(NIC);
-
-            if (uacc is null)
+            try
             {
-                return NotFound("Employee Does not Exist");
+                if (string.IsNullOrEmpty(NIC))
+                {
+                    return BadRequest();
+                }
+                else
+                {
+                    Employee? Employees = await _EmployeeDataService.GetAsync(NIC);
+                    if (Employees == null)
+                    {
+                        return NoContent();
+                    }
+                    else
+                    {
+                        await _EmployeeDataService.RemoveAsync(NIC);
+                        return Ok($"Employee {NIC} Deleted Succefully");
+                    }
+                }
             }
-            else
+            catch (Exception error)
             {
-                await _EmployeeAccountsService.RemoveAsync(NIC);
-                return Ok("Employee Removed");
+
+                return Problem(error.Message);
             }
         }
     }

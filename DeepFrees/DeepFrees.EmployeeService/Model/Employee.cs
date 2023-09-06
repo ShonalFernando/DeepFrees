@@ -2,6 +2,7 @@
 using MongoDB.Bson.Serialization.Attributes;
 using MongoDB.Bson.Serialization.IdGenerators;
 using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace DeepFrees.EmployeeService.Model
 {
@@ -10,8 +11,12 @@ namespace DeepFrees.EmployeeService.Model
         [BsonId]
         public ObjectId _id { get; set; }
 
+        [StringLength(12)]
         public string NIC { get; set; } = null!;
+
+        [RegularExpression(@"^[a-zA-Z]+(?: [a-zA-Z]+)*$")]
         public string CommonName { get; set; } = null!; //The Common Name apart from the Name Array 
+
         public Contact Contact { get; set; } = null!;
         public Roles Roles { get; set; } = null!;
         public SallaryData SallaryData { get; set; } = null!;
@@ -20,8 +25,12 @@ namespace DeepFrees.EmployeeService.Model
 
     public class Contact
     {
+        [RegularExpression(@"^\+(?:\d{1,3}-)?\d{9}$")]
         public string Mobile { get; set; } = null!;
+
+        [RegularExpression(@"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$")]
         public string EmailAddress { get; set; } = null!;
+
         public string[]? PhysicalAddress { get; set; } 
     }
 
