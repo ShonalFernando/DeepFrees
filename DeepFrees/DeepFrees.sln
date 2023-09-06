@@ -9,8 +9,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DeepFrees.PayrollServices",
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DeepFreez.WebApp", "DeepFreez.WebApp\DeepFreez.WebApp.csproj", "{0802A074-AA75-41C9-968D-52B3D24A3328}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DeepFrees.Core", "Scheduling.Core\DeepFrees.Core.csproj", "{8DD34C7C-8807-4266-849D-88DDCBEB63D6}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DeepFrees.Scheduler", "DeepFrees.Scheduler\DeepFrees.Scheduler.csproj", "{3E2A32DE-1094-4FD2-B16F-2AF8CF22C880}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DeepFrees.Dispatcher", "DeepFrees.Dispatcher\DeepFrees.Dispatcher.csproj", "{6D89D48B-F9D6-4CA9-BE70-A4A04518072B}"
@@ -18,6 +16,8 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DeepFrees.CallDirecting", "DeepFrees.CallDirecting\DeepFrees.CallDirecting.csproj", "{635F7C9B-E482-4651-BCBF-0322F66168BD}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DeepFrees.EmployeeService", "DeepFrees.EmployeeService\DeepFrees.EmployeeService.csproj", "{136D0D87-883B-43F8-AB51-4B77F7BBC7C0}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Commons.DeepFrees", "Commons.DeepFrees\Commons.DeepFrees.shproj", "{CBDA18D0-F787-4B40-BC32-4F23140CFAB7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -37,10 +37,6 @@ Global
 		{0802A074-AA75-41C9-968D-52B3D24A3328}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0802A074-AA75-41C9-968D-52B3D24A3328}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0802A074-AA75-41C9-968D-52B3D24A3328}.Release|Any CPU.Build.0 = Release|Any CPU
-		{8DD34C7C-8807-4266-849D-88DDCBEB63D6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{8DD34C7C-8807-4266-849D-88DDCBEB63D6}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{8DD34C7C-8807-4266-849D-88DDCBEB63D6}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{8DD34C7C-8807-4266-849D-88DDCBEB63D6}.Release|Any CPU.Build.0 = Release|Any CPU
 		{3E2A32DE-1094-4FD2-B16F-2AF8CF22C880}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{3E2A32DE-1094-4FD2-B16F-2AF8CF22C880}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3E2A32DE-1094-4FD2-B16F-2AF8CF22C880}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -63,5 +59,9 @@ Global
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {F334125C-6F85-42B5-A6B5-3C9F584678D2}
+	EndGlobalSection
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		Commons.DeepFrees\Commons.DeepFrees.projitems*{136d0d87-883b-43f8-ab51-4b77f7bbc7c0}*SharedItemsImports = 5
+		Commons.DeepFrees\Commons.DeepFrees.projitems*{cbda18d0-f787-4b40-bc32-4f23140cfab7}*SharedItemsImports = 13
 	EndGlobalSection
 EndGlobal

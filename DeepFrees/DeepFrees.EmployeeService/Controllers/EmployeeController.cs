@@ -8,9 +8,9 @@ namespace DeepFrees.EmployeeService.Controllers
     [ApiController]
     public class EmployeeController : ControllerBase
     {
-        private readonly EmployeeAccountsService _EmployeeAccountsService;
+        private readonly EmployeeDBContext _EmployeeAccountsService;
 
-        public EmployeeController(EmployeeAccountsService employeeAccountsService)
+        public EmployeeController(EmployeeDBContext employeeAccountsService)
         {
             _EmployeeAccountsService = employeeAccountsService;
         }

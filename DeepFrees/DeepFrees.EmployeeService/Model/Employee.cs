@@ -42,8 +42,8 @@ namespace DeepFrees.EmployeeService.Model
     {
         public double BaseSallary { get; set; }
 
-        public int MonthlyPaidLeaves { get; set; } //Monthly leaves with pay
-        public int YearlyPaidMedicalLeaves { get; set; } //Yearly Medical Leaves with pay
+        public int MonthlyPaidLeave { get; set; } //Monthly leaves with pay
+        public int YearlyPaidMedicalLeave { get; set; } //Yearly Medical Leaves with pay
         public double MonthlyCutOff { get; set; } //Deductions for special cases
         public double FineTune { get; set; }
 
@@ -59,9 +59,9 @@ namespace DeepFrees.EmployeeService.Model
         public string Bank { get; set; } = null!; //බැංකුවේ නම
         public int ReligiousPreference { get; set; } //නිවාඩූ...
         public int LanguagePreference { get; set; }
-        public int Gender { get; set; } // Male : 0 , Female : 1 , 💀 : 2,3,4
+        public int Gender { get; set; } // Male : 0 , Female : 1
         public int Title { get; set; } // Mr, Mrs, Miss, Dr, Rev, Eng
 
-        public Dictionary<string, string>? AdditionalDataDictionary { get; set; } //Additional Data
+        public Dictionary<string, string>? AdditionalPersonalData { get; set; } //Additional Data
     }
 }
