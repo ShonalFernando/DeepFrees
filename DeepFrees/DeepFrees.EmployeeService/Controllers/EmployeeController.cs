@@ -17,7 +17,7 @@ namespace DeepFrees.EmployeeService.Controllers
         }
 
         [HttpGet("GetEmployee")]
-        public async Task<IActionResult> Get()
+        public async Task<IActionResult> Get() //This method returns a List of employee
         {
             try
             {
@@ -39,7 +39,7 @@ namespace DeepFrees.EmployeeService.Controllers
         }
 
         [HttpGet("GetEmployee/{NIC}")]
-        public async Task<IActionResult> Get(string? NIC)
+        public async Task<IActionResult> Get(string? NIC) //This method returns a single Employee
         {
             try
             {
@@ -62,14 +62,13 @@ namespace DeepFrees.EmployeeService.Controllers
             }
             catch (Exception error)
             {
-
                 return Problem(error.Message);
             }
         }
 
         //Account Creation
         [HttpPost("CreateEmployee")]
-        public async Task<IActionResult> Post(Employee Employee)
+        public async Task<IActionResult> Post(Employee Employee) //Create a Single Employee
         {
             if(Employee == null || String.IsNullOrEmpty(Employee.NIC))
             {

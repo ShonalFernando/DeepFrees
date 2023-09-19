@@ -6,11 +6,11 @@ using Commons.DeepFrees.NetworkConfiguration;
 
 namespace DeepFrees.EmployeeService.MicroService
 {
-    public class EmployeeDBContext
+    public class DataContext
     {
         private readonly IMongoCollection<Employee> _UserAccountsCollection;
 
-        public EmployeeDBContext(IOptions<MongoDBConn> deepfreesDatabaseSettings)
+        public DataContext(IOptions<MongoDBConn> deepfreesDatabaseSettings)
         {
             var mongoClient = new MongoClient(
                 MongoDBConn.ConnectionString);
