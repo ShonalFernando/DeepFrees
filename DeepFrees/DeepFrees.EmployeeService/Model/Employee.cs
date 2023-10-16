@@ -21,6 +21,13 @@ namespace DeepFrees.EmployeeService.Model
         public Roles Roles { get; set; } = null!;
         public SallaryData SallaryData { get; set; } = null!;
         public PersonalData PersonalData { get; set; } = null!;
+        
+        public bool isRecycled { get; set; }
+
+        public Employee()
+        {
+            _id = ObjectId.GenerateNewId();
+        }
     }
 
     public class Contact

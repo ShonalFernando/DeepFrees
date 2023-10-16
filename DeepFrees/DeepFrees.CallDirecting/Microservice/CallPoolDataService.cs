@@ -24,15 +24,15 @@ namespace DeepFrees.CallDirecting.Microservice
             await _Calls.Find(_ => true).ToListAsync();
 
         public async Task<Call?> GetAsync(int CallID) =>
-            await _Calls.Find(x => x.CallID == CallID).FirstOrDefaultAsync();
+            await _Calls.Find(x => x.CallIndex == CallID).FirstOrDefaultAsync();
 
         public async Task CreateAsync(Call Call) =>
             await _Calls.InsertOneAsync(Call);
 
         public async Task UpdateAsync(int CallID, Call Call) =>
-            await _Calls.ReplaceOneAsync(x => x.CallID == CallID, Call);
+            await _Calls.ReplaceOneAsync(x => x.CallIndex == CallID, Call);
 
         public async Task RemoveAsync(int CallID) =>
-            await _Calls.DeleteOneAsync(x => x.CallID == CallID);
+            await _Calls.DeleteOneAsync(x => x.CallIndex == CallID);
     }
 }

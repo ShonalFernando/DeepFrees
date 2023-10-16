@@ -21,7 +21,7 @@ namespace DeepFrees.CallDirecting.Microservice
                         CallPoolSolution CallPoolSolution = new CallPoolSolution();
                         employees[index].IsAvailable = false;
                         nextEmployeeIndex = (index + 1) % employees.Count;
-                        CallPoolSolution.CallID = call.CallID;
+                        CallPoolSolution.CallID = call.CallIndex;
                         CallPoolSolution.EmpID = employees[index].EmpID;
                         CallPoolSolutions.Add(CallPoolSolution);
                     }

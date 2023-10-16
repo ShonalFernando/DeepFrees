@@ -63,7 +63,7 @@ namespace DeepFreesAccountsServices.Controllers
             {
                 if (await _UserAccountServices.GetAsync(updateduser.UserName) != null)
                 {
-                    updateduser._id = (await _UserAccountServices.GetAsync(updateduser.UserName))._id;
+                    //updateduser._id = (await _UserAccountServices.GetAsync(updateduser.UserName))._id;
                     await _UserAccountServices.UpdateAsync(updateduser.UserName, updateduser);
                     
                     try
@@ -88,7 +88,7 @@ namespace DeepFreesAccountsServices.Controllers
         }
 
         //Account Update
-        [HttpDelete]
+        [HttpDelete("{Username}")]
         public async Task<IActionResult> Delete(string Username)
         {
             var uacc = await _UserAccountServices.GetAsync(Username);

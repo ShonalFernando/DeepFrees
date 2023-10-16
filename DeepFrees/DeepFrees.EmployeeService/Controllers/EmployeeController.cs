@@ -28,12 +28,12 @@ namespace DeepFrees.EmployeeService.Controllers
                 }
                 else
                 {
+                    Employees.RemoveAll(item => item.isRecycled);
                     return Ok(Employees);
                 }
             }
             catch (Exception error)
             {
-
                 return Problem(error.Message);
             }
         }
@@ -49,14 +49,14 @@ namespace DeepFrees.EmployeeService.Controllers
                 }
                 else
                 {
-                    Employee? Employees = await _EmployeeDataService.GetAsync(NIC);
-                    if (Employees == null)
+                    Employee? Employee = await _EmployeeDataService.GetAsync(NIC);
+                    if (Employee == null || Employee.isRecycled)
                     {
                         return NoContent();
                     }
                     else
                     {
-                        return Ok(Employees);
+                        return Ok(Employee);
                     }
                 }
             }
@@ -110,6 +110,7 @@ namespace DeepFrees.EmployeeService.Controllers
                         Employee._id = _id;
                         await _EmployeeDataService.UpdateAsync(NIC, Employee);
                         return Ok(" Employee Updated Succesfully");
+                        
                     }
                     catch (Exception e)
                     {
@@ -128,7 +129,7 @@ namespace DeepFrees.EmployeeService.Controllers
             }
         }
 
-        //Account Update
+        //Account Delete
         [HttpDelete("DeleteEmployee/{NIC}")]
         public async Task<IActionResult> Delete(string NIC)
         {
@@ -140,21 +141,28 @@ namespace DeepFrees.EmployeeService.Controllers
                 }
                 else
                 {
-                    Employee? Employees = await _EmployeeDataService.GetAsync(NIC);
-                    if (Employees == null)
+                    Employee? Employee = await _EmployeeDataService.GetAsync(NIC);
+                    if (Employee == null || Employee.isRecycled)
                     {
                         return NoContent();
                     }
                     else
                     {
-                        await _EmployeeDataService.RemoveAsync(NIC);
-                        return Ok($"Employee {NIC} Deleted Succefully");
+                        try
+                        {
+                            Employee.isRecycled = true;
+                            await _EmployeeDataService.UpdateAsync(NIC, Employee);
+                            return Ok($"Employee {NIC} Deleted Succefully");
+                        }
+                        catch (Exception e)
+                        {
+                            return BadRequest(e.Message);
+                        }
                     }
                 }
             }
             catch (Exception error)
             {
-
                 return Problem(error.Message);
             }
         }
