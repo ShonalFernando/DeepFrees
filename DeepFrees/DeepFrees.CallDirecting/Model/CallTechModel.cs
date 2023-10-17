@@ -1,8 +1,8 @@
 ﻿namespace DeepFrees.CallDirecting.Model
 {
-    public class CallCenterEmployee
+    public class CallAgent
     {
-        public double EmpID { get; set; }
+        public string EmployeeID { get; set; } = null!; //NIC
         public bool IsAvailable { get; set; }
         public string? Category { get; set; }
     }
@@ -12,19 +12,21 @@
         public int CallIndex { get; set; }
         public string? CallerName { get; set; }
         public string? RequestedCategory { get; set; }
-        public string? AssignedAgent { get; set; }
-        public bool isEnded { get; set; }
+        public string? AssignedAgent { get; set; } //NIC of Call agent employee
+        public CallStatus CallStatus { get; set; }
+        public int ElapsedTime { get; set; } //Time in Minutes
+    }
+
+    public enum CallStatus
+    {
+        Waiting,
+        Started,
+        Ended
     }
 
     public class CallPool
     {
         public List<Call>? CallList { get; set; }
-        public List<CallCenterEmployee>? EmpList { get; set; }
-    }
-
-    public class CallPoolSolution
-    {
-        public double EmpID { get; set; }
-        public int CallID { get; set; }
+        public List<CallAgent>? EmpList { get; set; }
     }
 }

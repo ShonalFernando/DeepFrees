@@ -9,93 +9,99 @@ namespace DeepFrees.Dispatcher.Controllers
     public class DispatcherController : ControllerBase
     {
         private readonly DispatcherDataService _DispatcherDataService;
+        private readonly DispatcherService _DispatcherService;
+        private readonly TaskTransformer _TaskTransformer;
 
-        public DispatcherController(DispatcherDataService dispatcherDataService)
+        public DispatcherController(TaskTransformer taskTransformer, DispatcherDataService dispatcherDataService, DispatcherService dispatcherService)
         {
             _DispatcherDataService = dispatcherDataService;
+            _DispatcherService = dispatcherService;
+            _TaskTransformer = taskTransformer;
         }
 
-        //Get UserDetails
-        [HttpGet("{TaskID}")]
-        public async Task<IActionResult> Get(int WeekID)
-        {
-            var uacc = await _DispatcherDataService.GetAsync(WeekID);
+        ////Get UserDetails
+        //[HttpGet("{TaskID}")]
+        //public async Task<IActionResult> Get(int WeekID)
+        //{
+        //    _DispatcherService.Shuffle();
+        //    var uacc = await _DispatcherDataService.GetAsync(WeekID);
 
-            if (uacc is null)
-            {
-                return NotFound();
-            }
+        //    if (uacc is null)
+        //    {
+        //        return NotFound();
+        //    }
 
-            return Ok(uacc);
-        }
+        //    return Ok(uacc);
+        //}
 
         //Account Creation
         [HttpPost]
-        public async Task<IActionResult> Post(DispatchRequestList DispatchRequestList)
+        public async Task<IActionResult> Post(List<DispatchRequest> DispatchRequestList)
         {
-            if (_DispatcherDataService.GetAsync(DispatchRequestList.WeekID) == null)
-            {
-                try
-                {
-                    var DispatchSolutions = DispatcherService.Shuffle(DispatchRequestList, DispatchRequestList.WeekID);
-                    await _DispatcherDataService.CreateAsync(DispatchSolutions);
-                    return Ok(DispatchSolutions);
-                }
-                catch (Exception e)
-                {
-                    return Problem(e.Message);
-                } 
-            }
-            else
-            {
-                return BadRequest("Weekly Scheduled Already Exist");
-            }
+            var TaskArrays = _TaskTransformer.TransformTasks(DispatchRequestList);
+            _DispatcherService.Shuffle(TaskArrays);
+            return Ok();
+            //if (_DispatcherDataService.GetAsync(DispatchRequestList.WeekID) == null)
+            //{
+            //    try
+            //    {
+            //        _DispatcherService.Shuffle();
+            //        return Ok();
+            //    }
+            //    catch (Exception e)
+            //    {
+            //        return Problem(e.Message);
+            //    } 
+            //}
+            //else
+            //{
+            //    return BadRequest("Weekly Scheduled Already Exist");
+            //}
         }
 
-        //Account Update
-        [HttpPut]
-        public async Task<IActionResult> Update(DispatchRequestList DispatchRequestList)
-        {
-            if (_DispatcherDataService.GetAsync(DispatchRequestList.WeekID) != null)
-            {
-                try
-                {
-                    var DispatchSolutions = DispatcherService.Shuffle(DispatchRequestList, DispatchRequestList.WeekID);
-                    await _DispatcherDataService.CreateAsync(DispatchSolutions);
-                    return Ok(DispatchSolutions);
-                }
-                catch (Exception e)
-                {
-                    return Problem(e.Message);
-                }
-            }
-            else
-            {
-                return BadRequest("Weekly Scheduled Does not Exist");
-            }
-        }
+        ////Account Update
+        //[HttpPut]
+        //public async Task<IActionResult> Update(DispatchRequestList DispatchRequestList)
+        //{
+        //    if (_DispatcherDataService.GetAsync(DispatchRequestList.WeekID) != null)
+        //    {
+        //        try
+        //        {
+        //            _DispatcherService.Shuffle();
+        //            return Ok();
+        //        }
+        //        catch (Exception e)
+        //        {
+        //            return Problem(e.Message);
+        //        }
+        //    }
+        //    else
+        //    {
+        //        return BadRequest("Weekly Scheduled Does not Exist");
+        //    }
+        //}
 
-        //Account Update
-        [HttpDelete]
-        public async Task<IActionResult> Delete(int WeekID)
-        {
-            if (_DispatcherDataService.GetAsync(WeekID) != null)
-            {
-                try
-                {
-                    await _DispatcherDataService.RemoveAsync(WeekID);
-                    return Ok("Successfully Removed Weekly Task Mapping");
-                }
-                catch (Exception e)
-                {
-                    return Problem(e.Message);
-                }
-            }
-            else
-            {
-                return BadRequest("Weekly Scheduled Does not Exist");
-            }
-        }
+        ////Account Update
+        //[HttpDelete]
+        //public async Task<IActionResult> Delete(int WeekID)
+        //{
+        //    if (_DispatcherDataService.GetAsync(WeekID) != null)
+        //    {
+        //        try
+        //        {
+        //            await _DispatcherDataService.RemoveAsync(WeekID);
+        //            return Ok("Successfully Removed Weekly Task Mapping");
+        //        }
+        //        catch (Exception e)
+        //        {
+        //            return Problem(e.Message);
+        //        }
+        //    }
+        //    else
+        //    {
+        //        return BadRequest("Weekly Scheduled Does not Exist");
+        //    }
+        //}
     }
 }
 

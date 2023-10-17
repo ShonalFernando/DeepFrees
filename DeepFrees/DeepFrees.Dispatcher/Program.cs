@@ -1,3 +1,5 @@
+using DeepFrees.Dispatcher.Microservice;
+
 namespace DeepFrees.Dispatcher
 {
     public class Program
@@ -12,6 +14,9 @@ namespace DeepFrees.Dispatcher
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
+            builder.Services.AddScoped<DispatcherService>();
+            builder.Services.AddScoped<DispatcherDataService>();
+            builder.Services.AddScoped<TaskTransformer>();
 
             var app = builder.Build();
 

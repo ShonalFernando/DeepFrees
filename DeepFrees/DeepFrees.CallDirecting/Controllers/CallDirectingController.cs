@@ -9,72 +9,21 @@ namespace DeepFrees.CallDirecting.Controllers
     [Route("api/callcenter")]
     public class CallDirectingController : Controller
     {
-        private readonly DataService _DataService;
+        private readonly CallDataService _DataService;
+        private readonly CallDivetor _CallDivetor;
 
-        public CallDirectingController(DataService dataService)
+        public CallDirectingController(CallDataService callDataService, CallDivetor callDivetor)
         {
-            _DataService = dataService;
+            _DataService = callDataService;
+            _CallDivetor = callDivetor;
         }
 
-        //Get UserDetails
-        [HttpGet("{EmpID}")]
-        public async Task<IActionResult> Get(int EmpID)
-        {
-            var uacc = await _DataService.GetAsync(EmpID);
-
-            if (uacc is null)
-            {
-                return NotFound();
-            }
-
-            return Ok(uacc);
-        }
-
-        //Account Creation
+        //The Post method is used to Submit Call Pools and Employees (Available or Not)
+        //The Post method is the most important, acts as a stream to update employee availability and get the solutions
         [HttpPost]
         public async Task<IActionResult> Post(CallPool CallPool)
         {
-            try
-            {
-                var cps = CallDivetor.CallPoolSolver(CallPool);
-                foreach(var cp in cps)
-                {
-                    await _DataService.CreateAsync(cp);
-                }
-                return Ok(cps);
-            }
-            catch (Exception e)
-            {
-
-                return BadRequest(e);
-            }
-
-        }
-
-        //Account Update
-        [HttpPut]
-        public async Task<IActionResult> Update(CallPool CallPool)
-        {
-            try
-            {
-                var cps = CallDivetor.CallPoolSolver(CallPool);
-                foreach (var cp in cps)
-                {
-                    await _DataService.UpdateAsync(Convert.ToInt32(cp.EmpID), cp);
-                }
-                return Ok(cps);
-            }
-            catch (Exception e)
-            {
-                return BadRequest(e);
-            }
-        }
-
-        //Account Update
-        [HttpDelete]
-        public async Task<IActionResult> Delete(string Username)
-        {
-            return Ok("Not Implimented");
+           return Ok(_CallDivetor.CallPoolSolver(CallPool));
         }
     }
 }

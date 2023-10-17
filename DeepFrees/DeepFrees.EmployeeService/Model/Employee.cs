@@ -43,8 +43,15 @@ namespace DeepFrees.EmployeeService.Model
 
     public class Roles
     {
-        public string EmployeeRole { get; set; } = null!;
+        public EmployeeRole EmployeeRole { get; set; } = null!;
         public string? Privilege { get; set; }
+    }
+
+    public enum EmployeeRole
+    {
+        Manager,
+        Engineer,
+        CallAgent
     }
 
     public class Education

@@ -7,24 +7,16 @@ namespace DeepFrees.Dispatcher.Microservice
 {
     public class DispatcherService
     {
-        public static DispatchSolutions Shuffle(DispatchRequestList RequestList, int WeekID)
+        //When requesting tasks the tasks should be included in the formula with previous tasks of a certain employee
+        // Eg: when calculating tasks: If a emp has already assigned 5*Formula, then request as 6
+        public void Shuffle(int[,] TasksArray)
         {
-            int[,] requestsarray = new int[RequestList.dpList.Count(), RequestList.MaxCat];
-
-
-            int value = 1;
-
-            for (int row = 0; row < RequestList.dpList.Count(); row++)
-            {
-                for (int col = 0; col < RequestList.MaxCat; col++)
-                {
-                    requestsarray[row, col] = RequestList.dpList[row].CatAvailableSlots[col];
-                    value++;
-                }
-            }
-
-            int numWorkers = RequestList.dpList.Count();
-            int numTasks = RequestList.MaxCat;
+            // Data.
+        //    int[,] TasksArray = {
+        //    { 90, 80, 75, 70 }, { 35, 85, 55, 65 }, { 125, 95, 90, 95 }, { 45, 110, 95, 115 }, { 50, 100, 90, 100 },
+        //};
+            int numWorkers = TasksArray.GetLength(0);
+            int numTasks = TasksArray.GetLength(1);
 
             // Model.
             CpModel model = new CpModel();
@@ -69,7 +61,7 @@ namespace DeepFrees.Dispatcher.Microservice
             {
                 for (int task = 0; task < numTasks; ++task)
                 {
-                    obj.AddTerm((IntVar)x[worker, task], requestsarray[worker, task]);
+                    obj.AddTerm((IntVar)x[worker, task], TasksArray[worker, task]);
                 }
             }
             model.Minimize(obj);
@@ -78,8 +70,6 @@ namespace DeepFrees.Dispatcher.Microservice
             CpSolver solver = new CpSolver();
             CpSolverStatus status = solver.Solve(model);
             Console.WriteLine($"Solve status: {status}");
-
-            List<DispatchSolution> dispSolutions = new List<DispatchSolution>();
 
             // Print solution.
             // Check that the problem has a feasible solution.
@@ -92,14 +82,7 @@ namespace DeepFrees.Dispatcher.Microservice
                     {
                         if (solver.Value(x[i, j]) > 0.5)
                         {
-                            Console.WriteLine($"Worker {i} assigned to task {j}. Cost: {requestsarray[i, j]}");
-                            DispatchSolution dispSolution = new DispatchSolution()
-                            {
-                                EmpID = i,
-                                TaskID = j
-                            };
-
-                            dispSolutions.Add(dispSolution);
+                            Console.WriteLine($"Worker {i} assigned to task {j}. Cost: {TasksArray[i, j]}");
                         }
                     }
                 }
@@ -109,18 +92,10 @@ namespace DeepFrees.Dispatcher.Microservice
                 Console.WriteLine("No solution found.");
             }
 
-            
-
             Console.WriteLine("Statistics");
             Console.WriteLine($"  - conflicts : {solver.NumConflicts()}");
             Console.WriteLine($"  - branches  : {solver.NumBranches()}");
             Console.WriteLine($"  - wall time : {solver.WallTime()}s");
-
-            return new DispatchSolutions()
-            {
-                DispatchSolutionList = dispSolutions,
-                WeekID = WeekID
-            };
         }
     }
 }

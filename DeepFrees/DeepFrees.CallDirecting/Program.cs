@@ -1,3 +1,5 @@
+using DeepFrees.CallDirecting.Microservice;
+
 namespace DeepFrees.CallDirecting
 {
     public class Program
@@ -12,6 +14,8 @@ namespace DeepFrees.CallDirecting
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
+            builder.Services.AddScoped<CallDivetor>();
+            builder.Services.AddScoped<CallDataService>();
 
             var app = builder.Build();
 
