@@ -19,6 +19,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DeepFrees.EmployeeService",
 EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Commons.DeepFrees", "Commons.DeepFrees\Commons.DeepFrees.shproj", "{CBDA18D0-F787-4B40-BC32-4F23140CFAB7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DeepFrees.VehicleRouting", "DeepFrees.VehicleRouting\DeepFrees.VehicleRouting.csproj", "{EED85978-2755-47FE-8743-E148A79C911E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -53,6 +55,10 @@ Global
 		{136D0D87-883B-43F8-AB51-4B77F7BBC7C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{136D0D87-883B-43F8-AB51-4B77F7BBC7C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{136D0D87-883B-43F8-AB51-4B77F7BBC7C0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EED85978-2755-47FE-8743-E148A79C911E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EED85978-2755-47FE-8743-E148A79C911E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EED85978-2755-47FE-8743-E148A79C911E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EED85978-2755-47FE-8743-E148A79C911E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

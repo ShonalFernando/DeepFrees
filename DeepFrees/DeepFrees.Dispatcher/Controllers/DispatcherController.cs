@@ -39,8 +39,8 @@ namespace DeepFrees.Dispatcher.Controllers
         public async Task<IActionResult> Post(List<DispatchRequest> DispatchRequestList)
         {
             var TaskArrays = _TaskTransformer.TransformTasks(DispatchRequestList);
-            _DispatcherService.Shuffle(TaskArrays);
-            return Ok();
+            return Ok(_DispatcherService.Shuffle(TaskArrays, DispatchRequestList));
+
             //if (_DispatcherDataService.GetAsync(DispatchRequestList.WeekID) == null)
             //{
             //    try

@@ -1,4 +1,6 @@
 ﻿using DeepFrees.Dispatcher.Model;
+using System.Collections.Generic;
+using System.Runtime.Intrinsics.X86;
 
 namespace DeepFrees.Dispatcher.Microservice
 {

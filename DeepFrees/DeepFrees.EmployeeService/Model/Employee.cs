@@ -21,7 +21,9 @@ namespace DeepFrees.EmployeeService.Model
         public Roles Roles { get; set; } = null!;
         public SallaryData SallaryData { get; set; } = null!;
         public PersonalData PersonalData { get; set; } = null!;
-        
+
+        public Teams Teams { get; set; }
+
         public bool isRecycled { get; set; }
 
         public Employee()
@@ -43,15 +45,41 @@ namespace DeepFrees.EmployeeService.Model
 
     public class Roles
     {
-        public EmployeeRole EmployeeRole { get; set; } = null!;
+        public EmployeeRole EmployeeRole { get; set; }
         public string? Privilege { get; set; }
     }
 
     public enum EmployeeRole
     {
         Manager,
-        Engineer,
+        Engineering,
         CallAgent
+    }
+
+    public enum Teams
+    {
+        //Manager
+        Operations,
+        Project_Management,
+        Customer_Support,
+        Human_Resource,
+
+        //Engineering
+        Electronics_Design,
+        Mechanical_Design,
+        Electrical_Design,
+        Software_Development,
+        Software_QA,
+        Electronics_QA,
+        Electrical_QA,
+        DevOps,
+        
+        //Finance
+        Accounting,
+        Planning,
+        Sales,
+        Audit,
+        Analysis_and_Reporting
     }
 
     public class Education

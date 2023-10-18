@@ -1,41 +1,28 @@
 ﻿namespace DeepFrees.Scheduler.Model
 {
-    public class WorkTask
+    public class JobTask
     {
-        public int Employee { get; set; }
-        public int Duration { get; set; }
+        public int team { get; set; }
+        public int duration { get; set; }
     }
 
-    public class Job
+    public class Job : IEnumerable<JobTask>
     {
-        public List<WorkTask> Tasks { get; set; }
+        public List<JobTask> Tasks { get; set; } = new List<JobTask>();
+
+        public IEnumerator<JobTask> GetEnumerator()
+        {
+            return Tasks.GetEnumerator();
+        }
+
+        System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
+        {
+            return GetEnumerator();
+        }
     }
 
-    public class WeeklyJob
+    public class JobScheduleRequest
     {
-        public int WeekID { get; set; }
-        public List<Job> JobList { get; set; }
-    }
-
-    public class TaskSolution
-    {
-
-        public int Employee { get; set; }
-        public List<TaskSession> TaskList { get; set; } = new List<TaskSession>();
-    }
-
-    public class WeeklyTaskSolutions
-    {
-
-        public int WeekID { get; set; }
-        public List<TaskSolution> TaskSolutions { get; set; } = new List<TaskSolution>();
-    }
-
-    public class TaskSession
-    {
-        public int JobID { get; set; }    
-        public int TaskID { get; set; }
-        public int TaskStart { get; set; }
-        public int TaskEnd { get; set; }
+        public List<Job> AllJobs { get; set; } = new List<Job>();
     }
 }

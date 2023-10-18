@@ -9,12 +9,18 @@ namespace DeepFrees.Dispatcher.Microservice
     {
         //When requesting tasks the tasks should be included in the formula with previous tasks of a certain employee
         // Eg: when calculating tasks: If a emp has already assigned 5*Formula, then request as 6
-        public void Shuffle(int[,] TasksArray)
+        public List<DispatchSolution> Shuffle(int[,] TasksArray, List<DispatchRequest> DispatchRequests)
         {
-            // Data.
-        //    int[,] TasksArray = {
-        //    { 90, 80, 75, 70 }, { 35, 85, 55, 65 }, { 125, 95, 90, 95 }, { 45, 110, 95, 115 }, { 50, 100, 90, 100 },
-        //};
+            Dictionary<int, string> employeeIndexToID = new Dictionary<int, string>();
+
+            // Creating the mapping
+            for (int i = 0; i < DispatchRequests.Select(dr => dr.EmployeeID).Distinct().Count(); i++)
+            {
+                string employeeID = DispatchRequests.Select(dr => dr.EmployeeID).Distinct().ToArray()[i];
+                employeeIndexToID[i] = employeeID;
+            }
+
+
             int numWorkers = TasksArray.GetLength(0);
             int numTasks = TasksArray.GetLength(1);
 
@@ -71,6 +77,9 @@ namespace DeepFrees.Dispatcher.Microservice
             CpSolverStatus status = solver.Solve(model);
             Console.WriteLine($"Solve status: {status}");
 
+            //Solution
+            List<DispatchSolution> DispatchSolutions = new();
+
             // Print solution.
             // Check that the problem has a feasible solution.
             if (status == CpSolverStatus.Optimal || status == CpSolverStatus.Feasible)
@@ -82,6 +91,10 @@ namespace DeepFrees.Dispatcher.Microservice
                     {
                         if (solver.Value(x[i, j]) > 0.5)
                         {
+                            DispatchSolution dispatchSolution = new();
+                            dispatchSolution.EmployeeID = employeeIndexToID[i];
+                            dispatchSolution.TaskID = j;
+                            DispatchSolutions.Add(dispatchSolution);
                             Console.WriteLine($"Worker {i} assigned to task {j}. Cost: {TasksArray[i, j]}");
                         }
                     }
@@ -96,6 +109,8 @@ namespace DeepFrees.Dispatcher.Microservice
             Console.WriteLine($"  - conflicts : {solver.NumConflicts()}");
             Console.WriteLine($"  - branches  : {solver.NumBranches()}");
             Console.WriteLine($"  - wall time : {solver.WallTime()}s");
+
+            return DispatchSolutions;
         }
     }
 }

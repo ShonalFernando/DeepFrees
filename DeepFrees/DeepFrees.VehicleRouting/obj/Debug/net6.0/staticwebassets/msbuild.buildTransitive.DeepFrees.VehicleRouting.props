@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\buildMultiTargeting\DeepFrees.VehicleRouting.props" />
+</Project>

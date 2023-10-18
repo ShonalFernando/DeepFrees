@@ -39,52 +39,27 @@ namespace DeepFrees.Scheduler.MicroService
             }
         }
 
-        public static WeeklyTaskSolutions Shuffle(WeeklyJob allJobs)
+        public void Shuffle(JobScheduleRequest JobScheduleRequest)
         {
-            List<TaskSolution> solutions = new List<TaskSolution>();
+            var allJobs = JobScheduleRequest.AllJobs;
 
-            //var allJobs =
-            //    new[] {
-            //    new[] {
-            //        // job0
-            //        new { machine = 0, duration = 3 }, // task0
-            //        new { machine = 1, duration = 2 }, // task1
-            //        new { machine = 2, duration = 2 }, // task2
-            //    }
-            //        .ToList(),
-            //    new[] {
-            //        // job1
-            //        new { machine = 0, duration = 2 }, // task0
-            //        new { machine = 2, duration = 1 }, // task1
-            //        new { machine = 1, duration = 4 }, // task2
-            //    }
-            //        .ToList(),
-            //    new[] {
-            //        // job2
-            //        new { machine = 1, duration = 4 }, // task0
-            //        new { machine = 2, duration = 3 }, // task1
-            //    }
-            //        .ToList(),
-            //    }
-            //        .ToList();
-
-            int numMachines = 0;
-            foreach (var job in allJobs.JobList)
+            int numteams = 0;
+            foreach (var job in allJobs)
             {
-                foreach (var task in job.Tasks)
+                foreach (var task in job)
                 {
-                    numMachines = Math.Max(numMachines, 1 + task.Employee);
+                    numteams = Math.Max(numteams, 1 + task.team);
                 }
             }
-            int[] allMachines = Enumerable.Range(0, numMachines).ToArray();
+            int[] allteams = Enumerable.Range(0, numteams).ToArray();
 
             // Computes horizon dynamically as the sum of all durations.
             int horizon = 0;
-            foreach (var job in allJobs.JobList)
+            foreach (var job in allJobs)
             {
-                foreach (var task in job.Tasks)
+                foreach (var task in job)
                 {
-                    horizon += task.Duration;
+                    horizon += task.duration;
                 }
             }
 
@@ -93,38 +68,38 @@ namespace DeepFrees.Scheduler.MicroService
 
             Dictionary<Tuple<int, int>, Tuple<IntVar, IntVar, IntervalVar>> allTasks =
                 new Dictionary<Tuple<int, int>, Tuple<IntVar, IntVar, IntervalVar>>(); // (start, end, duration)
-            Dictionary<int, List<IntervalVar>> machineToIntervals = new Dictionary<int, List<IntervalVar>>();
-            for (int jobID = 0; jobID < allJobs.JobList.Count(); ++jobID)
+            Dictionary<int, List<IntervalVar>> teamToIntervals = new Dictionary<int, List<IntervalVar>>();
+            for (int jobID = 0; jobID < allJobs.Count(); ++jobID)
             {
-                var job = allJobs.JobList[jobID];
-                for (int taskID = 0; taskID < job.Tasks.Count(); ++taskID)
+                var job = allJobs[jobID];
+                for (int taskID = 0; taskID < job.Count(); ++taskID)
                 {
                     var task = job.Tasks[taskID];
                     String suffix = $"_{jobID}_{taskID}";
                     IntVar start = model.NewIntVar(0, horizon, "start" + suffix);
                     IntVar end = model.NewIntVar(0, horizon, "end" + suffix);
-                    IntervalVar interval = model.NewIntervalVar(start, task.Duration, end, "interval" + suffix);
+                    IntervalVar interval = model.NewIntervalVar(start, task.duration, end, "interval" + suffix);
                     var key = Tuple.Create(jobID, taskID);
                     allTasks[key] = Tuple.Create(start, end, interval);
-                    if (!machineToIntervals.ContainsKey(task.Employee))
+                    if (!teamToIntervals.ContainsKey(task.team))
                     {
-                        machineToIntervals.Add(task.Employee, new List<IntervalVar>());
+                        teamToIntervals.Add(task.team, new List<IntervalVar>());
                     }
-                    machineToIntervals[task.Employee].Add(interval);
+                    teamToIntervals[task.team].Add(interval);
                 }
             }
 
             // Create and add disjunctive constraints.
-            foreach (int machine in allMachines)
+            foreach (int team in allteams)
             {
-                model.AddNoOverlap(machineToIntervals[machine]);
+                model.AddNoOverlap(teamToIntervals[team]);
             }
 
             // Precedences inside a job.
-            for (int jobID = 0; jobID < allJobs.JobList.Count(); ++jobID)
+            for (int jobID = 0; jobID < allJobs.Count(); ++jobID)
             {
-                var job = allJobs.JobList[jobID];
-                for (int taskID = 0; taskID < job.Tasks.Count() - 1; ++taskID)
+                var job = allJobs[jobID];
+                for (int taskID = 0; taskID < job.Count() - 1; ++taskID)
                 {
                     var key = Tuple.Create(jobID, taskID);
                     var nextKey = Tuple.Create(jobID, taskID + 1);
@@ -136,10 +111,10 @@ namespace DeepFrees.Scheduler.MicroService
             IntVar objVar = model.NewIntVar(0, horizon, "makespan");
 
             List<IntVar> ends = new List<IntVar>();
-            for (int jobID = 0; jobID < allJobs.JobList.Count(); ++jobID)
+            for (int jobID = 0; jobID < allJobs.Count(); ++jobID)
             {
-                var job = allJobs.JobList[jobID];
-                var key = Tuple.Create(jobID, job.Tasks.Count() - 1);
+                var job = allJobs[jobID];
+                var key = Tuple.Create(jobID, job.Count() - 1);
                 ends.Add(allTasks[key].Item2);
             }
             model.AddMaxEquality(objVar, ends);
@@ -155,60 +130,43 @@ namespace DeepFrees.Scheduler.MicroService
                 Console.WriteLine("Solution:");
 
                 Dictionary<int, List<AssignedTask>> assignedJobs = new Dictionary<int, List<AssignedTask>>();
-                for (int jobID = 0; jobID < allJobs.JobList.Count(); ++jobID)
+                for (int jobID = 0; jobID < allJobs.Count(); ++jobID)
                 {
-                    var job = allJobs.JobList[jobID];
-                    for (int taskID = 0; taskID < job.Tasks.Count(); ++taskID)
+                    var job = allJobs[jobID];
+                    for (int taskID = 0; taskID < job.Count(); ++taskID)
                     {
                         var task = job.Tasks[taskID];
                         var key = Tuple.Create(jobID, taskID);
                         int start = (int)solver.Value(allTasks[key].Item1);
-                        if (!assignedJobs.ContainsKey(task.Employee))
+                        if (!assignedJobs.ContainsKey(task.team))
                         {
-                            assignedJobs.Add(task.Employee, new List<AssignedTask>());
+                            assignedJobs.Add(task.team, new List<AssignedTask>());
                         }
-                        assignedJobs[task.Employee].Add(new AssignedTask(jobID, taskID, start, task.Duration));
+                        assignedJobs[task.team].Add(new AssignedTask(jobID, taskID, start, task.duration));
                     }
                 }
 
-                // Create per machine output lines.
+                // Create per team output lines.
                 String output = "";
-                foreach (int employee in allMachines)
+                foreach (int team in allteams)
                 {
-                    TaskSolution solution = new TaskSolution
-                    {
-                        Employee = employee
-                    };
-
                     // Sort by starting time.
-                    assignedJobs[employee].Sort();
-                    String solLineTasks = $"Machine {employee}: ";
+                    assignedJobs[team].Sort();
+                    String solLineTasks = $"team {team}: ";
                     String solLine = "           ";
 
-                    List<TaskSession> taskSessions = new List<TaskSession>();
-                    foreach (var assignedTask in assignedJobs[employee])
+                    foreach (var assignedTask in assignedJobs[team])
                     {
-                        TaskSession taskSession = new TaskSession();
-
                         String name = $"job_{assignedTask.jobID}_task_{assignedTask.taskID}";
                         // Add spaces to output to align columns.
                         solLineTasks += $"{name,-15}";
-                        taskSession.JobID = assignedTask.jobID;
-                        taskSession.TaskID = assignedTask.taskID;
 
                         String solTmp = $"[{assignedTask.start},{assignedTask.start + assignedTask.duration}]";
                         // Add spaces to output to align columns.
                         solLine += $"{solTmp,-15}";
-                        taskSession.TaskStart = assignedTask.start;
-                        taskSession.TaskEnd = assignedTask.duration + assignedTask.start;
-
-                        taskSessions.Add(taskSession);
                     }
-                    solution.TaskList = taskSessions;
                     output += solLineTasks + "\n";
                     output += solLine + "\n";
-
-                    solutions.Add(solution);
                 }
                 // Finally print the solution found.
                 Console.WriteLine($"Optimal Schedule Length: {solver.ObjectiveValue}");
@@ -223,12 +181,6 @@ namespace DeepFrees.Scheduler.MicroService
             Console.WriteLine($"  conflicts: {solver.NumConflicts()}");
             Console.WriteLine($"  branches : {solver.NumBranches()}");
             Console.WriteLine($"  wall time: {solver.WallTime()}s");
-
-            return new WeeklyTaskSolutions()
-            {
-                TaskSolutions = solutions,
-                WeekID = allJobs.WeekID
-            };
         }
     }
 }
