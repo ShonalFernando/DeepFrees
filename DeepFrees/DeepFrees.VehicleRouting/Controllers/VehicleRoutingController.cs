@@ -23,8 +23,7 @@ namespace DeepFrees.VehicleRouting.Controllers
             RouteModel.Depot = Depot;
             RouteModel.VehicleNumber = VehicleNumber;
             RouteModel.DistanceMatrices = DistanceMatricesModel;
-            _VehicleRouter.Shuffle(RouteModel);
-            return Ok();
+            return Ok(_VehicleRouter.Shuffle(RouteModel));
         }
     }
 }

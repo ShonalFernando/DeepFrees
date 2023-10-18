@@ -12,8 +12,11 @@ namespace DeepFrees.VehicleRouting.MicroService
         /// <summary>
         ///   Print the solution.
         /// </summary>
-        static void PrintSolution(in RoutingModel routing, in RoutingIndexManager manager, in Assignment solution)
+        static SolutionMatrixModel PrintSolution(in RoutingModel routing, in RoutingIndexManager manager, in Assignment solution)
         {
+            List<int> RouteSolutions = new List<int>();
+            SolutionMatrixModel SolutionMatrixModel = new();
+
             Console.WriteLine("Objective: {0} miles", solution.ObjectiveValue());
             // Inspect solution.
             Console.WriteLine("Route:");
@@ -25,12 +28,18 @@ namespace DeepFrees.VehicleRouting.MicroService
                 var previousIndex = index;
                 index = solution.Value(routing.NextVar(index));
                 routeDistance += routing.GetArcCostForVehicle(previousIndex, index, 0);
+
+                RouteSolutions.Add(manager.IndexToNode((int)index));
             }
             Console.WriteLine("{0}", manager.IndexToNode((int)index));
             Console.WriteLine("Route distance: {0}miles", routeDistance);
+            SolutionMatrixModel.RouteOrder = RouteSolutions;
+            SolutionMatrixModel.TotalDistance = routeDistance;
+
+            return SolutionMatrixModel;
         }
 
-        public void Shuffle(RouteModel routeModel)
+        public SolutionMatrixModel Shuffle(RouteModel routeModel)
         {
             // Instantiate the data problem.
             _RouteModel = routeModel;
@@ -63,7 +72,7 @@ namespace DeepFrees.VehicleRouting.MicroService
             Assignment solution = routing.SolveWithParameters(searchParameters);
 
             // Print solution on console.
-            PrintSolution(routing, manager, solution);
+            return PrintSolution(routing, manager, solution);
         }
     }
 }

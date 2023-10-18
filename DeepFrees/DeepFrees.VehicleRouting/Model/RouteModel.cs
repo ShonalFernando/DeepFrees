@@ -16,4 +16,10 @@
         public int LocationTo { get; set; }
         public long Distance { get; set; }
     }
+
+    public class SolutionMatrixModel
+    {
+        public List<int>? RouteOrder { get; set; }
+        public long TotalDistance { get; set; }
+    }
 }
