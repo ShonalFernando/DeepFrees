@@ -1,0 +1,63 @@
+﻿@page "/Employee/Add"
+
+<h3>Add a New Employee</h3>
+
+<form>
+    <h4>Basic Information</h4>
+    <div class="form-group">
+        <label for="nicin">NIC</label>
+        <input type="text" class="form-control" id="nicin" aria-describedby="nichelp" placeholder="Enter NIC">
+        <small id="nichelp" class="form-text text-muted">Please enter your National ID Number</small>
+    </div>
+    <div class="form-group">
+        <label for="comname">Common Name</label>
+        <input type="text" class="form-control" id="comname" placeholder="Insert Common Name">
+    </div>
+
+    <hr/>
+    <h4>Identity</h4>   
+    <div class="form-group">
+        <label for="name1">First Name</label>
+        <input type="text" class="form-control" id="name1" placeholder="Insert First Name">
+    </div>
+    <div class="form-group">
+        <label for="name2">Second Name</label>
+        <input type="text" class="form-control" id="name2" placeholder="Insert Second Name">
+    </div>
+    <div class="form-group">
+        <label for="name3">Last Name</label>
+        <input type="text" class="form-control" id="name3" placeholder="Insert Third Name">
+    </div>
+    <div class="form-group">
+        <label for="bankname">Bank</label>
+        <input type="text" class="form-control" id="bankname" placeholder="Insert Bank Name">
+    </div>
+    <div class="form-group">
+        <label for="Title">Title</label>
+        <select class="form-control" id="Title" name="Title">
+            <option value="0">Mr</option>
+            <option value="1">Mrs</option>
+            <option value="2">Miss</option>
+            <option value="3">Dr</option>
+            <option value="4">Rev</option>
+            <option value="5">Eng</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="religion">Religion</label>
+        <select class="form-control" id="religion" name="Religion">
+            <option value="0">Mr</option>
+            <option value="1">Mrs</option>
+            <option value="2">Miss</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="name3">Last Name</label>
+        <input type="text" class="form-control" id="name3" placeholder="Insert Third Name">
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+@code {
+
+}
