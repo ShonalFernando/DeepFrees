@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DeepFrees.Accounts", "DeepF
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DeepFrees.PayrollServices", "PayrollServices\DeepFrees.PayrollServices.csproj", "{8B76EE89-D5FA-4A3E-A3AB-8DA2679E00BF}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DeepFreez.WebApp", "DeepFreez.WebApp\DeepFreez.WebApp.csproj", "{0802A074-AA75-41C9-968D-52B3D24A3328}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DeepFrees.WebApp", "DeepFreez.WebApp\DeepFrees.WebApp.csproj", "{0802A074-AA75-41C9-968D-52B3D24A3328}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DeepFrees.Scheduler", "DeepFrees.Scheduler\DeepFrees.Scheduler.csproj", "{3E2A32DE-1094-4FD2-B16F-2AF8CF22C880}"
 EndProject
@@ -19,7 +19,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DeepFrees.EmployeeService",
 EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Commons.DeepFrees", "Commons.DeepFrees\Commons.DeepFrees.shproj", "{CBDA18D0-F787-4B40-BC32-4F23140CFAB7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DeepFrees.VehicleRouting", "DeepFrees.VehicleRouting\DeepFrees.VehicleRouting.csproj", "{EED85978-2755-47FE-8743-E148A79C911E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DeepFrees.VehicleRouting", "DeepFrees.VehicleRouting\DeepFrees.VehicleRouting.csproj", "{EED85978-2755-47FE-8743-E148A79C911E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -68,6 +68,7 @@ Global
 	EndGlobalSection
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		Commons.DeepFrees\Commons.DeepFrees.projitems*{136d0d87-883b-43f8-ab51-4b77f7bbc7c0}*SharedItemsImports = 5
+		Commons.DeepFrees\Commons.DeepFrees.projitems*{8b76ee89-d5fa-4a3e-a3ab-8da2679e00bf}*SharedItemsImports = 5
 		Commons.DeepFrees\Commons.DeepFrees.projitems*{cbda18d0-f787-4b40-bc32-4f23140cfab7}*SharedItemsImports = 13
 	EndGlobalSection
 EndGlobal

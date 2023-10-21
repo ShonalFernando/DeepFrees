@@ -1,40 +1,41 @@
-﻿using DeepFrees.PayrollServices.Model;
+﻿using DeepFrees.EmployeeService.Model;
 using Microsoft.Extensions.Options;
 using MongoDB.Driver;
-using PayrollServices.Model;
+using Commons.DeepFrees.DatabaseConfiguration;
+using Commons.DeepFrees.NetworkConfiguration;
 
 namespace DeepFrees.PayrollServices.MicroService
 {
     public class DataService
     {
-        private readonly IMongoCollection<SallaryModel> _SallaryModels;
+        private readonly IMongoCollection<EmployeePR> _EmployeeCollection;
 
-        public DataService(IOptions<DataSettings> deepfreesDatabaseSettings)
+        public DataService(IOptions<MongoDBConn> deepfreesDatabaseSettings)
         {
             var mongoClient = new MongoClient(
-                deepfreesDatabaseSettings.Value.ConnectionString);
+                MongoDBConn.ConnectionString);
 
             var mongoDatabase = mongoClient.GetDatabase(
-                deepfreesDatabaseSettings.Value.DatabaseName);
+                MongoDBConn.DatabaseName);
 
-            _SallaryModels = mongoDatabase.GetCollection<SallaryModel>(
-                deepfreesDatabaseSettings.Value.ShoppinzUsersCollectionName[4]);
+            _EmployeeCollection = mongoDatabase.GetCollection<EmployeePR>(
+                MongoDBConn.DeepFreesDataCollections[3]);
         }
 
-        public async Task<List<SallaryModel>> GetAsync() =>
-            await _SallaryModels.Find(_ => true).ToListAsync();
+        public async Task<List<EmployeePR>> GetEmployee() =>
+            await _EmployeeCollection.Find(_ => true).ToListAsync();
 
-        public async Task<SallaryModel?> GetAsync(string EmpID) =>
-            await _SallaryModels.Find(x => x.EmpID == EmpID).FirstOrDefaultAsync();
+        public async Task<EmployeePR?> GetEmployee(string NIC) =>
+            await _EmployeeCollection.Find(x => x.NIC == NIC).FirstOrDefaultAsync();
 
-        public async Task CreateAsync(SallaryModel SallaryModel) =>
-            await _SallaryModels.InsertOneAsync(SallaryModel);
+        public async Task CreateEmployee(EmployeePR newuser) =>
+            await _EmployeeCollection.InsertOneAsync(newuser);
 
-        public async Task UpdateAsync(string EmpID, SallaryModel SallaryModel) =>
-            await _SallaryModels.ReplaceOneAsync(x => x.EmpID == EmpID, SallaryModel);
+        public async Task UpdateEmployee(string NIC, EmployeePR updateuser) =>
+            await _EmployeeCollection.ReplaceOneAsync(x => x.NIC == NIC, updateuser);
 
-        public async Task RemoveAsync(string EmpID) =>
-            await _SallaryModels.DeleteOneAsync(x => x.EmpID == EmpID);
+        public async Task RemoveEmployee(string NIC) =>
+            await _EmployeeCollection.DeleteOneAsync(x => x.NIC == NIC);
     }
 }
 

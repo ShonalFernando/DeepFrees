@@ -1,0 +1,129 @@
+is_global = true
+build_property.TargetFramework = net6.0
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = DeepFrees.WebApp
+build_property.RootNamespace = DeepFrees.WebApp
+build_property.ProjectDir = D:\Source\Repos\DeepFrees\DeepFrees\DeepFreez.WebApp\
+build_property.RazorLangVersion = 6.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = D:\Source\Repos\DeepFrees\DeepFrees\DeepFreez.WebApp
+build_property._RazorSourceGeneratorDebug = 
+
+[D:/Source/Repos/DeepFrees/DeepFrees/DeepFreez.WebApp/App.razor]
+build_metadata.AdditionalFiles.TargetPath = QXBwLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Source/Repos/DeepFrees/DeepFrees/DeepFreez.WebApp/Pages/CallCenterView/CallAssign.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ2FsbENlbnRlclZpZXdcQ2FsbEFzc2lnbi5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Source/Repos/DeepFrees/DeepFrees/DeepFreez.WebApp/Pages/CallCenterView/LiveCallViewer.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ2FsbENlbnRlclZpZXdcTGl2ZUNhbGxWaWV3ZXIucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Source/Repos/DeepFrees/DeepFrees/DeepFreez.WebApp/Pages/CallCenterView/MicroComponents/CallListView.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ2FsbENlbnRlclZpZXdcTWljcm9Db21wb25lbnRzXENhbGxMaXN0Vmlldy5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Source/Repos/DeepFrees/DeepFrees/DeepFreez.WebApp/Pages/DispatcherView/DispatchView/DispatchAvailabilityTable.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRGlzcGF0Y2hlclZpZXdcRGlzcGF0Y2hWaWV3XERpc3BhdGNoQXZhaWxhYmlsaXR5VGFibGUucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Source/Repos/DeepFrees/DeepFrees/DeepFreez.WebApp/Pages/DispatcherView/LiveDispatchView.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRGlzcGF0Y2hlclZpZXdcTGl2ZURpc3BhdGNoVmlldy5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Source/Repos/DeepFrees/DeepFrees/DeepFreez.WebApp/Pages/EmployeeView/EmployeeCreate.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRW1wbG95ZWVWaWV3XEVtcGxveWVlQ3JlYXRlLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Source/Repos/DeepFrees/DeepFrees/DeepFreez.WebApp/Pages/EmployeeView/EmployeeDelete.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRW1wbG95ZWVWaWV3XEVtcGxveWVlRGVsZXRlLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Source/Repos/DeepFrees/DeepFrees/DeepFreez.WebApp/Pages/EmployeeView/EmployeePage.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRW1wbG95ZWVWaWV3XEVtcGxveWVlUGFnZS5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Source/Repos/DeepFrees/DeepFrees/DeepFreez.WebApp/Pages/EmployeeView/EmployeeUpdate.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRW1wbG95ZWVWaWV3XEVtcGxveWVlVXBkYXRlLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Source/Repos/DeepFrees/DeepFrees/DeepFreez.WebApp/Pages/EmployeeView/EmployeeView.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRW1wbG95ZWVWaWV3XEVtcGxveWVlVmlldy5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Source/Repos/DeepFrees/DeepFrees/DeepFreez.WebApp/Pages/EmployeeView/MicroComponents/EmployeeViewTable.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRW1wbG95ZWVWaWV3XE1pY3JvQ29tcG9uZW50c1xFbXBsb3llZVZpZXdUYWJsZS5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Source/Repos/DeepFrees/DeepFrees/DeepFreez.WebApp/Pages/Index.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSW5kZXgucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Source/Repos/DeepFrees/DeepFrees/DeepFreez.WebApp/Pages/SchedulerView/MicroComponents/EngineerScheduleTable.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2NoZWR1bGVyVmlld1xNaWNyb0NvbXBvbmVudHNcRW5naW5lZXJTY2hlZHVsZVRhYmxlLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Source/Repos/DeepFrees/DeepFrees/DeepFreez.WebApp/Pages/SchedulerView/WorkTaskView.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2NoZWR1bGVyVmlld1xXb3JrVGFza1ZpZXcucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Source/Repos/DeepFrees/DeepFrees/DeepFreez.WebApp/Pages/TaskView/AllTasksView.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVGFza1ZpZXdcQWxsVGFza3NWaWV3LnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Source/Repos/DeepFrees/DeepFrees/DeepFreez.WebApp/Pages/TaskView/MicroComponents/TaskTable.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVGFza1ZpZXdcTWljcm9Db21wb25lbnRzXFRhc2tUYWJsZS5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Source/Repos/DeepFrees/DeepFrees/DeepFreez.WebApp/Pages/WorkTasks/AllDispatchJobs.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcV29ya1Rhc2tzXEFsbERpc3BhdGNoSm9icy5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Source/Repos/DeepFrees/DeepFrees/DeepFreez.WebApp/Pages/WorkTasks/AllJobs.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcV29ya1Rhc2tzXEFsbEpvYnMucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Source/Repos/DeepFrees/DeepFrees/DeepFreez.WebApp/Pages/WorkTasks/MicroComponents/DispTaskTable.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcV29ya1Rhc2tzXE1pY3JvQ29tcG9uZW50c1xEaXNwVGFza1RhYmxlLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Source/Repos/DeepFrees/DeepFrees/DeepFreez.WebApp/Pages/WorkTasks/MicroComponents/JobsTable.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcV29ya1Rhc2tzXE1pY3JvQ29tcG9uZW50c1xKb2JzVGFibGUucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Source/Repos/DeepFrees/DeepFrees/DeepFreez.WebApp/Shared/SurveyPrompt.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXFN1cnZleVByb21wdC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Source/Repos/DeepFrees/DeepFrees/DeepFreez.WebApp/_Imports.razor]
+build_metadata.AdditionalFiles.TargetPath = X0ltcG9ydHMucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Source/Repos/DeepFrees/DeepFrees/DeepFreez.WebApp/Shared/MainLayout.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXE1haW5MYXlvdXQucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = b-h9k2j0ol3k
+
+[D:/Source/Repos/DeepFrees/DeepFrees/DeepFreez.WebApp/Shared/NavMenu.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXE5hdk1lbnUucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = b-aq84rhkv9b
+
+[D:/Source/Repos/DeepFrees/DeepFrees/DeepFreez.WebApp/Pages/Error.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRXJyb3IuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Source/Repos/DeepFrees/DeepFrees/DeepFreez.WebApp/Pages/_Host.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX0hvc3QuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Source/Repos/DeepFrees/DeepFrees/DeepFreez.WebApp/Pages/_Layout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX0xheW91dC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 

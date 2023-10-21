@@ -40,7 +40,7 @@ namespace DeepFrees.EmployeeService.Model
         [RegularExpression(@"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$")]
         public string EmailAddress { get; set; } = null!;
 
-        public string[]? PhysicalAddress { get; set; } 
+        public string[]? PhysicalAddress { get; set; }
     }
 
     public class Roles
@@ -73,7 +73,7 @@ namespace DeepFrees.EmployeeService.Model
         Electronics_QA,
         Electrical_QA,
         DevOps,
-        
+
         //Finance
         Accounting,
         Planning,
@@ -85,7 +85,7 @@ namespace DeepFrees.EmployeeService.Model
     public class Education
     {
         public Dictionary<string, string>? Qualifications { get; set; } //Academy: Qualification
-        public string? EducationLevel { get; set; } 
+        public string? EducationLevel { get; set; }
         public string? EducationDiscription { get; set; }
     }
 
@@ -93,12 +93,39 @@ namespace DeepFrees.EmployeeService.Model
     {
         public double BaseSallary { get; set; }
 
-        public int MonthlyPaidLeave { get; set; } //Monthly leaves with pay
-        public int YearlyPaidMedicalLeave { get; set; } //Yearly Medical Leaves with pay
-        public double MonthlyCutOff { get; set; } //Deductions for special cases
-        public double FineTune { get; set; }
+        public int AllocatedYearlyPaidLeaves { get; set; } //Allocated Monthly leaves with pay
+        public int AllocatedYearlyPaidMedicalLeaves { get; set; } //Allocated Yearly Medical Leaves with pay
+        public double MonthlyCutOff { get; set; } //Repititive Deductions for special cases
+        public double FineTune { get; set; }//Repititive per month
 
+        public double OTRatePerHour { get; set; } //Repititive per month, Per Hour
+        public double NoPayRatePerDay { get; set; } //Repititive per month, Per Leave (Per Day)
+
+
+        public int CumulativeLeaves { get; set; }   //TotalLeaves Taken this year, resets Jan 1st
+        public int CumulativeMedicalLeaves { get; set; }   //TotalLeaves Taken this year, resets Jan 1st
+
+        public List<MonthlySallarySheet>? MonthlySallarySheets { get; set; }
         public int[]? WeekSchedule { get; set; } //Eg: 0,8,8,8,8,8,4 <- Saturday is halfday -- Optional
+    }
+
+    public class MonthlySallarySheet
+    {
+        public int Month { get; set; } // Assuming 1 represents January, 2 represents February, and so on
+        public int Year { get; set; } //මේහෙම කරන එක ලේසී DateTime එකට වඩා, වැඩේ වෙනවනං එච්චරයි
+
+        public double Deductions { get; set; }
+        public double EmployeeFund { get; set; }
+        public double Tax { get; set; }
+
+        public List<Tuple<double, string>>? Increments { get; set; } //The List contains increments and extras with the reason
+
+        public int NonMedicalLeaves { get; set; }
+        public int MedicalLeaves { get; set; }
+
+        public int OTHours { get; set; }
+
+        public double NetSallary { get; set; }
     }
 
     public class PersonalData

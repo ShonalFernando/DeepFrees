@@ -1,0 +1,8 @@
+D:\Source\Repos\DeepFrees\DeepFrees\DeepFreez.WebApp\obj\Debug\net6.0\DeepFrees.WebApp.csproj.AssemblyReference.cache
+D:\Source\Repos\DeepFrees\DeepFrees\DeepFreez.WebApp\obj\Debug\net6.0\DeepFrees.WebApp.GeneratedMSBuildEditorConfig.editorconfig
+D:\Source\Repos\DeepFrees\DeepFrees\DeepFreez.WebApp\obj\Debug\net6.0\DeepFrees.WebApp.AssemblyInfoInputs.cache
+D:\Source\Repos\DeepFrees\DeepFrees\DeepFreez.WebApp\obj\Debug\net6.0\DeepFrees.WebApp.AssemblyInfo.cs
+D:\Source\Repos\DeepFrees\DeepFrees\DeepFreez.WebApp\obj\Debug\net6.0\DeepFrees.WebApp.csproj.CoreCompileInputs.cache
+D:\Source\Repos\DeepFrees\DeepFrees\DeepFreez.WebApp\obj\Debug\net6.0\DeepFrees.WebApp.MvcApplicationPartsAssemblyInfo.cache
+D:\Source\Repos\DeepFrees\DeepFrees\DeepFreez.WebApp\obj\Debug\net6.0\DeepFrees.WebApp.RazorAssemblyInfo.cache
+D:\Source\Repos\DeepFrees\DeepFrees\DeepFreez.WebApp\obj\Debug\net6.0\DeepFrees.WebApp.RazorAssemblyInfo.cs
