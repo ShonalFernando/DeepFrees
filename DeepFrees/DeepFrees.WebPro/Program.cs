@@ -1,7 +1,7 @@
 using DeepFrees.WebPro.Data;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
-
+using DeepFrees.WebPro.Services;
 namespace DeepFrees.WebPro
 {
     public class Program
@@ -14,6 +14,7 @@ namespace DeepFrees.WebPro
             builder.Services.AddRazorPages();
             builder.Services.AddServerSideBlazor();
             builder.Services.AddSingleton<WeatherForecastService>();
+            builder.Services.AddScoped<EmployeeStream>();
 
             var app = builder.Build();
 

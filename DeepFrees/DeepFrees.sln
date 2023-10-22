@@ -21,7 +21,7 @@ Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Commons.DeepFrees", "Common
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DeepFrees.VehicleRouting", "DeepFrees.VehicleRouting\DeepFrees.VehicleRouting.csproj", "{EED85978-2755-47FE-8743-E148A79C911E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DeepFrees.WebPro", "DeepFrees.WebPro\DeepFrees.WebPro.csproj", "{F8A1C60B-4118-4961-B97A-3D4614543E97}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DeepFrees.WebPro", "DeepFrees.WebPro\DeepFrees.WebPro.csproj", "{F8A1C60B-4118-4961-B97A-3D4614543E97}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

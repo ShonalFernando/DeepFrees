@@ -1,5 +1,60 @@
-﻿<h3>All Employees</h3>
+﻿@page "/Employees"
+
+<PageTitle>Employee Portal</PageTitle>
+
+@using DeepFrees.EmployeeService.Model;
+@using DeepFrees.WebPro.Services
+@inject EmployeeStream EmployeeStream
+
+<nav class="breadcrumbs">
+    <a href="#home" class="breadcrumbs__item">Home</a>
+    <a href="#shop" class="breadcrumbs__item is-active">Employee</a>
+</nav>
+
+<br />
+<br />
+
+<h1>All Employees</h1>
+
+<p>Click on a Employee to Edit or Delete or to View More Details</p>
+
+@if (employees == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th> NIC </th>
+                <th>Common Name</th>
+                <th>Role</th>
+                <th>Category</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var employee in employees)
+            {
+                
+                <tr>
+                    <td><a href="@InLink=@employee.nic">@employee.nic</a></td>
+                    <td>@employee.commonName</td>
+                    <td>@employee.roles.employeeRole</td>
+                    <td>@employee.teams</td>
+                </tr>
+
+                }
+        </tbody>
+    </table>
+}
 
 @code {
+    private List<Employee>? employees;
+    private string InLink = "/Employees/EmployeeInDetail?NIC";
 
+    protected override async Task OnInitializedAsync()
+    {
+        employees = await EmployeeStream.GetEmployeeAll();
+    }
 }

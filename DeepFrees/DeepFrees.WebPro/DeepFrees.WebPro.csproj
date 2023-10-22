@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
@@ -10,7 +10,6 @@
     <Folder Include="Pages\CallPortal\" />
     <Folder Include="Pages\InfoPortal\" />
     <Folder Include="Pages\JobPortal\" />
-    <Folder Include="Pages\Dashboards\" />
     <Folder Include="Pages\CMS\" />
     <Folder Include="Pages\HomePortal\" />
     <Folder Include="Pages\RoutePortal\" />
