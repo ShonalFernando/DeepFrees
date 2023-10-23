@@ -21,6 +21,7 @@ namespace DeepFrees.EmployeeService.Model
         public Roles Roles { get; set; } = null!;
         public SallaryData SallaryData { get; set; } = null!;
         public PersonalData PersonalData { get; set; } = null!;
+        public Education education { get; set; } = null!;
 
         public Teams Teams { get; set; }
 

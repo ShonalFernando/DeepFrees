@@ -1,4 +1,7 @@
-﻿@page "/Employees/EmployeeInDetail"
+﻿using System.Collections.Generic;
+using System.Reflection;
+
+@page "/Employees/EmployeeInDetail"
 
 <PageTitle>Employee Detail</PageTitle>
 
@@ -47,7 +50,11 @@
     </div>
     <div class="form-group">
         <label for="bankname">Bank</label>
-        <input type="text" @*value="@Employee.personalData.bank"*@ class="form-control" id="bankname" placeholder="Insert Bank Name">
+        <input type="text" value="@Bank" class="form-control" id="bankname" placeholder="Insert Bank Name">
+    </div>
+    <div class="form-group">
+        <label for="banknum">Bank Account Number</label>
+        <input type="text" value="@BankAcc" class="form-control" id="banknum" placeholder="Insert Bank Account">
     </div>
     <div class="form-group">
         <label for="Title">Title</label>
@@ -68,10 +75,104 @@
             <option value="2">Miss</option>
         </select>
     </div>
+    @*=========================================================== Additional Details =================*@
     <div class="form-group">
-        <label for="name3">Last Name</label>
-        <input type="text" class="form-control" id="name3" placeholder="Insert Third Name">
+        <label for="PerformanceReview">Performance</label>
+        <input value="@PerformanceMetrics" type="text" class="form-control" id="PerformanceReview" placeholder="Performance Review">
+    </div>    
+    <div class="form-group">
+        <label for="TravelPreference">Travel Preferences</label>
+        <input value="@TravelPreference" type="text" class="form-control" id="TravelPreference" placeholder="Travel Preference">
     </div>
+        <div class="form-group">
+        <label for="MedicalConditions">Medical Conditions</label>
+        <input value="@MedicalConditions" type="text" class="form-control" id="MedicalConditions" placeholder="Medical Conditions">
+    </div>
+        <div class="form-group">
+        <label for="DietaryPrefences">Dietary Preferences</label>
+        <input value="@DietaryPrefences" type="text" class="form-control" id="DietaryPrefences" placeholder="Dietary Preferences">
+    </div>
+        <div class="form-group">
+        <label for="PerformanceMetrics">Performance Metrics</label>
+        <input value="@PerformanceMetrics" type="text" class="form-control" id="PerformanceMetrics" placeholder="Performance Metrics">
+    </div>
+        <div class="form-group">
+        <label for="Awards">Awards</label>
+        <input value="@Awards" type="text" class="form-control" id="Awards" placeholder="Awards">
+    </div>
+        <div class="form-group">
+        <label for="ResponsibilityReview">Responsibility Review</label>
+        <input value="@ResponsibilityReview" type="text" class="form-control" id="ResponsibilityReview" placeholder="IResponsibility Review">
+    </div>
+    <div class="form-group">
+        <label for="EmergencyContact">Emergency Contact</label>
+        <input value="@EmergencyContact" type="text" class="form-control" id="EmergencyContact" placeholder="Emergency Contact">
+    </div>
+        <div class="form-group">
+        <label for="BloodGroup">Blood Group</label>
+        <input value="@BloodGroup" type="text" class="form-control" id="BloodGroup" placeholder="Blood Group">
+    </div>
+    <div class="form-group">
+        <label for="OverallAdditionalInfo">Overall Additional Information</label>
+        <input value="@OverallAdditionalInfo" type="text" class="form-control" id="OverallAdditionalInfo" placeholder="Additional Info">
+    </div>
+    <hr />
+    @*================================================= Education ============================================*@
+    <h4>Education</h4>
+    <div class="form-group">
+        <label for="OrdinaryLevel">Second Name</label>
+        <input type="text" value="@OrdinaryLevel" class="form-control" id="OrdinaryLevel" placeholder="Insert Second Name">
+    </div>
+    <div class="form-group">
+        <label for="AdvancedLevel">First Name</label>
+        <input type="text" value="@AdvancedLevel" class="form-control" id="AdvancedLevel" placeholder="Insert First Name">
+    </div>
+    <div class="form-group">
+        <label for="Certificates">Second Name</label>
+        <input type="text" value="@Certificates" class="form-control" id="Certificates" placeholder="Insert Second Name">
+    </div>
+    <div class="form-group">
+        <label for="Diplomas">First Name</label>
+        <input type="text" value="@Diplomas" class="form-control" id="Diplomas" placeholder="Insert First Name">
+    </div>
+    <div class="form-group">
+        <label for="HigherDiplomas">Second Name</label>
+        <input type="text" value="@HigherDiplomas" class="form-control" id="HigherDiplomas" placeholder="Insert Second Name">
+    </div>
+    <div class="form-group">
+        <label for="Bachelors">Last Name</label>
+        <input type="text" value="@Bachelors" class="form-control" id="Bachelors" placeholder="Insert Third Name">
+    </div>
+    <div class="form-group">
+        <label for="Masters">Bank</label>
+        <input type="text" value="@Masters" class="form-control" id="Masters" placeholder="Insert Bank Name">
+    </div>
+    <div class="form-group">
+        <label for="MPhil">Bank Account Number</label>
+        <input type="text" value="@MPhil" class="form-control" id="MPhil" placeholder="Insert Bank Account">
+    </div>
+    <div class="form-group">
+        <label for="pHD">First Name</label>
+        <input type="text" value="@pHD" class="form-control" id="pHD" placeholder="Insert First Name">
+    </div>
+    <div class="form-group">
+        <label for="Vocational">Second Name</label>
+        <input type="text" value="@Vocational" class="form-control" id="Vocational" placeholder="Insert Second Name">
+    </div>
+    <div class="form-group">
+        <label for="ProfessionalCertifications">Last Name</label>
+        <input type="text" value="@ProfessionalCertifications" class="form-control" id="ProfessionalCertifications" placeholder="Insert Third Name">
+    </div>
+    <div class="form-group">
+        <label for="educationLevel">Bank</label>
+        <input type="text" value="@educationLevel" class="form-control" id="educationLevel" placeholder="Insert Bank Name">
+    </div>
+    <div class="form-group">
+        <label for="educationDiscription">Bank Account Number</label>
+        <input type="text" value="@educationDiscription" class="form-control" id="educationDiscription" placeholder="Insert Bank Account">
+    </div>
+    <br />
+    <br />
     <button type="submit" class="btn btn-primary">Submit</button>
 </form>
 
@@ -81,6 +182,61 @@
     string? FirstName = "";
     string? SecondName = "";
     string? LastName = "";
+    int ReligiousPreferences = 0;
+    int LanguagePreference = 0;
+    int Gender = 0;
+    int Title = 0;
+    string? Bank = "";
+    string? BankAcc = "";
+
+    //Additional Details
+    string? PerformanceReview = "";
+    string? TravelPreference = "";
+    string? MedicalConditions = "";
+    string? DietaryPrefences = "";
+    string? PerformanceMetrics = "";
+    string? Awards = "";
+    string? ResponsibilityReview = "";
+    string? EmergencyContact = "";
+    string? BloodGroup = "";
+    string? OverallAdditionalInfo = "";
+
+    //SallaryDetails
+    string mobile= "";
+    string emailAddress= "";
+    string AddressLine1 = "";
+    string AddressLine2 = "";
+    string AddressLine3 = "";
+    string AddressLine4 = "";
+
+    //RolesData
+    EmployeeRole employeeRole;
+    string? privilege = "";
+
+    //EducationalData
+    Dictionary<string, string>? qualifications { get; set; } //Academy: Qualification
+    string? OrdinaryLevel = "";
+    string? AdvancedLevel = "";
+    string? Certificates = "";
+    string? Diplomas = "";
+    string? HigherDiplomas= "";
+    string? Bachelors = "";
+    string? Masters = "";
+    string? MPhil = "";
+    string? pHD = "";
+    string? Vocational = "";
+    string? ProfessionalCertifications = "";
+
+    string? educationLevel = "";
+    string? educationDiscription = "";
+
+    //RootData
+    string? commonName = "";
+    int teams;
+    bool isRecycled;
+
+    Dictionary<string, string>? AdditionalDetails;
+
     Employee Employee = new Employee();
 
     protected async override void OnInitialized()
@@ -97,20 +253,169 @@
         }
         else
         {
-            try
+            //PersonalData
+            Employee = await EmployeeStream.GetEmployeeSingle(NIC);
+
+            ////EducationalData
+
+            //RolesData
+            //No need to use Try Catch block as adding employees need to validate
+            employeeRole = Employee.roles.employeeRole;
+            privilege = Employee.roles.privilege;
+            mobile = Employee.contact.mobile;
+            emailAddress = Employee.contact.emailAddress;
+            ReligiousPreferences = Employee.personalData.religiousPreference;
+            LanguagePreference = Employee.personalData.languagePreference;
+            Gender = Employee.personalData.gender;
+            Title = 0;
+            Bank = Employee.personalData.bank;
+            BankAcc = Employee.personalData.bankAccountNumber;
+            FirstName = Employee.personalData.nameArray[0];
+            SecondName = Employee.personalData.nameArray[1];
+            LastName = Employee.personalData.nameArray[2];
+            AddressLine1 = Employee.contact.physicalAddress[0];
+            AddressLine2 = Employee.contact.physicalAddress[1];
+            AddressLine3 = Employee.contact.physicalAddress[2];
+            AddressLine4 = Employee.contact.physicalAddress[3];
+
+
+            if (Employee.education.qualifications != null)
             {
-                Employee = await EmployeeStream.GetEmployeeSingle(NIC);
-                FirstName = Employee.personalData.nameArray[0];
-                SecondName = Employee.personalData.nameArray[1];
-                LastName = Employee.personalData.nameArray[2];
-                StateHasChanged();
+                foreach (var eqf in Employee.education.qualifications)
+                {
+                    var propertyName = eqf.Key;
+                    var propertyValue = eqf.Value;
+
+                    switch (propertyName)
+                    {
+                        case "OrdinaryLevel":
+                            OrdinaryLevel = propertyValue;
+                            break;
+                        case "AdvancedLevel":
+                            AdvancedLevel = propertyValue;
+                            break;
+                        case "Certificates":
+                            Certificates = propertyValue;
+                            break;
+                        case "Diplomas":
+                            Diplomas = propertyValue;
+                            break;
+                        case "HigherDiplomas":
+                            HigherDiplomas = propertyValue;
+                            break;
+                        case "Bachelors":
+                            Bachelors = propertyValue;
+                            break;
+                        case "Masters":
+                            Masters = propertyValue;
+                            break;
+                        case "MPhil":
+                            MPhil = propertyValue;
+                            break;
+                        case "pHD":
+                            pHD = propertyValue;
+                            break;
+                        case "Vocational":
+                            Vocational = propertyValue;
+                            break;
+                        case "ProfessionalCertifications":
+                            ProfessionalCertifications = propertyValue;
+                            break;
+                    }
+                }
             }
-            catch
+            //Additional Information
+            if (Employee.personalData.additionalPersonalData != null)
             {
-                Employee = new Employee();
-                //Add Logic to Redirect to Previous Page
+                foreach (var kvp in Employee.personalData.additionalPersonalData)
+                {
+                    var propertyName = kvp.Key;
+                    var propertyValue = kvp.Value;
+
+                    switch (propertyName)
+                    {
+                        case "PerformanceReview":
+                            PerformanceReview = propertyValue;
+                            break;
+                        case "TravelPreference":
+                            TravelPreference = propertyValue;
+                            break;
+                        case "MedicalConditions":
+                            MedicalConditions = propertyValue;
+                            break;
+                        case "DietaryPrefences":
+                            DietaryPrefences = propertyValue;
+                            break;
+                        case "PerformanceMetrics":
+                            PerformanceMetrics = propertyValue;
+                            break;
+                        case "Awards":
+                            Awards = propertyValue;
+                            break;
+                        case "ResponsibilityReview":
+                            ResponsibilityReview = propertyValue;
+                            break;
+                        case "EmergencyContact":
+                            EmergencyContact = propertyValue;
+                            break;
+                        case "BloodGroup":
+                            BloodGroup = propertyValue;
+                            break;
+                        case "OverallAdditionalInfo":
+                            OverallAdditionalInfo = propertyValue;
+                            break;
+                    }
+                }
             }
+
+            StateHasChanged();
         }
 
+    }
+
+    private async void Update()
+    {
+        Employee employee = new();
+
+        var uri = new Uri(NavigationManager.Uri);
+        var query = System.Web.HttpUtility.ParseQueryString(uri.Query);
+
+        NIC = query["NIC"];
+
+        if(NIC == null)
+        {
+            Employee = new Employee();
+            //Add Logic to Redirect to Previous Page
+        }
+        else
+        {
+            //PersonalData
+            employee = await EmployeeStream.GetEmployeeSingle(NIC);
+
+            //Personal Data
+            List<string>? NameArray = new();
+            NameArray.Add(FirstName);
+            NameArray.Add(SecondName);
+            NameArray.Add(LastName);
+            employee.personalData.nameArray = NameArray;
+            employee.personalData.bankAccountNumber = BankAcc;
+            employee.personalData.bank = Bank;
+            employee.personalData.religiousPreference = ReligiousPreferences;
+            employee.personalData.languagePreference = LanguagePreference;
+            employee.personalData.gender = Gender;
+            employee.personalData.title = Title;
+            employee.personalData.religiousPreference = ReligiousPreferences;
+
+            Dictionary<string, string> employeeDictionary = new Dictionary<string, string>();
+            PropertyInfo[] properties = typeof(Employee).GetProperties();
+
+            foreach (PropertyInfo property in properties)
+            {
+                string propertyName = property.Name;
+                string propertyValue = property.GetValue(employee)?.ToString() ?? string.Empty;
+                employeeDictionary[propertyName] = propertyValue;
+            }
+
+        }
     }
 }

@@ -16,6 +16,7 @@ namespace DeepFrees.EmployeeService.Model
         public Roles? roles { get; set; }
         public SallaryData? sallaryData { get; set; }
         public PersonalData? personalData { get; set; }
+        public Education? education { get; set; }
         public int teams { get; set; }
         public bool isRecycled { get; set; }
     }
