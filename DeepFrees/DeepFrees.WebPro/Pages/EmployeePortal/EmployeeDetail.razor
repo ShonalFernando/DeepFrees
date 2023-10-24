@@ -1,5 +1,5 @@
-﻿using System.Collections.Generic;
-using System.Reflection;
+﻿@using System.Collections.Generic;
+@using System.Reflection;
 
 @page "/Employees/EmployeeInDetail"
 
@@ -7,9 +7,10 @@ using System.Reflection;
 
 @using DeepFrees.EmployeeService.Model;
 @using DeepFrees.WebPro.Services
+
 @inject EmployeeStream EmployeeStream
 @inject NavigationManager NavigationManager
-@inject EmployeeStream EmployeeStream
+
 
 <nav class="breadcrumbs">
     <a href="#home" class="breadcrumbs__item">Home</a>
@@ -26,180 +27,223 @@ using System.Reflection;
     <h4>Basic Information</h4>
     <div class="form-group">
         <label for="nicin">NIC</label>
-        <input type="text"  class="form-control" id="nicin" aria-describedby="nichelp" placeholder="Enter NIC">
+        <input type="text" @bind="@NIC" disabled class="form-control" id="nicin" aria-describedby="nichelp" placeholder="Enter NIC">
         <small id="nichelp" class="form-text text-muted">Please enter your National ID Number</small>
     </div>
     <div class="form-group">
         <label for="comname">Common Name</label>
-        <input type="text" value="@Employee.commonName" class="form-control" id="comname" placeholder="Insert Common Name">
+        <input type="text" @bind="@commonName" class="form-control" id="comname" placeholder="Insert Common Name">
     </div>
 
     <hr />
     <h4>Identity</h4>
     <div class="form-group">
         <label for="name1">First Name</label>
-        <input type="text" value="@FirstName" class="form-control" id="name1" placeholder="Insert First Name">
+        <input type="text" @bind="@FirstName" class="form-control" id="name1" placeholder="Insert First Name">
     </div>
     <div class="form-group">
         <label for="name2">Second Name</label>
-        <input type="text" value="@SecondName" class="form-control" id="name2" placeholder="Insert Second Name">
+        <input type="text" @bind="@SecondName" class="form-control" id="name2" placeholder="Insert Second Name">
     </div>
     <div class="form-group">
         <label for="name3">Last Name</label>
-        <input type="text" value="@LastName" class="form-control" id="name3" placeholder="Insert Third Name">
+        <input type="text" @bind="@LastName" class="form-control" id="name3" placeholder="Insert Third Name">
     </div>
     <div class="form-group">
         <label for="bankname">Bank</label>
-        <input type="text" value="@Bank" class="form-control" id="bankname" placeholder="Insert Bank Name">
+        <input type="text" @bind="@Bank" class="form-control" id="bankname" placeholder="Insert Bank Name">
     </div>
     <div class="form-group">
         <label for="banknum">Bank Account Number</label>
-        <input type="text" value="@BankAcc" class="form-control" id="banknum" placeholder="Insert Bank Account">
+        <input type="text" @bind="@BankAcc" class="form-control" id="banknum" placeholder="Insert Bank Account">
     </div>
     <div class="form-group">
-        <label for="Title">Title</label>
-        <select class="form-control" id="Title" name="Title">
-            <option value="0">Mr</option>
-            <option value="1">Mrs</option>
-            <option value="2">Miss</option>
-            <option value="3">Dr</option>
-            <option value="4">Rev</option>
-            <option value="5">Eng</option>
+        <label for="EmpRole">Role</label>
+        <select @bind="RoleName" class="form-control" id="EmpRole" name="EmpRole">
+            @foreach (EmployeeRole role in Enum.GetValues(typeof(EmployeeRole)))
+            {
+                <option value="@role">@role</option>
+            }
         </select>
     </div>
     <div class="form-group">
-        <label for="religion">Religion</label>
-        <select class="form-control" id="religion" name="Religion">
-            <option value="0">Mr</option>
-            <option value="1">Mrs</option>
-            <option value="2">Miss</option>
+        <label for="Title">Title</label>
+        <select @bind="TitleName" class="form-control" id="Title" name="Title">
+            @foreach (Title title in Enum.GetValues(typeof(Title)))
+            {
+                <option value="@title">@title</option>
+            }
         </select>
     </div>
     @*=========================================================== Additional Details =================*@
     <div class="form-group">
         <label for="PerformanceReview">Performance</label>
-        <input value="@PerformanceMetrics" type="text" class="form-control" id="PerformanceReview" placeholder="Performance Review">
+        <input @bind="@PerformanceMetrics" type="text" class="form-control" id="PerformanceReview" placeholder="Performance Review">
     </div>    
     <div class="form-group">
         <label for="TravelPreference">Travel Preferences</label>
-        <input value="@TravelPreference" type="text" class="form-control" id="TravelPreference" placeholder="Travel Preference">
+        <input @bind="@TravelPreference" type="text" class="form-control" id="TravelPreference" placeholder="Travel Preference">
     </div>
         <div class="form-group">
         <label for="MedicalConditions">Medical Conditions</label>
-        <input value="@MedicalConditions" type="text" class="form-control" id="MedicalConditions" placeholder="Medical Conditions">
+        <input @bind="@MedicalConditions" type="text" class="form-control" id="MedicalConditions" placeholder="Medical Conditions">
     </div>
         <div class="form-group">
         <label for="DietaryPrefences">Dietary Preferences</label>
-        <input value="@DietaryPrefences" type="text" class="form-control" id="DietaryPrefences" placeholder="Dietary Preferences">
+        <input @bind="@DietaryPrefences" type="text" class="form-control" id="DietaryPrefences" placeholder="Dietary Preferences">
     </div>
         <div class="form-group">
         <label for="PerformanceMetrics">Performance Metrics</label>
-        <input value="@PerformanceMetrics" type="text" class="form-control" id="PerformanceMetrics" placeholder="Performance Metrics">
+        <input @bind="@PerformanceMetrics" type="text" class="form-control" id="PerformanceMetrics" placeholder="Performance Metrics">
     </div>
         <div class="form-group">
         <label for="Awards">Awards</label>
-        <input value="@Awards" type="text" class="form-control" id="Awards" placeholder="Awards">
+        <input @bind="@Awards" type="text" class="form-control" id="Awards" placeholder="Awards">
     </div>
         <div class="form-group">
         <label for="ResponsibilityReview">Responsibility Review</label>
-        <input value="@ResponsibilityReview" type="text" class="form-control" id="ResponsibilityReview" placeholder="IResponsibility Review">
+        <input @bind="@ResponsibilityReview" type="text" class="form-control" id="ResponsibilityReview" placeholder="IResponsibility Review">
     </div>
     <div class="form-group">
         <label for="EmergencyContact">Emergency Contact</label>
-        <input value="@EmergencyContact" type="text" class="form-control" id="EmergencyContact" placeholder="Emergency Contact">
+        <input @bind="@EmergencyContact" type="text" class="form-control" id="EmergencyContact" placeholder="Emergency Contact">
     </div>
         <div class="form-group">
         <label for="BloodGroup">Blood Group</label>
-        <input value="@BloodGroup" type="text" class="form-control" id="BloodGroup" placeholder="Blood Group">
+        <input @bind="@BloodGroup" type="text" class="form-control" id="BloodGroup" placeholder="Blood Group">
     </div>
     <div class="form-group">
         <label for="OverallAdditionalInfo">Overall Additional Information</label>
-        <input value="@OverallAdditionalInfo" type="text" class="form-control" id="OverallAdditionalInfo" placeholder="Additional Info">
+        <input @bind="@OverallAdditionalInfo" type="text" class="form-control" id="OverallAdditionalInfo" placeholder="Additional Info">
     </div>
     <hr />
     @*================================================= Education ============================================*@
     <h4>Education</h4>
     <div class="form-group">
         <label for="OrdinaryLevel">Second Name</label>
-        <input type="text" value="@OrdinaryLevel" class="form-control" id="OrdinaryLevel" placeholder="Insert Second Name">
+        <input type="text" @bind="@OrdinaryLevel" class="form-control" id="OrdinaryLevel" placeholder="Insert Second Name">
     </div>
     <div class="form-group">
         <label for="AdvancedLevel">First Name</label>
-        <input type="text" value="@AdvancedLevel" class="form-control" id="AdvancedLevel" placeholder="Insert First Name">
+        <input type="text" @bind="@AdvancedLevel" class="form-control" id="AdvancedLevel" placeholder="Insert First Name">
     </div>
     <div class="form-group">
         <label for="Certificates">Second Name</label>
-        <input type="text" value="@Certificates" class="form-control" id="Certificates" placeholder="Insert Second Name">
+        <input type="text" @bind="@Certificates" class="form-control" id="Certificates" placeholder="Insert Second Name">
     </div>
     <div class="form-group">
         <label for="Diplomas">First Name</label>
-        <input type="text" value="@Diplomas" class="form-control" id="Diplomas" placeholder="Insert First Name">
+        <input type="text" @bind="@Diplomas" class="form-control" id="Diplomas" placeholder="Insert First Name">
     </div>
     <div class="form-group">
         <label for="HigherDiplomas">Second Name</label>
-        <input type="text" value="@HigherDiplomas" class="form-control" id="HigherDiplomas" placeholder="Insert Second Name">
+        <input type="text" @bind="@HigherDiplomas" class="form-control" id="HigherDiplomas" placeholder="Insert Second Name">
     </div>
     <div class="form-group">
         <label for="Bachelors">Last Name</label>
-        <input type="text" value="@Bachelors" class="form-control" id="Bachelors" placeholder="Insert Third Name">
+        <input type="text" @bind="@Bachelors" class="form-control" id="Bachelors" placeholder="Insert Third Name">
     </div>
     <div class="form-group">
         <label for="Masters">Bank</label>
-        <input type="text" value="@Masters" class="form-control" id="Masters" placeholder="Insert Bank Name">
+        <input type="text" @bind="@Masters" class="form-control" id="Masters" placeholder="Insert Bank Name">
     </div>
     <div class="form-group">
         <label for="MPhil">Bank Account Number</label>
-        <input type="text" value="@MPhil" class="form-control" id="MPhil" placeholder="Insert Bank Account">
+        <input type="text" @bind="@MPhil" class="form-control" id="MPhil" placeholder="Insert Bank Account">
     </div>
     <div class="form-group">
         <label for="pHD">First Name</label>
-        <input type="text" value="@pHD" class="form-control" id="pHD" placeholder="Insert First Name">
+        <input type="text" @bind="@pHD" class="form-control" id="pHD" placeholder="Insert First Name">
     </div>
     <div class="form-group">
         <label for="Vocational">Second Name</label>
-        <input type="text" value="@Vocational" class="form-control" id="Vocational" placeholder="Insert Second Name">
+        <input type="text" @bind="@Vocational" class="form-control" id="Vocational" placeholder="Insert Second Name">
     </div>
     <div class="form-group">
         <label for="ProfessionalCertifications">Last Name</label>
-        <input type="text" value="@ProfessionalCertifications" class="form-control" id="ProfessionalCertifications" placeholder="Insert Third Name">
+        <input type="text" @bind="@ProfessionalCertifications" class="form-control" id="ProfessionalCertifications" placeholder="Insert Third Name">
     </div>
     <div class="form-group">
         <label for="educationLevel">Bank</label>
-        <input type="text" value="@educationLevel" class="form-control" id="educationLevel" placeholder="Insert Bank Name">
+        <input type="text" @bind="@educationLevel" class="form-control" id="educationLevel" placeholder="Insert Bank Name">
     </div>
     <div class="form-group">
         <label for="educationDiscription">Bank Account Number</label>
-        <input type="text" value="@educationDiscription" class="form-control" id="educationDiscription" placeholder="Insert Bank Account">
+        <input type="text" @bind="@educationDiscription" class="form-control" id="educationDiscription" placeholder="Insert Bank Account">
+    </div>
+    @*================================================= Contact ============================================*@
+    <h4>Contact Information</h4>
+    <div class="form-group">
+        <label for="mobile">Mobile</label>
+        <input type="text" @bind="@mobile" class="form-control" id="mobile" placeholder="Insert Second Name">
+    </div>
+    <div class="form-group">
+        <label for="emailAddress">Email Address</label>
+        <input type="text" @bind="@emailAddress" class="form-control" id="emailAddress" placeholder="Insert First Name">
+    </div>
+    <div class="form-group">
+        <label for="AddressLine1">Address Line 1</label>
+        <input type="text" @bind="@AddressLine1" class="form-control" id="AddressLine1" placeholder="Insert Second Name">
+    </div>
+    <div class="form-group">
+        <label for="AddressLine2">Address Line 2</label>
+        <input type="text" @bind="@AddressLine2" class="form-control" id="AddressLine2" placeholder="Insert First Name">
+    </div>
+    <div class="form-group">
+        <label for="AddressLine3">Address Line 3</label>
+        <input type="text" @bind="@AddressLine3" class="form-control" id="AddressLine3" placeholder="Insert Second Name">
+    </div>
+    <div class="form-group">
+        <label for="AddressLine4">Address Line 4</label>
+        <input type="text" @bind="@AddressLine4" class="form-control" id="AddressLine4" placeholder="Insert Third Name">
+    </div>
+    @*================================================= Team ============================================*@
+    <h4>Team Information</h4>
+    <div class="form-group">
+        <label for="Teams">Title</label>
+        <select @bind="Team" class="form-control" id="Teams" name="Teams">
+            @foreach (Teams Team in Enum.GetValues(typeof(Teams)))
+            {
+                <option value="@Team">@Team</option>
+            }
+        </select>
     </div>
     <br />
     <br />
     <button type="submit" class="btn btn-primary">Submit</button>
+    <button @onclick="Update" class="btn btn-primary">Update</button>
+    <button @onclick="Delete" class="btn btn-primary">Delete</button>
 </form>
 
-
 @code {
-    string? NIC = "";
-    string? FirstName = "";
-    string? SecondName = "";
-    string? LastName = "";
+    string RoleName = "";
+    string TitleName = "";
+    string ReligionName = "";
+
+
+    string Team = "";
+    string NIC = "";
+    string FirstName = "";
+    string SecondName = "";
+    string LastName = "";
     int ReligiousPreferences = 0;
     int LanguagePreference = 0;
     int Gender = 0;
     int Title = 0;
-    string? Bank = "";
-    string? BankAcc = "";
+    string Bank = "";
+    string BankAcc = "";
 
     //Additional Details
-    string? PerformanceReview = "";
-    string? TravelPreference = "";
-    string? MedicalConditions = "";
-    string? DietaryPrefences = "";
-    string? PerformanceMetrics = "";
-    string? Awards = "";
-    string? ResponsibilityReview = "";
-    string? EmergencyContact = "";
-    string? BloodGroup = "";
-    string? OverallAdditionalInfo = "";
+    string PerformanceReview = "";
+    string TravelPreference = "";
+    string MedicalConditions = "";
+    string DietaryPrefences = "";
+    string PerformanceMetrics = "";
+    string Awards = "";
+    string ResponsibilityReview = "";
+    string EmergencyContact = "";
+    string BloodGroup = "";
+    string OverallAdditionalInfo = "";
 
     //SallaryDetails
     string mobile= "";
@@ -211,24 +255,24 @@ using System.Reflection;
 
     //RolesData
     EmployeeRole employeeRole;
-    string? privilege = "";
+    string privilege = "";
 
     //EducationalData
     Dictionary<string, string>? qualifications { get; set; } //Academy: Qualification
-    string? OrdinaryLevel = "";
-    string? AdvancedLevel = "";
-    string? Certificates = "";
-    string? Diplomas = "";
-    string? HigherDiplomas= "";
-    string? Bachelors = "";
-    string? Masters = "";
-    string? MPhil = "";
-    string? pHD = "";
-    string? Vocational = "";
-    string? ProfessionalCertifications = "";
+    string OrdinaryLevel = "";
+    string AdvancedLevel = "";
+    string Certificates = "";
+    string Diplomas = "";
+    string HigherDiplomas= "";
+    string Bachelors = "";
+    string Masters = "";
+    string MPhil = "";
+    string pHD = "";
+    string Vocational = "";
+    string ProfessionalCertifications = "";
 
-    string? educationLevel = "";
-    string? educationDiscription = "";
+    string educationLevel = "";
+    string educationDiscription = "";
 
     //RootData
     string? commonName = "";
@@ -277,7 +321,7 @@ using System.Reflection;
             AddressLine2 = Employee.contact.physicalAddress[1];
             AddressLine3 = Employee.contact.physicalAddress[2];
             AddressLine4 = Employee.contact.physicalAddress[3];
-
+            NIC = Employee.nic;
 
             if (Employee.education.qualifications != null)
             {
@@ -368,6 +412,10 @@ using System.Reflection;
                 }
             }
 
+            commonName = Employee.commonName;
+            Team = Enum.GetName(typeof(Teams), Employee.teams);
+            TitleName = Enum.GetName(typeof(Title), Employee.personalData.title);
+            RoleName = Enum.GetName(typeof(EmployeeRole), Employee.roles.employeeRole);
             StateHasChanged();
         }
 
@@ -389,33 +437,89 @@ using System.Reflection;
         }
         else
         {
-            //PersonalData
-            employee = await EmployeeStream.GetEmployeeSingle(NIC);
+            //Get the Main Employees data to update
+            Employee employeeup = await EmployeeStream.GetEmployeeSingle(NIC);
 
             //Personal Data
             List<string>? NameArray = new();
             NameArray.Add(FirstName);
             NameArray.Add(SecondName);
             NameArray.Add(LastName);
-            employee.personalData.nameArray = NameArray;
-            employee.personalData.bankAccountNumber = BankAcc;
-            employee.personalData.bank = Bank;
-            employee.personalData.religiousPreference = ReligiousPreferences;
-            employee.personalData.languagePreference = LanguagePreference;
-            employee.personalData.gender = Gender;
-            employee.personalData.title = Title;
-            employee.personalData.religiousPreference = ReligiousPreferences;
 
-            Dictionary<string, string> employeeDictionary = new Dictionary<string, string>();
-            PropertyInfo[] properties = typeof(Employee).GetProperties();
+            PersonalData personalData = new();
+            personalData.nameArray = NameArray;
+            personalData.bankAccountNumber = BankAcc;
+            personalData.bank = Bank;
+            personalData.religiousPreference = ReligiousPreferences;
+            personalData.languagePreference = LanguagePreference;
+            personalData.gender = Gender;
+            personalData.title = Title;
+            personalData.religiousPreference = ReligiousPreferences;
 
-            foreach (PropertyInfo property in properties)
-            {
-                string propertyName = property.Name;
-                string propertyValue = property.GetValue(employee)?.ToString() ?? string.Empty;
-                employeeDictionary[propertyName] = propertyValue;
-            }
+            Dictionary<string, string> AdditionalData = new Dictionary<string, string>();
+            AdditionalData.Add("PerformanceReview", PerformanceReview);
+            AdditionalData.Add("TravelPreference", TravelPreference);
+            AdditionalData.Add("DietaryPrefences", DietaryPrefences);
+            AdditionalData.Add("MedicalConditions", MedicalConditions);
+            AdditionalData.Add("Awards", Awards);
+            AdditionalData.Add("ResponsibilityReview", ResponsibilityReview);
+            AdditionalData.Add("EmergencyContact", EmergencyContact);
+            AdditionalData.Add("BloodGroup", BloodGroup);
+            AdditionalData.Add("OverallAdditionalInfo", OverallAdditionalInfo);
+            personalData.additionalPersonalData = AdditionalData;
 
+            //Educational Qualifications
+            Education education = new();
+            education.educationLevel = educationLevel;
+            education.educationDiscription = educationLevel;
+            Dictionary<string, string> EducationalQualifications = new Dictionary<string, string>();
+            EducationalQualifications.Add("OrdinaryLevel", OrdinaryLevel);
+            EducationalQualifications.Add("AdvancedLevel", AdvancedLevel);
+            EducationalQualifications.Add("Certificates", Certificates);
+            EducationalQualifications.Add("Diplomas", Diplomas);
+            EducationalQualifications.Add("Bachelors", Bachelors);
+            EducationalQualifications.Add("Masters", Masters);
+            EducationalQualifications.Add("MPhil", MPhil);
+            EducationalQualifications.Add("pHD", pHD);
+            EducationalQualifications.Add("Vocational", Vocational);
+            EducationalQualifications.Add("ProfessionalCertifications", ProfessionalCertifications);
+            education.qualifications = EducationalQualifications;
+
+            //Root Data
+            employeeup.commonName = commonName;
+            employeeup.teams = teams;
+            employeeup.isRecycled = false;
+
+            //Contact Data
+            Contact contact = new();
+            contact.emailAddress = emailAddress;
+            contact.physicalAddress = new string[] { AddressLine1, AddressLine2, AddressLine3, AddressLine4 };
+            contact.mobile = mobile;
+
+            //Role Data
+            Roles role = new();
+            role.employeeRole = employeeRole;
+            role.privilege = privilege;
+
+            employeeup.roles = role;
+            employeeup.personalData = personalData;
+            employeeup.education = education;
+            employeeup.contact = contact;
+
+            //SallaryData
+            //employeeup.sallaryData.monthlySallarySheets =
+            await EmployeeStream.UpdateEmployee(employeeup);
         }
+    }
+
+    private async void Delete()
+    {
+        var uri = new Uri(NavigationManager.Uri);
+        var query = System.Web.HttpUtility.ParseQueryString(uri.Query);
+
+        NIC = query["NIC"];
+        Employee employeedel = await EmployeeStream.GetEmployeeSingle(NIC);
+
+        await EmployeeStream.DeleteEmployee(employeedel);
     }
 }

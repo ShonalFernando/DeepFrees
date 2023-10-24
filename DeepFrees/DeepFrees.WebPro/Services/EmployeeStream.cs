@@ -1,4 +1,5 @@
 ﻿using DeepFrees.EmployeeService.Model;
+using System.Net.Http;
 using System.Text.Json;
 
 namespace DeepFrees.WebPro.Services
@@ -15,7 +16,6 @@ namespace DeepFrees.WebPro.Services
             if (response.IsSuccessStatusCode)
             {
                 string content = await response.Content.ReadAsStringAsync();
-                await Console.Out.WriteLineAsync(content);
                 if (content != null)
                 {
                     try
@@ -46,17 +46,17 @@ namespace DeepFrees.WebPro.Services
                 return new List<Employee>();
             }
         }
+
         public async Task<Employee> GetEmployeeSingle(string NIC)
         {
             HttpClient httpClient = new HttpClient();
 
             string apiUrl = "https://localhost:7107/Employee/GetEmployee/" + NIC;
             HttpResponseMessage response = await httpClient.GetAsync(apiUrl);
-
+            
             if (response.IsSuccessStatusCode)
             {
                 string content = await response.Content.ReadAsStringAsync();
-                await Console.Out.WriteLineAsync(content);
                 if (content != null)
                 {
                     try
@@ -85,6 +85,49 @@ namespace DeepFrees.WebPro.Services
             else
             {
                 return new Employee();
+            }
+        }
+
+        public async Task UpdateEmployee(Employee Employee)
+        {
+            string responseContent;
+            string apiUrl = $"https://localhost:7107/Employee/Update/"+ Employee.nic;
+            HttpClient client = new HttpClient();
+            var response = await client.PutAsJsonAsync(apiUrl, Employee);
+
+            if (response.IsSuccessStatusCode)
+            {
+                string resp = await response.Content.ReadAsStringAsync();
+                await Console.Out.WriteLineAsync(resp);
+            }
+            else
+            {
+                await Console.Out.WriteLineAsync(await response.Content.ReadAsStringAsync());
+            }
+        }
+
+        public async Task Add(Employee Employee)
+        {
+            string responseContent;
+            string apiUrl = $"https://localhost:7107/Employee/Update/" + Employee.nic;
+            HttpClient client = new HttpClient();
+            var response = await client.PutAsJsonAsync(apiUrl, Employee);
+        }
+
+            public async Task DeleteEmployee(Employee Employee)
+        {
+            Employee.isRecycled = true;
+
+            HttpClient httpClient = new HttpClient();
+
+            string content = JsonSerializer.Serialize(Employee);
+            string apiUrl = "https://localhost:7107/Employee/DeleteEmployee/" + Employee.nic;
+            HttpResponseMessage response = await httpClient.DeleteAsync(apiUrl);
+
+            if (response.IsSuccessStatusCode)
+            {
+                string resp = await response.Content.ReadAsStringAsync();
+                // Handle the response data
             }
         }
     }

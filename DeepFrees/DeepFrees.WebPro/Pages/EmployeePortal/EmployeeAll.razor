@@ -16,7 +16,8 @@
 
 <h1>All Employees</h1>
 
-<p>Click on a Employee to Edit or Delete or to View More Details</p>
+<p>Click on a Employee to Edit or Delete or to View More Details. <a href="/Employee/Add">Click Here to Add an Employee</a></p>
+
 
 @if (employees == null)
 {
@@ -36,15 +37,19 @@ else
         <tbody>
             @foreach (var employee in employees)
             {
-                
                 <tr>
                     <td><a href="@InLink=@employee.nic">@employee.nic</a></td>
                     <td>@employee.commonName</td>
                     <td>@employee.roles.employeeRole</td>
                     <td>@employee.teams</td>
                 </tr>
-
-                }
+            }
+            <tr>
+                <td><a href="/Employee/Add">Add + </a></td>
+                <td> </td>
+                <td> </td>
+                <td> </td>
+            </tr>
         </tbody>
     </table>
 }

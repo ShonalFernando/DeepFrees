@@ -1,0 +1,40 @@
+﻿@using System.Collections.Generic;
+@using System.Reflection;
+
+@page "/Taskboard"
+
+<PageTitle>TaskBoard</PageTitle>
+
+@using DeepFrees.EmployeeService.Model;
+@using DeepFrees.WebPro.Services
+
+@inject EmployeeStream EmployeeStream
+@inject NavigationManager NavigationManager
+
+
+<nav class="breadcrumbs">
+    <a href="/" class="breadcrumbs__item">Home</a>
+    <a href="/Taskboard" class="breadcrumbs__item is-active">Taskboard</a>
+</nav>
+
+
+<br />
+<br />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<ul class="nav justify-content-center">
+    <li class="nav-item">
+        <a class="nav-link @*active*@" href="#">Add Tasks</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="#">Add Technicians</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="#">View Technicians</a>
+    </li>
+</ul>
+
+
+<h1></h1>
+@code {
+
+}

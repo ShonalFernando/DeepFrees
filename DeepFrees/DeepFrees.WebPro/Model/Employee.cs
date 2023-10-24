@@ -45,6 +45,15 @@ namespace DeepFrees.EmployeeService.Model
         CallAgent
     }
 
+    public enum Title
+    {
+        Mr,
+        Mrs,
+        Miss,
+        Dr,
+        Eng
+    }
+
     public enum Teams
     {
         //Manager
@@ -104,7 +113,7 @@ namespace DeepFrees.EmployeeService.Model
         public int medicalLeaves { get; set; }
         public int otHours { get; set; }
         public int netSallary { get; set; }
-        public List<Tuple<double, string>>? increments { get; set; } //The List contains increments and extras with the reason
+        public int[]? increments { get; set; }
     }
 
     public class PersonalData

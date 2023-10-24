@@ -119,7 +119,7 @@ namespace DeepFrees.EmployeeService.Model
         public double EmployeeFund { get; set; }
         public double Tax { get; set; }
 
-        public List<Tuple<double, string>>? Increments { get; set; } //The List contains increments and extras with the reason
+        public int[]? Increments { get; set; }
 
         public int NonMedicalLeaves { get; set; }
         public int MedicalLeaves { get; set; }

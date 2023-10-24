@@ -15,7 +15,6 @@
     <Folder Include="Pages\RoutePortal\" />
     <Folder Include="Pages\UserAccountsPortal\" />
     <Folder Include="Pages\SettingsPortal\" />
-    <Folder Include="Pages\TaskPortal\" />
   </ItemGroup>
 
   <ItemGroup>

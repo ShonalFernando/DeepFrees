@@ -97,7 +97,7 @@ namespace DeepFrees.EmployeeService.Controllers
         }
 
         //Account Update
-        [HttpPut("{NIC}")]
+        [HttpPut("Update/{NIC}")]
         public async Task<IActionResult> Update(string NIC, [FromBody]Employee Employee)
         {
             try
