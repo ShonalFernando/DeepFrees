@@ -1,4 +1,7 @@
-﻿namespace DeepFrees.VehicleRouting.Model
+﻿using MongoDB.Bson;
+using MongoDB.Bson.Serialization.Attributes;
+
+namespace DeepFrees.VehicleRouting.Model
 {
     public class RouteModel
     {
@@ -15,6 +18,24 @@
         public int LocationFrom { get; set; }
         public int LocationTo { get; set; }
         public long Distance { get; set; }
+    }
+
+    public class Locations
+    {
+        [BsonId]
+        public ObjectId? _id { get; set; }
+        public int LocationID { get; set; }
+        public string? StartLocation { get; set; }
+        public string? Destination { get; set; }
+
+        public int LocationFrom { get; set; }
+        public int LocationTo { get; set; }
+        public long Distance { get; set; }
+
+        public Locations()
+        {
+            this._id = ObjectId.GenerateNewId();
+        }
     }
 
     public class SolutionMatrixModel

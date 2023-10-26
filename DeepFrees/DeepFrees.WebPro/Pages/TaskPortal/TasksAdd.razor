@@ -1,0 +1,122 @@
+﻿@page "/Taskboard/Add"
+@using DeepFrees.EmployeeService.Model;
+@using DeepFrees.TaskService.Model;
+@using DeepFrees.WebPro.Services;
+
+@inject EmployeeStream EmployeeStream
+@inject NavigationManager NavigationManager
+@inject WorkTaskStream WorkTaskStream
+
+<nav class="breadcrumbs">
+    <a href="/" class="breadcrumbs__item">Home</a>
+    <a href="/Taskboard" class="breadcrumbs__item">Taskboard</a>
+    <a href="/Taskboard/Add" class="breadcrumbs__item is-active">Add</a>
+</nav>
+
+
+<br />
+<br />
+
+
+<h1>Add a New Task</h1>
+
+
+<form>
+    <h4>Task Information</h4>
+    <div class="form-group">
+        <label for="runDate">Running Date</label>
+        <input type="date" @bind="@DateofCom" class="form-control" id="runDate" placeholder="Insert Date of Commencement">
+    </div>
+    <br/>
+    <div class="form-group">
+        <label for="taskName">Task Name</label>
+        <input type="text" @bind="@taskName" class="form-control" id="nicin"placeholder="Enter Task Name">
+    </div>
+    <br />
+    <div class="form-group">
+        <label for="taskLength">Task Length</label>
+        <input type="range" @bind="@taskLength" class="form-range" min="0" max="36" step="1" @oninput="UpdateTaskLength" id="taskLength" aria-describedby="rangedesc">
+        <small id="rangedesc" class="form-text text-muted">@taskLengthInDays Days + @taskLengthInHours Hours</small>
+    </div>
+    <br />
+    <div class="form-group">
+        <label for="taskWeigth">Task Weigth</label>
+        <input type="range" @bind="@taskWeigth" class="form-range" min="10" max="100" step="1" id="taskWeigth">
+    </div>
+    <br />
+    <div class="form-group">
+        <label for="taskcategory">Task Category</label>
+        <select class="form-select" @bind="taskCategory" id="taskcategory">
+            @foreach (TaskCategory _taskCategory in Enum.GetValues(typeof(TaskCategory)))
+            {
+                <option value="@_taskCategory">@_taskCategory</option>
+            }
+        </select>
+    </div>
+    @*================================================= Team ============================================*@
+    <br />
+    <br />
+    <button @onclick="Add" class="btn btn-primary">Add</button>
+</form>
+@code {
+    //Binding
+    public string? taskName { get; set; }
+    public TaskCategory? taskCategory { get; set; }
+
+    //Ommitted
+    public int taskLength { get; set; }
+
+    public int taskWeigth { get; set; }
+    public DateOnly DateofCom { get; set; }
+    private int taskLengthInDays = 0;
+    private int taskLengthInHours = 0;
+
+    private void UpdateTaskLength(ChangeEventArgs e)
+    {
+        taskLength = Convert.ToInt32(e.Value);
+
+        taskLengthInDays = taskLength / 9; // 9 hours per day
+        taskLengthInHours = taskLength % 9;
+
+        StateHasChanged();
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        DateofCom = DateOnly.FromDateTime(DateTime.Now);
+        StateHasChanged();
+    }
+
+    private async void Add()
+    {
+        var AllTasks = await WorkTaskStream.GetWorkTasksAll();
+
+        int TaskIDNew = 0;
+        Random Random = new();
+
+        while (AllTasks.Any(task => task.TaskID == TaskIDNew))
+        {
+            TaskIDNew = Random.Next(0, 2147483647);
+        }
+
+        WorkTask WorkTask = new();
+        WorkTask.taskWeigth = taskWeigth;
+        WorkTask.taskName = taskName;
+        WorkTask.TaskID = TaskIDNew;
+        WorkTask.DateDay = DateofCom.Day;
+        WorkTask.DateMonth = DateofCom.Month;
+
+        taskLength = Convert.ToInt32(taskLength);
+
+        taskLengthInDays = taskLength / 9; // 9 hours per day
+        taskLengthInHours = taskLength % 9;
+
+
+        WorkTask.taskLengthInDays = taskLengthInDays;
+        WorkTask.taskLengthInHours = taskLengthInHours;
+        WorkTask.taskCategory = taskCategory;
+
+        await WorkTaskStream.AddWorkTask(WorkTask);
+
+    }
+}

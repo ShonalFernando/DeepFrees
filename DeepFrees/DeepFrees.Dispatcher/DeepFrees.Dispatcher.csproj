@@ -14,4 +14,6 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
   </ItemGroup>
 
+  <Import Project="..\Commons.DeepFrees\Commons.DeepFrees.projitems" Label="Shared" />
+
 </Project>

@@ -17,6 +17,9 @@ namespace DeepFrees.Dispatcher
             builder.Services.AddScoped<DispatcherService>();
             builder.Services.AddScoped<DispatcherDataService>();
             builder.Services.AddScoped<TaskTransformer>();
+            builder.Services.AddScoped<TaskAssigner>();
+            builder.Services.AddScoped<TechnicianDataService>();
+            builder.Services.AddScoped<TaskDataService>();
 
             var app = builder.Build();
 

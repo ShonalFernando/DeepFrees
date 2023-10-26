@@ -93,7 +93,7 @@ namespace DeepFrees.Dispatcher.Microservice
                         {
                             DispatchSolution dispatchSolution = new();
                             dispatchSolution.EmployeeID = employeeIndexToID[i];
-                            dispatchSolution.TaskID = j;
+                            dispatchSolution.TaskCategoryID = j;
                             DispatchSolutions.Add(dispatchSolution);
                             Console.WriteLine($"Worker {i} assigned to task {j}. Cost: {TasksArray[i, j]}");
                         }

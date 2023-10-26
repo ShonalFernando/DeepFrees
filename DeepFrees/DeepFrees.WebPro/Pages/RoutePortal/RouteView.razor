@@ -1,0 +1,65 @@
+﻿@page "/Route"
+
+<PageTitle>Employee Portal</PageTitle>
+
+@using DeepFrees.EmployeeService.Model;
+@using DeepFrees.WebPro.Services
+@inject EmployeeStream EmployeeStream
+
+<nav class="breadcrumbs">
+    <a href="/" class="breadcrumbs__item">Home</a>
+    <a href="/Route" class="breadcrumbs__item is-active">Route</a>
+</nav>
+
+<br />
+<br />
+
+<h1>All Employees</h1>
+
+<p>Click on a Employee to Edit or Delete or to View More Details. <a href="/Route/Add">Click Here to Add a Delivery Location</a></p>
+
+
+@if (employees == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th> NIC </th>
+                <th>Common Name</th>
+                <th>Role</th>
+                <th>Category</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var employee in employees)
+            {
+                <tr>
+                    <td><a href="@InLink=@employee.nic">@employee.nic</a></td>
+                    <td>@employee.commonName</td>
+                    <td>@employee.roles.employeeRole</td>
+                    <td>@employee.teams</td>
+                </tr>
+            }
+            <tr>
+                <td><a href="/Employee/Add">Add + </a></td>
+                <td> </td>
+                <td> </td>
+                <td> </td>
+            </tr>
+        </tbody>
+    </table>
+}
+
+@code {
+    private List<Employee>? employees;
+    private string InLink = "/Route/EmployeeInDetail?NIC";
+
+    protected override async Task OnInitializedAsync()
+    {
+        employees = await EmployeeStream.GetEmployeeAll();
+    }
+}

@@ -1,3 +1,5 @@
+using DeepFrees.TaskService.MicroService;
+
 namespace DeepFrees.TaskService
 {
     public class Program
@@ -12,6 +14,7 @@ namespace DeepFrees.TaskService
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
+            builder.Services.AddScoped<TaskDataContext>();
 
             var app = builder.Build();
 
@@ -27,6 +30,7 @@ namespace DeepFrees.TaskService
             app.UseAuthorization();
 
 
+            
             app.MapControllers();
 
             app.Run();

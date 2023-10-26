@@ -17,11 +17,21 @@ namespace DeepFrees.VehicleRouting.Controllers
         }
 
         [HttpPost("Route")]
-        public async Task<IActionResult> Post(int VehicleNumber, int Depot,[FromBody] List<DistanceMatrixModel> DistanceMatricesModel) 
+        public async Task<IActionResult> Post([FromBody] List<DistanceMatrixModel> DistanceMatricesModel) 
         {
             RouteModel RouteModel = new();
-            RouteModel.Depot = Depot;
-            RouteModel.VehicleNumber = VehicleNumber;
+            RouteModel.Depot = 1;
+            RouteModel.VehicleNumber = 1;
+            RouteModel.DistanceMatrices = DistanceMatricesModel;
+            return Ok(_VehicleRouter.Shuffle(RouteModel));
+        }
+
+        [HttpPost("Route")]
+        public async Task<IActionResult> PostLocation([FromBody] List<DistanceMatrixModel> DistanceMatricesModel)
+        {
+            RouteModel RouteModel = new();
+            RouteModel.Depot = 1;
+            RouteModel.VehicleNumber = 1;
             RouteModel.DistanceMatrices = DistanceMatricesModel;
             return Ok(_VehicleRouter.Shuffle(RouteModel));
         }

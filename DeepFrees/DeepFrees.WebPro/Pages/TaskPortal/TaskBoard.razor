@@ -6,9 +6,10 @@
 <PageTitle>TaskBoard</PageTitle>
 
 @using DeepFrees.EmployeeService.Model;
+@using DeepFrees.TaskService.Model;
 @using DeepFrees.WebPro.Services
 
-@inject EmployeeStream EmployeeStream
+@inject WorkTaskStream WorkTaskStream
 @inject NavigationManager NavigationManager
 
 
@@ -20,21 +21,59 @@
 
 <br />
 <br />
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-<ul class="nav justify-content-center">
-    <li class="nav-item">
-        <a class="nav-link @*active*@" href="#">Add Tasks</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link" href="#">Add Technicians</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link" href="#">View Technicians</a>
-    </li>
-</ul>
+
+<h1>All Tasks</h1>
+
+<p><a href="/Taskboard/Add">Click Here to Add an Employee</a></p>
+
+
 
 
 <h1></h1>
-@code {
 
+@if (WorkTasks == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Task Category</th>
+                <th>Weight</th>
+                <th>Length</th>
+                <th>Task Name</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var workTask in WorkTasks)
+            {
+                <tr>
+                    <td>@workTask.taskCategory</td>
+                    <td>@workTask.taskWeigth</td>
+                    <td>@workTask.taskLengthInDays : @workTask.taskLengthInHours</td>
+                    <td>@workTask.taskName</td>
+                    <td><a href="/">Remove</a></td>
+                </tr>
+            }
+            <tr>
+                <td><a href="/Taskboard/Add">Add + </a></td>
+                <td> </td>
+                <td> </td>
+                <td> </td>
+                <td> </td>
+            </tr>
+        </tbody>
+    </table>
+}
+@code {
+    private List<WorkTask>? WorkTasks;
+    private string InLink = "/Employees/EmployeeInDetail?NIC"; //
+
+    protected override async Task OnInitializedAsync()
+    {
+        WorkTasks = await WorkTaskStream.GetWorkTasksAll();
+    }
 }

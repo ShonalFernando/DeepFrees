@@ -15,6 +15,9 @@ namespace DeepFrees.WebPro
             builder.Services.AddServerSideBlazor();
             builder.Services.AddSingleton<WeatherForecastService>();
             builder.Services.AddScoped<EmployeeStream>();
+            builder.Services.AddScoped<WorkTaskStream>();
+            builder.Services.AddScoped<DispatchSolutionStream>();
+            builder.Services.AddScoped<TechnicianStream>();
 
             var app = builder.Build();
 

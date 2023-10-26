@@ -12,7 +12,6 @@
     <Folder Include="Pages\JobPortal\" />
     <Folder Include="Pages\CMS\" />
     <Folder Include="Pages\HomePortal\" />
-    <Folder Include="Pages\RoutePortal\" />
     <Folder Include="Pages\UserAccountsPortal\" />
     <Folder Include="Pages\SettingsPortal\" />
   </ItemGroup>
