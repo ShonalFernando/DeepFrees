@@ -1,0 +1,66 @@
+﻿@page "/Technicians"
+
+<PageTitle>Technician Portal</PageTitle>
+
+@using DeepFrees.EmployeeService.Model;
+@using DeepFrees.TechnicianService.Model;
+@using DeepFrees.WebPro.Services
+@inject TechnicianStream TechnicianStream
+
+<nav class="breadcrumbs">
+    <a href="/" class="breadcrumbs__item">Home</a>
+    <a href="/Technicians" class="breadcrumbs__item is-active">Technicians</a>
+</nav>
+
+<br />
+<br />
+
+<h1>All Technicians</h1>
+
+<p>Click on a Technician to Edit or Delete or to View More Details. <a href="/Technicians/Add">Click Here to Add an Technician</a></p>
+
+
+@if (Technicians == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th> NIC </th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Qualification</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var Technician in Technicians)
+            {
+                <tr>
+                    <td><a href="@InLink=@Technician.nic">@Technician.nic</a></td>
+                    <td>@Technician.firstName</td>
+                    <td>@Technician.lastName</td>
+                    <td>@Technician.qualification</td>
+                </tr>
+            }
+            <tr>
+                <td><a href="/Technicians/Add">Add + </a></td>
+                <td> </td>
+                <td> </td>
+                <td> </td>
+            </tr>
+        </tbody>
+    </table>
+}
+
+@code {
+    private List<Technician>? Technicians;
+    private string InLink = "/Technicians/TechniciansInDetail?NIC";
+
+    protected override async Task OnInitializedAsync()
+    {
+        Technicians = await TechnicianStream.GetTechnicianAll();
+    }
+}

@@ -17,6 +17,28 @@ namespace DeepFrees.VehicleRouting.Helper
             return result;
         }
 
+        public static long[,] ConvertDictionarytoLong(List<DistanceModel> DistanceMatrix)
+        {
+            int size = DistanceMatrix.Count();
+            long[,] DistanceMatricArray = new long[size, size];
+
+            if (DistanceMatrix != null)
+            {
+                for (int i = 0; i < size; i++)
+                {
+                    for (int j = 0; j < size; j++)
+                    {
+                        DistanceMatricArray[i, j] = DistanceMatrix[i].distances[j.ToString()];
+                    }
+                } 
+                return DistanceMatricArray;
+            }
+            else
+            {
+                return new long[,] { };
+            }
+        }
+
         public static List<DistanceMatrixModel> ConvertToModelList(long[,] distanceMatrix)
         {
             List<DistanceMatrixModel> result = new List<DistanceMatrixModel>();

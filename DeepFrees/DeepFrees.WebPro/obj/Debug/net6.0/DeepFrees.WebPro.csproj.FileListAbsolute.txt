@@ -44,3 +44,4 @@ D:\Source\Repos\DeepFrees\DeepFrees\DeepFrees.WebPro\bin\Debug\net6.0\runtimes\l
 D:\Source\Repos\DeepFrees\DeepFrees\DeepFrees.WebPro\bin\Debug\net6.0\runtimes\osx\native\libmongocrypt.dylib
 D:\Source\Repos\DeepFrees\DeepFrees\DeepFrees.WebPro\bin\Debug\net6.0\runtimes\win\native\mongocrypt.dll
 D:\Source\Repos\DeepFrees\DeepFrees\DeepFrees.WebPro\obj\Debug\net6.0\DeepFrees.WebPro.csproj.CopyComplete
+D:\Source\Repos\DeepFrees\DeepFrees\DeepFrees.WebPro\bin\Debug\net6.0\CsvHelper.dll

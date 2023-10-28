@@ -3,6 +3,8 @@
 <PageTitle>IRM</PageTitle>
 
 @using DeepFrees.EmployeeService.Model;
+@using DeepFrees.TaskService.Model;
+@using DeepFrees.TechnicianService.Model;
 @using DeepFrees.WebPro.Model;
 @using DeepFrees.WebPro.Services
 @inject DispatchSolutionStream DispatchSolutionStream
@@ -19,7 +21,9 @@
 
 <h1>IRM</h1>
 
-@if (DispatchSolutionsView == null)
+<p><a href="/IRM">Click Here to Refresh Shuffle</a></p>
+
+@if (SolutionTuple == null || SolutionTuple.Item2 == null)
 {
     <p><em>Loading...</em></p>
 }
@@ -28,60 +32,37 @@ else
     <table class="table">
         <thead>
             <tr>
-                <th>TaskName Category</th>
-                <th>Task Length</th>
                 <th>Technician Name</th>
                 <th>Action</th>
             </tr>
         </thead>
         <tbody>
-            @foreach (var DispatchSolutionViews in DispatchSolutionsView)
+            @foreach (var AssignedTechs in SolutionTuple.Item2)
             {
-                <tr>
-                    <td>@DispatchSolutionViews.TaskName</td>
-                    <td>@DispatchSolutionViews.TaskLength</td>
-                    <td>@DispatchSolutionViews.TechnicianName</td>
-                    <td><a href="/">Remove</a></td>
+                    <tr>
+                    <td>@AssignedTechs.firstName</td>
+                    <td><a href="@InLink=@AssignedTechs.nic">View Tasks</a></td>
                 </tr>
             }
-            <tr>
-                <td><a href="/Taskboard/Add">Add + </a></td>
-                <td> </td>
-                <td> </td>
-                <td> </td>
-                <td> </td>
-            </tr>
         </tbody>
     </table>
 }
 
 @code {
-    private List<DispatchSolutionView>? DispatchSolutionsView;
-    private string InLink = "/Employees/EmployeeInDetail?NIC"; //
+    private Tuple<List<WorkTask>, List<Technician>>? SolutionTuple { get; set; }
+    private string InLink = "/IRM/IRMInDetail?NIC"; //
 
-    public string? EmployeeID { get; set; } //NIC of Technician, Here EMployee is Tech
-    public int TaskCategoryID { get; set; }
-    public int TaskPoints { get; set; }
-
+    public class TaskDAO
+    {
+        public string? EmployeeID { get; set; } //NIC of Technician, Here Employee is Tech
+        public string? EmployeeName { get; set; } //NIC of Technician, Here Employee is Tech
+        public string? TaskName { get; set; }
+        public int TaskID { get; set; }
+    }
 
     protected override async Task OnInitializedAsync()
     {
-        var TechList = await TechnicianStream.GetTechnicianAll();
-
-        List<DispatchRequest> DispatchRequests = new();
-
-        foreach(var Tech in TechList)
-        {
-            foreach(var wpt in Tech.WorkTaskPointTable)
-            {   DispatchRequest dispatchRequest = new();
-                dispatchRequest.TaskCategoryID = (int)wpt.TaskCategory;
-                dispatchRequest.TaskPoints = wpt.TaskCategoryPoints;
-                dispatchRequest.EmployeeID = Tech.NIC;
-
-                DispatchRequests.Add(dispatchRequest);
-            }
-        }
-        var TaskList = await WorkTaskStream.GetWorkTasksAll();
-        DispatchSolutionsView = await DispatchSolutionStream.ShuffleDisSolutions(DispatchRequests);
+        SolutionTuple = await DispatchSolutionStream.ShuffleDisSolutions();
+        StateHasChanged();
     }
 }

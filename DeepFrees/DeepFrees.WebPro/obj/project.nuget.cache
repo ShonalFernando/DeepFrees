@@ -1,11 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "RTF2TM/VyeShI2APCL0lWVSGOSqIuAHFsWIEoP9JUkLR3wKq30TiPPazZqdWCEnUAX+zCjquoeWIhSGaV1PieQ==",
+  "dgSpecHash": "dJClzbewHqLwc5k/AjisnjYg/jk+wZFPUbsMaKgs7jJpzPEwu5MJjsRjAOk5SrWOe0WO4/VIhQVgiEEmqlqmeA==",
   "success": true,
   "projectFilePath": "D:\\Source\\Repos\\DeepFrees\\DeepFrees\\DeepFrees.WebPro\\DeepFrees.WebPro.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Shonal Fernando\\.nuget\\packages\\awssdk.core\\3.7.100.14\\awssdk.core.3.7.100.14.nupkg.sha512",
     "C:\\Users\\Shonal Fernando\\.nuget\\packages\\awssdk.securitytoken\\3.7.100.14\\awssdk.securitytoken.3.7.100.14.nupkg.sha512",
+    "C:\\Users\\Shonal Fernando\\.nuget\\packages\\csvhelper\\30.0.1\\csvhelper.30.0.1.nupkg.sha512",
     "C:\\Users\\Shonal Fernando\\.nuget\\packages\\dnsclient\\1.6.1\\dnsclient.1.6.1.nupkg.sha512",
     "C:\\Users\\Shonal Fernando\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\2.0.0\\microsoft.extensions.logging.abstractions.2.0.0.nupkg.sha512",
     "C:\\Users\\Shonal Fernando\\.nuget\\packages\\microsoft.netcore.platforms\\5.0.0\\microsoft.netcore.platforms.5.0.0.nupkg.sha512",

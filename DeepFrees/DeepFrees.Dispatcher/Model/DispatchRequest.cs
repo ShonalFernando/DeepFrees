@@ -14,7 +14,7 @@
     }
 
     //As the Dispatch Factory works with Task Categories, There should be another processing to allocate 
-    //Tasks to Workers based on availability and randomness
+    //Tasks to Workers based on availability
 
 
     //Need Change

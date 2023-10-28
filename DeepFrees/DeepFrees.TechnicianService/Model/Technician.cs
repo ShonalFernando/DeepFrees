@@ -24,8 +24,9 @@ namespace DeepFrees.TechnicianService.Model
 
     public class AssignedTask
     {
-        public string? TaskID { get; set; }
-        public string? TaskName { get; set; }
+        public int TaskID { get; set; }
+        public int dateDay { get; set; }
+        public int dateMonth { get; set; }
     }
 
     public class WorkTaskPoints

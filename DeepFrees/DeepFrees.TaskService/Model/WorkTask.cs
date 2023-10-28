@@ -9,12 +9,13 @@ namespace DeepFrees.TaskService.Model
         [BsonId]
         public ObjectId? _id { get; set; }
         public bool isAvailable { get; set; }
-        public int TaskID { get; set; }
+        public bool isCompleted { get; set; }
+        public int taskID { get; set; }
         public string? taskName { get; set; }
         public TaskCategory? taskCategory { get; set; }
 
-        public int DateDay { get; set; }
-        public int DateMonth { get; set; }
+        public int dateDay { get; set; }
+        public int dateMonth { get; set; }
         public int taskWeigth { get; set; }
         public int taskLengthInDays { get; set; }
         public int taskLengthInHours { get; set; }

@@ -8,31 +8,28 @@ namespace DeepFrees.TechnicianService.Model
     {
         [BsonId]
         public ObjectId? _id { get; set; }
-        public string? NIC { get; set; }
-        public string? FirstName { get; set; }
-        public string? LastName { get; set; }
-        public string? Qualification { get; set; }
+        public string? nic { get; set; }
+        public string? firstName { get; set; }
+        public string? lastName { get; set; }
+        public string? qualification { get; set; }
 
-        public List<WorkTaskPoints>? WorkTaskPointTable { get; set; }
-        public List<AssignedTask>? AssignedTasks { get; set; }
+        public List<WorkTaskPoints>? workTaskPointTable { get; set; }
+        public List<AssignedTask>? assignedTasks { get; set; }
 
-        public Technician()
-        {
-            this._id = ObjectId.GenerateNewId();
-        }
+
     }
 
     public class AssignedTask
     {
-        public int TaskID { get; set; }
+        public int taskID { get; set; }
         public int dateDay { get; set; }
         public int dateMonth { get; set; }
     }
 
     public class WorkTaskPoints
     {
-        public int TaskCategory { get; set; } //TaskCatID
-        public int TaskCategoryPoints { get; set; }
+        public int taskCategory { get; set; } //TaskCatID
+        public int taskCategoryPoints { get; set; }
     }
 
     public enum TaskCategory

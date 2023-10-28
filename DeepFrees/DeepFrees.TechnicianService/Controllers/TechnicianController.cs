@@ -17,7 +17,7 @@ namespace DeepFrees.TechnicianService.Controllers
         }
 
         [HttpGet("GetTechnicians")]
-        public async Task<IActionResult> Get() //This method returns a List of employee
+        public async Task<IActionResult> Get() //This method returns a List of techs
         {
             var WorkTechnicians = await _TechnicianDataContext.GetAsync();
 
@@ -32,7 +32,7 @@ namespace DeepFrees.TechnicianService.Controllers
         }
 
         [HttpGet("GetTechnicians/{NIC}")]
-        public async Task<IActionResult> Get(string NIC) //This method returns a single Employee
+        public async Task<IActionResult> Get(string NIC) //This method returns a single tech
         {
             var WorkTask1 = await _TechnicianDataContext.GetAsync(NIC);
 
@@ -48,15 +48,19 @@ namespace DeepFrees.TechnicianService.Controllers
 
         //Creation
         [HttpPost("CreateTechnician")]
-        public async Task<IActionResult> Post(Technician Technician) //Create a Single Employee
+        public async Task<IActionResult> Post(Technician Technician) //Create a Single techs
         {
             if (Technician != null)
             {
+                Technician._id = ObjectId.GenerateNewId();
                 await _TechnicianDataContext.CreateAsync(Technician);
+                await Console.Out.WriteLineAsync("Working...");
                 return Ok();
             }
             else
             {
+                await Console.Out.WriteLineAsync("Not Working...");
+
                 return BadRequest();
             }
         }

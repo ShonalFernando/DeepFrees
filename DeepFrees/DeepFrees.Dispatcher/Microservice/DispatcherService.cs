@@ -7,6 +7,13 @@ namespace DeepFrees.Dispatcher.Microservice
 {
     public class DispatcherService
     {
+        /// <summary>
+        /// Solver/CP Library - ORTOOLS from Google: https://developers.google.com/optimization/introduction
+        /// </summary>
+        /// <param name="TasksArray"></param>
+        /// <returns></returns>
+
+
         //When requesting tasks the tasks should be included in the formula with previous tasks of a certain employee
         // Eg: when calculating tasks: If a emp has already assigned 5*Formula, then request as 6
         public List<DispatchSolution> Shuffle(int[,] TasksArray, List<DispatchRequest> DispatchRequests)
@@ -61,7 +68,7 @@ namespace DeepFrees.Dispatcher.Microservice
                 model.AddExactlyOne(workers);
             }
 
-            // Objective
+            // Objective : Our objective is to obtain a solution of tasks for all technicians
             LinearExprBuilder obj = LinearExpr.NewBuilder();
             for (int worker = 0; worker < numWorkers; ++worker)
             {
@@ -84,7 +91,7 @@ namespace DeepFrees.Dispatcher.Microservice
             // Check that the problem has a feasible solution.
             if (status == CpSolverStatus.Optimal || status == CpSolverStatus.Feasible)
             {
-                Console.WriteLine($"Total cost: {solver.ObjectiveValue}\n");
+                Console.WriteLine($"Total Point: {solver.ObjectiveValue}\n");
                 for (int i = 0; i < numWorkers; ++i)
                 {
                     for (int j = 0; j < numTasks; ++j)
@@ -95,7 +102,7 @@ namespace DeepFrees.Dispatcher.Microservice
                             dispatchSolution.EmployeeID = employeeIndexToID[i];
                             dispatchSolution.TaskCategoryID = j;
                             DispatchSolutions.Add(dispatchSolution);
-                            Console.WriteLine($"Worker {i} assigned to task {j}. Cost: {TasksArray[i, j]}");
+                            Console.WriteLine($"Worker {i} assigned to task {j}. Point: {TasksArray[i, j]}");
                         }
                     }
                 }

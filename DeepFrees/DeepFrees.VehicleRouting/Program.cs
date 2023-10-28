@@ -15,6 +15,9 @@ namespace DeepFrees.VehicleRouting
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
             builder.Services.AddScoped<VehicleRouter>();
+            builder.Services.AddScoped<RouteDataContext>();
+            builder.Services.AddScoped<LocationDataContext>();
+            builder.Services.AddScoped<DistanceDataContext>();
 
             var app = builder.Build();
 

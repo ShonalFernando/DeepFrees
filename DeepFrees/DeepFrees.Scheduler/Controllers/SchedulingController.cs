@@ -11,28 +11,25 @@ namespace DeepFrees.Scheduler.Controllers
     {
         private readonly DataService _DataService;
         private readonly WorkTaskScheduler _WorkTaskScheduler;
+        private readonly JobDataService _JobDataService;
 
-        public SchedulingController(WorkTaskScheduler workTaskScheduler,DataService dataService)
+        public SchedulingController(JobDataService jobDataService,WorkTaskScheduler workTaskScheduler,DataService dataService)
         {
+            _JobDataService = jobDataService;
             _DataService = dataService;
             _WorkTaskScheduler = workTaskScheduler;
         }
 
-        //Get UserDetails
-        //[HttpGet("{WeekID}")]
-        //public async Task<IActionResult> Get(int WeekID)
-        //{
-        //    return Ok();
-        //}
 
-        //Account Creation
+        //Job Creation
         [HttpPost]
-        public async Task<IActionResult> Post(List<List<JobTask>> JobRequestTable)
+        public async Task<IActionResult> JobPost(JobScheduleRequest JobRequestTable)
         {
             JobScheduleRequest jobSchedule = new();
 
-            foreach (var jobTasks in JobRequestTable)
+            foreach (var jobListings in JobRequestTable.AllJobs)
             {
+                foreach(var )
                 var job = new Job();
 
                 foreach (var task in jobTasks)

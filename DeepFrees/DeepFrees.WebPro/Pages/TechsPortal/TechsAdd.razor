@@ -1,0 +1,142 @@
+﻿@page "/Technicians/Add"
+
+@using DeepFrees.EmployeeService.Model;
+@using DeepFrees.TechnicianService.Model;
+@using DeepFrees.WebPro.Services;
+
+@inject TechnicianStream TechnicianStream
+@inject NavigationManager NavigationManager
+
+<h3>Add a New Employee</h3>
+
+
+<form>
+    <div class="form-group">
+        <label for="nicin">NIC</label>
+        <input type="text" @bind="@NIC" class="form-control" id="nicin" placeholder="Enter NIC">
+    </div>
+    <div class="form-group">
+        <label for="name1">First Name</label>
+        <input type="text" @bind="@FirstName" class="form-control" id="name1" placeholder="Insert First Name">
+    </div>
+    <div class="form-group">
+        <label for="name3">Last Name</label>
+        <input type="text" @bind="@LastName" class="form-control" id="name3" placeholder="Insert Third Name">
+    </div>
+    <div class="form-group">
+        <label for="Qualification">Qualification</label>
+        <input type="text" @bind="@Qualification" class="form-control" id="Qualification" placeholder="Insert Qualification">
+    </div>
+    <div class="form-group">
+        <label for="InstallationQ">NIC</label>
+        <input type="text" @bind="@Installation" class="form-control" id="Installation" placeholder="Installation">
+    </div>
+    <div class="form-group">
+        <label for="CallibrationQ">First Name</label>
+        <input type="text" @bind="@Callibration" class="form-control" id="CallibrationQ" placeholder="Callibration">
+    </div>
+    <div class="form-group">
+        <label for="SanitaryQ">Last Name</label>
+        <input type="text" @bind="@Sanitary" class="form-control" id="SanitaryQ" placeholder="Sanitary">
+    </div>
+    <div class="form-group">
+        <label for="TroubleshootingQ">Qualification</label>
+        <input type="text" @bind="@Troubleshooting" class="form-control" id="TroubleshootingQ" placeholder="Troubleshooting">
+    </div>
+    <div class="form-group">
+        <label for="RepairsQ">NIC</label>
+        <input type="text" @bind="@Repairs" class="form-control" id="RepairsQ" placeholder="Repairs">
+    </div>
+    <div class="form-group">
+        <label for="MaintainanceQ">First Name</label>
+        <input type="text" @bind="@Maintainance" class="form-control" id="MaintainanceQ" placeholder="Maintainance">
+    </div>
+    <div class="form-group">
+        <label for="DeliveryQ">Last Name</label>
+        <input type="text" @bind="@Delivery" class="form-control" id="DeliveryQ" placeholder="Delivery">
+    </div>
+    <div class="form-group">
+        <label for="Qualification">Qualification</label>
+        <input type="text" @bind="@Assembly" class="form-control" id="Qualification" placeholder="Assembly">
+    </div>
+    <br />
+    <br />
+    <button @onclick="Add" class="btn btn-primary">Create Technician</button>
+</form>
+
+@code {
+    string NIC = "";
+    string FirstName = "";
+    string LastName = "";
+    string Qualification = "";
+
+    int Repairs;
+    int Maintainance;
+    int Delivery;
+    int Assembly;
+    int Troubleshooting;
+    int Installation;
+    int Callibration;
+    int Sanitary;
+
+
+    List<WorkTaskPoints>? workTaskPointsList;
+
+    Employee Employee = new Employee();
+
+    private async void Add()
+    {
+        workTaskPointsList = new List<WorkTaskPoints>();
+
+        foreach (TaskCategory category in Enum.GetValues(typeof(TaskCategory)))
+        {
+            int categoryPoints = 0;
+            switch (category)
+            {
+                case TaskCategory.Repairs:
+                    categoryPoints = Repairs;
+                    break;
+                case TaskCategory.Maintainance:
+                    categoryPoints = Maintainance;
+                    break;
+                case TaskCategory.Delivery:
+                    categoryPoints = Delivery;
+                    break;
+                case TaskCategory.Assembly:
+                    categoryPoints = Assembly;
+                    break;
+                case TaskCategory.Troubleshooting:
+                    categoryPoints = Troubleshooting;
+                    break;
+                case TaskCategory.Installation:
+                    categoryPoints = Installation;
+                    break;
+                case TaskCategory.Callibration:
+                    categoryPoints = Callibration;
+                    break;
+                case TaskCategory.Sanitary:
+                    categoryPoints = Sanitary;
+                    break;
+            }
+
+            var workTaskPoints = new WorkTaskPoints
+                {
+                    taskCategory = (int)category,
+                    taskCategoryPoints = categoryPoints
+                };
+
+            workTaskPointsList.Add(workTaskPoints);
+        }
+
+        Technician Technician = new();
+        List<AssignedTask> assignedTasks = new();
+        Technician.assignedTasks = assignedTasks;
+        Technician.workTaskPointTable = workTaskPointsList;
+        Technician.nic = NIC;
+        Technician.firstName = FirstName;
+        Technician.lastName = LastName;
+        Technician.qualification = Qualification;
+
+        await TechnicianStream.Add(Technician);
+    }
+}

@@ -16,6 +16,7 @@ namespace DeepFrees.Scheduler
             builder.Services.AddSwaggerGen();
             builder.Services.AddScoped<WorkTaskScheduler>();
             builder.Services.AddScoped<DataService>();
+            builder.Services.AddScoped<JobDataService>();
 
             var app = builder.Build();
 

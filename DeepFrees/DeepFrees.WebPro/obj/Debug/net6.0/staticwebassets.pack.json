@@ -5,6 +5,10 @@
       "PackagePath": "staticwebassets\\DeepFrees.WebPro.bundle.scp.css"
     },
     {
+      "Id": "D:\\Source\\Repos\\DeepFrees\\DeepFrees\\DeepFrees.WebPro\\wwwroot\\Uploads\\RouteData\\DistanceMatrix.csv",
+      "PackagePath": "staticwebassets\\Uploads\\RouteData\\DistanceMatrix.csv"
+    },
+    {
       "Id": "D:\\Source\\Repos\\DeepFrees\\DeepFrees\\DeepFrees.WebPro\\wwwroot\\css\\bootstrap\\bootstrap.min.css",
       "PackagePath": "staticwebassets\\css\\bootstrap\\bootstrap.min.css"
     },

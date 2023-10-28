@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "EVAQpVZvP6dZeKZEmeVML6tmbyxa1BgbfhGOYRCIVqQ=",
+  "Hash": "1fPg60QpV7CYOQFU1hwo8dzOm8IhSAmPOCQOmNBLg1o=",
   "Source": "DeepFrees.WebPro",
   "BasePath": "_content/DeepFrees.WebPro",
   "Mode": "Default",
@@ -270,6 +270,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\favicon.ico"
+    },
+    {
+      "Identity": "D:\\Source\\Repos\\DeepFrees\\DeepFrees\\DeepFrees.WebPro\\wwwroot\\Uploads\\RouteData\\DistanceMatrix.csv",
+      "SourceId": "DeepFrees.WebPro",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Source\\Repos\\DeepFrees\\DeepFrees\\DeepFrees.WebPro\\wwwroot\\",
+      "BasePath": "_content/DeepFrees.WebPro",
+      "RelativePath": "Uploads/RouteData/DistanceMatrix.csv",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Uploads\\RouteData\\DistanceMatrix.csv"
     }
   ]
 }

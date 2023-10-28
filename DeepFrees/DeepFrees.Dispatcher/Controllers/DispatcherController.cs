@@ -15,8 +15,9 @@ namespace DeepFrees.Dispatcher.Controllers
         private readonly TechnicianDataService _TechnicianDataService;
         private readonly TaskDataService _TaskDataService; 
         private readonly TaskAssigner _TaskAssigner;
+        private readonly ExampleService _ExampleService;
 
-        public DispatcherController(TaskAssigner taskAssigner, TaskDataService taskDataService, TechnicianDataService technicianDataService, TaskTransformer taskTransformer, DispatcherDataService dispatcherDataService, DispatcherService dispatcherService)
+        public DispatcherController(ExampleService exampleService, TaskAssigner taskAssigner, TaskDataService taskDataService, TechnicianDataService technicianDataService, TaskTransformer taskTransformer, DispatcherDataService dispatcherDataService, DispatcherService dispatcherService)
         {
             _DispatcherDataService = dispatcherDataService;
             _DispatcherService = dispatcherService;
@@ -24,17 +25,35 @@ namespace DeepFrees.Dispatcher.Controllers
             _TechnicianDataService = technicianDataService;
             _TaskDataService = taskDataService;
             _TaskAssigner = taskAssigner;
+            _ExampleService = exampleService;
         }
 
-
+        //www.deepfrees.lk
+        //www.deepfrees.net/Api/TaskAssigner/Shuffle
         //Shuffling through Post
-        [HttpPost("Shuffle")]
-        public async Task<IActionResult> Post([FromBody] List<DispatchRequest> DispatchRequestList)
+        [HttpGet("Shuffle")]
+        public async Task<IActionResult> Get()
         {
+            List<DispatchRequest> DispatchRequestList = new();
+            var texhsall = await _TechnicianDataService.GetAsync();
 
+            foreach(var tex in texhsall)
+            {
+                if (tex.WorkTaskPointTable != null)
+                {
+                    foreach (var dtp in tex.WorkTaskPointTable)
+                    {
+                        DispatchRequest _DispatchRequest = new();
+                        _DispatchRequest.TaskCategoryID = dtp.TaskCategory;
+                        _DispatchRequest.EmployeeID = tex.NIC;
+                        _DispatchRequest.TaskPoints = dtp.TaskCategoryPoints;
+                        DispatchRequestList.Add(_DispatchRequest);
+                    } 
+                }
+            }
 
             var TaskArrays = _TaskTransformer.TransformTasks(DispatchRequestList);
-            var UnformattedSolutions = _DispatcherService.Shuffle(TaskArrays, DispatchRequestList);
+            var UnformattedSolutions = _DispatcherService.Shuffle(TaskArrays, DispatchRequestList); //Solver
             var texhs = await _TechnicianDataService.GetAsync();
             var workx = await _TaskDataService.GetAsync();
 
@@ -42,15 +61,24 @@ namespace DeepFrees.Dispatcher.Controllers
 
             foreach(var techs in solvs.Item2)
             {
-                await _TechnicianDataService.UpdateAsync(techs.NIC, techs);
+                try
+                {
+                    await _TechnicianDataService.UpdateAsync(techs.NIC, techs);
+                }
+                catch (Exception e)
+                {
+
+                    await Console.Out.WriteLineAsync(e.Message); ;
+                }
             }
 
             foreach (var wtasks in solvs.Item1)
             {
-                await _TaskDataService.UpdateAsync(wtasks.taskID, wtasks);
+                 await _TaskDataService.UpdateAsync(wtasks.taskID, wtasks);
             }
 
-            return Ok();
+            //As the Database is updated it is okay to return the unformatted solution, the front end will manage it
+            return Ok(solvs);
         }
 
     }

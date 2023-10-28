@@ -6,6 +6,10 @@
 @using DeepFrees.WebPro.Services
 @inject EmployeeStream EmployeeStream
 
+<nav class="navbar navbar-light bg-light">
+    <a class="navbar-brand" href="#">Navbar</a>
+</nav>
+
 <nav class="breadcrumbs">
     <a href="/" class="breadcrumbs__item">Home</a>
     <a href="/Route" class="breadcrumbs__item is-active">Route</a>
@@ -14,11 +18,11 @@
 <br />
 <br />
 
-<h1>All Employees</h1>
+<h1>All Routes</h1>
 
-<p>Click on a Employee to Edit or Delete or to View More Details. <a href="/Route/Add">Click Here to Add a Delivery Location</a></p>
+<p><a href="/Route/Add">Click Here to Add a Delivery Location</a></p>
 
-
+<h3>Sub Routes</h3>
 @if (employees == null)
 {
     <p><em>Loading...</em></p>
@@ -28,7 +32,7 @@ else
     <table class="table">
         <thead>
             <tr>
-                <th> NIC </th>
+                <th> Route ID </th>
                 <th>Common Name</th>
                 <th>Role</th>
                 <th>Category</th>

@@ -1,3 +1,5 @@
+using DeepFrees.TechnicianService.MicroService;
+
 namespace DeepFrees.TechnicianService
 {
     public class Program
@@ -12,6 +14,7 @@ namespace DeepFrees.TechnicianService
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
+            builder.Services.AddScoped<TechnicianDataContext>();
 
             var app = builder.Build();
 

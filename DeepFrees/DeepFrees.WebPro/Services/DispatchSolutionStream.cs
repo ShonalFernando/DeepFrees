@@ -1,16 +1,18 @@
-﻿using DeepFrees.WebPro.Model;
+﻿using DeepFrees.TaskService.Model;
+using DeepFrees.TechnicianService.Model;
+using DeepFrees.WebPro.Model;
 using System.Text.Json;
 
 namespace DeepFrees.WebPro.Services
 {
     public class DispatchSolutionStream
     {
-        public async Task<List<DispatchSolutionView>> ShuffleDisSolutions(List<DispatchRequest> DispatchRequests)
+        public async Task<Tuple<List<WorkTask>, List<Technician>>> ShuffleDisSolutions()
         {
             string responseContent;
-            string apiUrl = $"https://localhost:7256/DispatchSolver/Dispatcher/Shuffle/" + DateTime.Now.DayOfYear; //Day of Year;
+            string apiUrl = $"https://localhost:7256/DispatchSolver/Dispatcher/Shuffle/";
             HttpClient client = new HttpClient();
-            var response = await client.PutAsJsonAsync(apiUrl, DispatchRequests);
+            var response = await client.GetAsync(apiUrl);
 
             if (response.IsSuccessStatusCode)
             {
@@ -19,30 +21,31 @@ namespace DeepFrees.WebPro.Services
                 {
                     try
                     {
-                        List<DispatchSolutionView> DispatchSolutions = JsonSerializer.Deserialize<List<DispatchSolutionView>>(content);
+                        Tuple<List<WorkTask>, List<Technician>>? DispatchSolutions = JsonSerializer.Deserialize<Tuple<List<WorkTask>, List<Technician>>>(content);
                         if (DispatchSolutions != null)
                         {
                             return DispatchSolutions;
                         }
                         else
                         {
-                            return new List<DispatchSolutionView>();
+                            return Tuple.Create(new List<WorkTask>(), new List<Technician>());
                         }
                     }
-                    catch (Exception)
+                    catch (Exception e)
                     {
 
-                        return new List<DispatchSolutionView>();
+                        await Console.Out.WriteLineAsync( e.Message  );
+                        return Tuple.Create(new List<WorkTask>(), new List<Technician>());
                     }
                 }
                 else
                 {
-                    return new List<DispatchSolutionView>();
+                    return Tuple.Create(new List<WorkTask>(), new List<Technician>());
                 }
             }
             else
             {
-                return new List<DispatchSolutionView>();
+                return Tuple.Create(new List<WorkTask>(), new List<Technician>());
             }
         }
 

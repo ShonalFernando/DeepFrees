@@ -9,7 +9,7 @@ namespace DeepFrees.WebPro.Services
         {
             HttpClient httpClient = new HttpClient();
 
-            string apiUrl = "https://localhost:7107/Technician/GetTechnician";
+            string apiUrl = "https://localhost:7106/TechnicianService/Technician/GetTechnicians";
             HttpResponseMessage response = await httpClient.GetAsync(apiUrl);
 
             if (response.IsSuccessStatusCode)
@@ -50,7 +50,7 @@ namespace DeepFrees.WebPro.Services
         {
             HttpClient httpClient = new HttpClient();
 
-            string apiUrl = "https://localhost:7107/Technician/GetTechnician/" + NIC;
+            string apiUrl = "https://localhost:7106/TechnicianService/Technician/GetTechnician/" + NIC;
             HttpResponseMessage response = await httpClient.GetAsync(apiUrl);
 
             if (response.IsSuccessStatusCode)
@@ -90,7 +90,7 @@ namespace DeepFrees.WebPro.Services
         public async Task UpdateTechnician(Technician Technician)
         {
             string responseContent;
-            string apiUrl = $"https://localhost:7107/Technician/Update/" + Technician.NIC;
+            string apiUrl = $"https://localhost:7106/TechnicianService/Technician/Update/" + Technician.nic;
             HttpClient client = new HttpClient();
             var response = await client.PutAsJsonAsync(apiUrl, Technician);
 
@@ -106,11 +106,19 @@ namespace DeepFrees.WebPro.Services
         }
 
         public async Task Add(Technician Technician)
-        {
+        { 
+            try
+            {
             string responseContent;
-            string apiUrl = $"https://localhost:7107/Technician/Update/" + Technician.NIC;
-            HttpClient client = new HttpClient();
-            var response = await client.PutAsJsonAsync(apiUrl, Technician);
+            string apiUrl = $"https://localhost:7106/TechnicianService/Technician/CreateTechnician/";
+                HttpClient client = new HttpClient();
+                var response = await client.PostAsJsonAsync(apiUrl, Technician);
+                await Console.Out.WriteLineAsync(await response.Content.ReadAsStringAsync());
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Exception: " + ex.Message);
+            }
         }
 
         //public async Task DeleteTechnician(Technician Technician)

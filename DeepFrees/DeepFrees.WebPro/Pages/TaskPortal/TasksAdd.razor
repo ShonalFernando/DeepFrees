@@ -94,7 +94,7 @@
         int TaskIDNew = 0;
         Random Random = new();
 
-        while (AllTasks.Any(task => task.TaskID == TaskIDNew))
+        while (AllTasks.Any(task => task.taskID == TaskIDNew))
         {
             TaskIDNew = Random.Next(0, 2147483647);
         }
@@ -102,9 +102,9 @@
         WorkTask WorkTask = new();
         WorkTask.taskWeigth = taskWeigth;
         WorkTask.taskName = taskName;
-        WorkTask.TaskID = TaskIDNew;
-        WorkTask.DateDay = DateofCom.Day;
-        WorkTask.DateMonth = DateofCom.Month;
+        WorkTask.taskID = TaskIDNew;
+        WorkTask.dateDay = DateofCom.Day;
+        WorkTask.dateMonth = DateofCom.Month;
 
         taskLength = Convert.ToInt32(taskLength);
 

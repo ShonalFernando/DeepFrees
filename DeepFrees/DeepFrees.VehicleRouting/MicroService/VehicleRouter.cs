@@ -46,7 +46,7 @@ namespace DeepFrees.VehicleRouting.MicroService
 
             // Create Routing Index Manager
             RoutingIndexManager manager =
-                new RoutingIndexManager(DistanceMatrixConverter.ConvertToLongArray(_RouteModel.DistanceMatrices).GetLength(0), _RouteModel.VehicleNumber, _RouteModel.Depot);
+                new RoutingIndexManager(DistanceMatrixConverter.ConvertDictionarytoLong(_RouteModel.DistanceMatrix).GetLength(0), _RouteModel.VehicleNumber, _RouteModel.Depot);
 
             // Create Routing Model.
             RoutingModel routing = new RoutingModel(manager);
@@ -57,7 +57,7 @@ namespace DeepFrees.VehicleRouting.MicroService
                 // distance matrix NodeIndex.
                 var fromNode = manager.IndexToNode(fromIndex);
                 var toNode = manager.IndexToNode(toIndex);
-                return DistanceMatrixConverter.ConvertToLongArray(_RouteModel.DistanceMatrices)[fromNode, toNode];
+                return DistanceMatrixConverter.ConvertDictionarytoLong(_RouteModel.DistanceMatrix)[fromNode, toNode];
             });
 
             // Define cost of each arc.

@@ -1,0 +1,98 @@
+﻿@page "/Delivery/DistanceSheet"
+@using System.Data;
+@using CsvHelper;
+@using CsvHelper.Configuration;
+@using System.Globalization;
+@using DeepFrees.WebPro.Model;
+@using DeepFrees.WebPro.Services;
+
+@inject VRoutingStream VRoutingStream
+
+<div class="jumbotron">
+    <h1 class="display-4"><a href="/Delivery"><img width="44" height="44" src="https://img.icons8.com/metro/44/000000/circled-left-2.png" alt="circled-left-2" /></a>&nbsp; Routes and Delivery Managemenet</h1>
+    <p class="lead">View Distance Between Locations</p>
+    <hr class="my-4">
+    <p class="lead">
+        <a class="btn btn-dark btn-lg" href="#" role="button">Add Locations</a>
+        <a class="btn btn-dark btn-lg" href="/Delivery/AddDistances" role="button">Add Distances</a>
+        <a class="btn btn-dark btn-lg" href="#" role="button">Manage Locations</a>
+        <a class="btn btn-dark btn-lg" href="#" role="button">Create New Route</a>
+        <a class="btn btn-dark btn-lg" href="#" role="button">Other Tools</a>
+    </p>
+</div>
+
+<br />
+<br />
+
+@if (Locations == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+        <div class="form-group">
+            <label for="selectCity1">Select City 1</label>
+            <select class="form-control" id="selectCity1" @bind="selectedCity1">
+                @foreach (var city in Locations)
+                {
+                    <option value="@city.locationID">@city.city</option>
+                }
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="selectCity2">Select City 2</label>
+            <select class="form-control" id="selectCity2" @bind="selectedCity2">
+                @foreach (var city in Locations)
+                {
+                    <option value="@city.locationID">@city.city</option>
+                }
+            </select>
+        </div>
+
+        <button @onclick="Calc" class="btn btn-primary">Submit</button>
+
+    <h4> Distance: @selectedDistance </h4>
+    
+}
+
+
+@code {
+    private string selectedCity1 = "";
+    private string selectedCity2 = "";
+    private string? selectedDistance { get; set; }
+
+
+    private DataTable? dataTable;
+    private string? CurrentValue;
+    private List<Location>? Locations;
+    private List<DistanceModel>? Distances { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        Locations = await VRoutingStream.GetAllLocations();
+        Distances = await VRoutingStream.GetAllDistances();
+    }
+
+    private void Calc()
+    {
+
+        Console.WriteLine("Wait...");
+
+        Console.WriteLine(selectedCity1 + " : " +  selectedCity2);
+
+        var l1 = Locations.Find(l => l.locationID.Equals(int.Parse(selectedCity1)));
+        var l2 = Locations.Find(li => li.locationID.Equals(int.Parse(selectedCity2)));
+
+        if(l1 != null && l2 != null)
+        {
+            var distR = Distances.Find(d => d.locationID.Equals(l1.locationID));
+            selectedDistance = distR.distances[l2.locationID.ToString()].ToString();
+            //StateHasChanged();
+        }
+        else
+        {
+            Console.WriteLine("Null");
+        }
+    }
+}

@@ -115,9 +115,7 @@ namespace DeepFrees.WebPro.Services
                 string apiUrl = "https://localhost:7210/TaskService/WorkTask/CreateTask";
                 HttpClient client = new HttpClient();
                 var response = await client.PostAsJsonAsync(apiUrl, WorkTask);
-                Console.WriteLine("Test 3");
                 await Console.Out.WriteLineAsync(await response.Content.ReadAsStringAsync());
-                Console.WriteLine("Test 4");
             }
             catch (Exception ex)
             {

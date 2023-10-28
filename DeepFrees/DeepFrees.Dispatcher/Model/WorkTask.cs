@@ -10,6 +10,7 @@ namespace DeepFrees.Dispatcher.Model
         public ObjectId? _id { get; set; }
 
         public bool isAvailable{ get; set; }
+        public bool isCompleted{ get; set; }
 
         public int taskID { get; set; }
         public string? taskName { get; set; }

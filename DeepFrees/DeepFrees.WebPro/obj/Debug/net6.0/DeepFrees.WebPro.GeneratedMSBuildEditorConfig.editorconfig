@@ -52,6 +52,26 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSVJNUG9ydGFsXElSTVBhbmVsLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
+[D:/Source/Repos/DeepFrees/DeepFrees/DeepFrees.WebPro/Pages/RoutePortal/DeliveryHome.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUm91dGVQb3J0YWxcRGVsaXZlcnlIb21lLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Source/Repos/DeepFrees/DeepFrees/DeepFrees.WebPro/Pages/RoutePortal/DistancesAdd.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUm91dGVQb3J0YWxcRGlzdGFuY2VzQWRkLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Source/Repos/DeepFrees/DeepFrees/DeepFrees.WebPro/Pages/RoutePortal/DistanceSheet.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUm91dGVQb3J0YWxcRGlzdGFuY2VTaGVldC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Source/Repos/DeepFrees/DeepFrees/DeepFrees.WebPro/Pages/RoutePortal/LocationAdd.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUm91dGVQb3J0YWxcTG9jYXRpb25BZGQucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Source/Repos/DeepFrees/DeepFrees/DeepFrees.WebPro/Pages/RoutePortal/LocationManage.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUm91dGVQb3J0YWxcTG9jYXRpb25NYW5hZ2UucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/Source/Repos/DeepFrees/DeepFrees/DeepFrees.WebPro/Pages/RoutePortal/RouteView.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUm91dGVQb3J0YWxcUm91dGVWaWV3LnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
@@ -62,6 +82,14 @@ build_metadata.AdditionalFiles.CssScope =
 
 [D:/Source/Repos/DeepFrees/DeepFrees/DeepFrees.WebPro/Pages/TaskPortal/TasksAdd.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVGFza1BvcnRhbFxUYXNrc0FkZC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Source/Repos/DeepFrees/DeepFrees/DeepFrees.WebPro/Pages/TechsPortal/AllTechs.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVGVjaHNQb3J0YWxcQWxsVGVjaHMucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Source/Repos/DeepFrees/DeepFrees/DeepFrees.WebPro/Pages/TechsPortal/TechsAdd.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVGVjaHNQb3J0YWxcVGVjaHNBZGQucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/Source/Repos/DeepFrees/DeepFrees/DeepFrees.WebPro/Shared/SurveyPrompt.razor]

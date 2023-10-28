@@ -1,7 +1,14 @@
-﻿namespace DeepFrees.Scheduler.Model
+﻿using MongoDB.Bson.Serialization.Attributes;
+using MongoDB.Bson;
+
+namespace DeepFrees.Scheduler.Model
 {
     public class JobTask
     {
+        [BsonId]
+        public ObjectId? _id { get; set; }
+        public int weekID { get; set; }
+        public bool isAvailable { get; set; }
         public int team { get; set; }
         public int duration { get; set; }
     }

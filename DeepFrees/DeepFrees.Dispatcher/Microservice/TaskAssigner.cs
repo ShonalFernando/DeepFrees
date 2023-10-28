@@ -6,11 +6,11 @@ namespace DeepFrees.Dispatcher.Microservice
     {
         public Tuple<List<WorkTask>, List<Technician>> AssignTasks(List<DispatchSolution> DispatchSolutions, List<WorkTask> WorkTasks, List<Technician> Technicians)
         {
-            foreach (var DispatchSolution in DispatchSolutions)
+            foreach (var DispatchSolution in DispatchSolutions) //234234245 : 5
             {
                 TaskCategory taskCategory = (TaskCategory)DispatchSolution.TaskCategoryID;
 
-                foreach (var Worktask in WorkTasks.Where(wt => wt.isAvailable && wt.taskCategory == taskCategory))
+                foreach (var Worktask in WorkTasks.Where(wt => wt.isAvailable && !wt.isCompleted && wt.taskCategory == taskCategory))
                 {
                     // Assignment
                     Worktask.isAvailable = false;

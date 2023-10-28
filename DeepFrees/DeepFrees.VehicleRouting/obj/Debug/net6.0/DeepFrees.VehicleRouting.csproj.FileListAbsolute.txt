@@ -41,3 +41,16 @@ D:\Source\Repos\DeepFrees\DeepFrees\DeepFrees.VehicleRouting\obj\Debug\net6.0\re
 D:\Source\Repos\DeepFrees\DeepFrees\DeepFrees.VehicleRouting\obj\Debug\net6.0\DeepFrees.VehicleRouting.pdb
 D:\Source\Repos\DeepFrees\DeepFrees\DeepFrees.VehicleRouting\obj\Debug\net6.0\DeepFrees.VehicleRouting.genruntimeconfig.cache
 D:\Source\Repos\DeepFrees\DeepFrees\DeepFrees.VehicleRouting\obj\Debug\net6.0\ref\DeepFrees.VehicleRouting.dll
+D:\Source\Repos\DeepFrees\DeepFrees\DeepFrees.VehicleRouting\bin\Debug\net6.0\AWSSDK.Core.dll
+D:\Source\Repos\DeepFrees\DeepFrees\DeepFrees.VehicleRouting\bin\Debug\net6.0\AWSSDK.SecurityToken.dll
+D:\Source\Repos\DeepFrees\DeepFrees\DeepFrees.VehicleRouting\bin\Debug\net6.0\DnsClient.dll
+D:\Source\Repos\DeepFrees\DeepFrees\DeepFrees.VehicleRouting\bin\Debug\net6.0\MongoDB.Bson.dll
+D:\Source\Repos\DeepFrees\DeepFrees\DeepFrees.VehicleRouting\bin\Debug\net6.0\MongoDB.Driver.dll
+D:\Source\Repos\DeepFrees\DeepFrees\DeepFrees.VehicleRouting\bin\Debug\net6.0\MongoDB.Driver.Core.dll
+D:\Source\Repos\DeepFrees\DeepFrees\DeepFrees.VehicleRouting\bin\Debug\net6.0\MongoDB.Libmongocrypt.dll
+D:\Source\Repos\DeepFrees\DeepFrees\DeepFrees.VehicleRouting\bin\Debug\net6.0\SharpCompress.dll
+D:\Source\Repos\DeepFrees\DeepFrees\DeepFrees.VehicleRouting\bin\Debug\net6.0\Snappier.dll
+D:\Source\Repos\DeepFrees\DeepFrees\DeepFrees.VehicleRouting\bin\Debug\net6.0\ZstdSharp.dll
+D:\Source\Repos\DeepFrees\DeepFrees\DeepFrees.VehicleRouting\bin\Debug\net6.0\runtimes\linux\native\libmongocrypt.so
+D:\Source\Repos\DeepFrees\DeepFrees\DeepFrees.VehicleRouting\bin\Debug\net6.0\runtimes\osx\native\libmongocrypt.dylib
+D:\Source\Repos\DeepFrees\DeepFrees\DeepFrees.VehicleRouting\bin\Debug\net6.0\runtimes\win\native\mongocrypt.dll
