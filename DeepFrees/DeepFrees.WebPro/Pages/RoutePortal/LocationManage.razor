@@ -1,4 +1,8 @@
 ﻿@page "/Delivery/ManageLocation"
+@using DeepFrees.WebPro.Model;
+@using DeepFrees.WebPro.Services;
+
+@inject VRoutingStream VRoutingStream
 
 <PageTitle>Edit Location</PageTitle>
 
@@ -19,15 +23,38 @@
 <br />
 <br />
 
-<form>
-    <div class="form-group">
-        <label for="City">City</label>
-        <input type="text" class="form-control" id="City" placeholder="Enter City/Building/Other Location">
-    </div>
-    <br/>
-    <button type="submit" class="btn btn-primary">Update Location</button>
-</form>
+
+@if (Locations == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+        <div class="form-group">
+            <label for="selectCity1">Select City 1</label>
+            <select class="form-control" id="selectCity1" @bind="selectedCity1">
+                @foreach (var city in Locations)
+                {
+                    <option value="@city.locationID">@city.city</option>
+                }
+            </select>
+        </div>
+}
+
+    <button @onclick="DeleteLoc" type="submit" class="btn btn-primary">Delete Location</button>
 
 @code {
+    private int selectedCity1 { get; set; }
+    private List<Location>? Locations = new();
+
+    protected override async Task OnInitializedAsync()
+    {
+        Locations = await VRoutingStream.GetAllLocations();
+    }
+
+    protected async void DeleteLoc()
+    {
+        await VRoutingStream.DeleteLocation(selectedCity1);
+    }
 
 }

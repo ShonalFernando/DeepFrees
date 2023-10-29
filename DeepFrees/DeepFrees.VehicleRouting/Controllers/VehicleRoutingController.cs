@@ -133,7 +133,74 @@ namespace DeepFrees.VehicleRouting.Controllers
             }
         }
 
-        //Just add a new Location with ID
+        [HttpGet("GetRoutes")] // : APPROVED
+        public async Task<IActionResult> GetRoutes()
+        {
+            try
+            {
+                var Routes = await _RouteDataContext.GetAsync();
+                if (Routes != null)
+                {
+                    return Ok(Routes);
+                }
+                else
+                {
+                    return NotFound();
+                }
+            }
+            catch (Exception e)
+            {
+
+                return BadRequest(e.Message);
+            }
+        }
+
+        //Create a new Route -> Shuffle and Save : APPROVED
+        [HttpPost("CreateRoute")]
+        public async Task<IActionResult> CreateRoute([FromBody] SavedRoute SavedRoute)
+        {
+            var Distances = await _DistanceDataContext.GetAsync();
+            var Locations = await _LocationDataContext.GetAsync();
+            var solModel = new SolutionMatrixModel();
+            if (Distances != null && SavedRoute.vehicleIndex > 0)
+            {
+                try
+                {
+                    RouteModel RouteModel = new();
+                    RouteModel.Depot = SavedRoute.startLocation;
+                    RouteModel.VehicleNumber = SavedRoute.vehicleIndex;
+                    RouteModel.DistanceMatrix = Distances;
+
+                    solModel =  _VehicleRouter.Shuffle(RouteModel);
+                    SavedRoute.totalDistance = solModel.TotalDistance.ToString();
+
+                    SavedRoute.routeOrder = new int[solModel.RouteOrder.Count];
+                    for (int i = 0; i < solModel.RouteOrder.Count; i++)
+                    {
+                        SavedRoute.routeOrder[i] = solModel.RouteOrder[i];
+                    }
+
+                    SavedRoute._id = ObjectId.GenerateNewId();
+
+                    await _RouteDataContext.CreateAsync(SavedRoute);
+                    await Console.Out.WriteLineAsync("Test1");
+                    return Ok();
+                }
+                catch (Exception e)
+                {
+                    await Console.Out.WriteLineAsync("Test2 : " + e.Message);
+                    return BadRequest();
+                }
+            }
+            else
+            {
+                await Console.Out.WriteLineAsync("Test3" + SavedRoute.vehicleIndex);
+                return NotFound();
+            }
+
+        }
+
+        //Just add a new Location with ID : APPROVED
         [HttpPost("AddLocation")]
         public async Task<IActionResult> PostLocations([FromBody] Location Location)
         {
@@ -173,7 +240,7 @@ namespace DeepFrees.VehicleRouting.Controllers
             }
         }
 
-        //Update previoud Distance and add a distance
+        //Update previoud Distance and add a distance : APPROVED
         [HttpPost("AddDistance")]
         public async Task<IActionResult> PostDistance([FromBody] DistanceModel DistanceModel)
         {
@@ -204,7 +271,7 @@ namespace DeepFrees.VehicleRouting.Controllers
             }
         }
 
-        //Should Delete Both Location and Distance
+        //Should Delete Both Location and Distance :: APPROVED
         [HttpDelete("DeleteLocation/{LocationID}")]
         public async Task<IActionResult> Delete(int LocationID)
         {
@@ -282,72 +349,7 @@ namespace DeepFrees.VehicleRouting.Controllers
 
                     // Update the DistanceModel with the new distances
                     await _DistanceDataContext.UpdateAsync(distdata._id, distdata);
-                }
-
-
-                //int safeIndex = LocationID;
-
-                ////Delete all dictionary entries
-                //foreach (var distancelist in distances)
-                //{
-                //    //Remove
-                //    if (distancelist.distances != null)
-                //    {
-                //        distancelist.distances.Remove(LocationID.ToString()); 
-                //    }
-                //    else
-                //    {
-                //        return BadRequest();
-                //    }
-
-                //}
-                //var locationso = await _LocationDataContext.GetAsync();
-                //var distanceso = await _DistanceDataContext.GetAsync();
-
-                ////try
-                //for (int i = LocationID+1; i < locations.Count; i++ )
-                //{
-                //    var locationU = locations[i];
-                //    locationU.LocationID -= 1;
-                //    await Console.Out.WriteLineAsync("1");
-
-                //    await _LocationDataContext.UpdateAsync(locationU._id, locationU);
-
-                //}
-
-                //for (int j = LocationID + 1; j < distances.Count; j++)
-                //{
-                //    var distancesu = distances[j];
-                //    distancesu.locationID -= 1;
-                //    await Console.Out.WriteLineAsync("2");
-
-                //    await _DistanceDataContext.UpdateAsync(distancesu._id, distancesu);
-                //}
-
-                //foreach(var distentry in distances)
-                //{
-                //    if (distentry.distances != null)
-                //    {
-                //        distentry.distances.Remove(safeIndex.ToString());
-
-                //        // Create a new dictionary with sequential keys
-                //        var newDistances = new Dictionary<string, long>();
-                //        int newKey = 0;
-
-                //        foreach (var kvp in distentry.distances)
-                //        {
-                //            newDistances[newKey.ToString()] = kvp.Value;
-                //            newKey++;
-                //        }
-                //        await Console.Out.WriteLineAsync("3");
-                //        distentry.distances = newDistances;
-                //        await _DistanceDataContext.UpdateAsync(distentry._id, distentry);
-                //    }
-                //    else
-                //    {
-                //        return BadRequest();
-                //    }
-                //}                        
+                }                        
                 return Ok();
 
             }

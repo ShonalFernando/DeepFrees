@@ -16,6 +16,13 @@ namespace DeepFrees.WebPro.Model.HelperModels
         [BsonId]
         public ObjectId? _id { get; set; }
         public string? routeName { get; set; }
-        public List<LocationDisplay>? locations { get; set; }
+        public int startLocation { get; set; }
+        public string? vehicleNumber { get; set; }
+        public int vehicleIndex { get; set; }
+        public string? driver { get; set; }
+        public string? driverID { get; set; }
+        public string? comments { get; set; }
+        public string? totalDistance { get; set; }
+        public int[]? routeOrder { get; set; }
     }
 }

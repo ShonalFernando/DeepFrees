@@ -24,46 +24,47 @@
 <br />
 <br />
 
-
-<h3>Select Start Depot</h3>
-    <div class="form-check">
-        @if(Locations == null)
-    {
-        <p>Please Wait...</p>
-    }
-    else
-    {    
-        <select class="form-control" id="selectCity2" @bind="selectedCity">
+<div class="form-group">
+    <label for="routeName">Route Name</label>
+    <input type="text" @bind="@routeName" class="form-control" id="routeName" placeholder="Insert First Name">
+</div>
+<div class="form-group">
+    <label for="vehicleNumber">Vehicle Number</label>
+    <input type="text" @bind="@vehicleNumber" class="form-control" id="vehicleNumber" placeholder="Insert Vehicle Registration Number">
+</div>
+<div class="form-group">
+    <label for="driver">Drivers Name</label>
+    <input type="text" @bind="@driver" class="form-control" id="driver" placeholder="Insert driver`s first Name">
+</div>
+<div class="form-group">
+    <label for="driverid">Drivers Name</label>
+    <input type="text" @bind="@driverid" class="form-control" id="driverid" placeholder="Insert driver`s NIC">
+</div>
+<div class="form-group">
+    <label for="comments">Comments</label>
+    <input type="text" @bind="@comments" class="form-control" id="comments" placeholder="Insert a Comments">
+</div>
+<div class="form-group">
+    <label for="vcount">Vehicle Count</label>
+    <input type="number" @bind="@vIndex" class="form-control" id="vcount" placeholder="Insert Vechicle Count eg:1(Better) or more">
+</div>
+@if (Locations == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+<div class="form-group">
+    <label for="selectCity1">Select City 1</label>
+    <select class="form-control" id="selectCity1" @bind="selectedCity1">
         @foreach (var city in Locations)
-            {
-                <option value="@city.locationID">@city.city</option>
-            }
-        </select>
-        
-    }
-
-    </div>
-<br />
-<br />
-
-<h3>Select Locations</h3>
-<ul class="list-group">
-    @if (DLocations == null)
-    {
-        <p>Please Wait...</p>
-    }
-    else
-    {
-        @foreach (var location in DLocations)
         {
-            <li class="list-group-item">
-                <div>
-                    <input type="checkbox" @bind="location.isSelected" /> @location.city
-                </div>
-            </li>
-         }
-    }
-</ul>
+            <option value="@city.locationID">@city.city</option>
+        }
+    </select>
+</div>
+}
+
 <br />
 <button @onclick="CreateRoute" class="btn btn-primary">Create Route</button>
 <br />
@@ -71,49 +72,45 @@
 <br />
 
 @code {
+
+    private string? routeName { get; set; }
+    private string? vehicleNumber { get; set; }
+    private string? driver { get; set; }
+    private string? comments { get; set; }
+    private string? driverid { get; set; }
+    private int vIndex { get; set; }
+
+    private int selectedCity1 { get; set; }
     private List<Location>? Locations;
-    private List<LocationDisplay>? DLocations;
-    private string selectedCity = "";
 
     protected override async Task OnInitializedAsync()
     {
         Locations = await VRoutingStream.GetAllLocations();
-        if(Locations != null)
-        {
-            DLocations = new List<LocationDisplay>();
-            foreach (var location in Locations)
-            {
-                DLocations.Add(new LocationDisplay()
-                    {
-                        OrderIndex = 0,
-                        city = location.city,
-                        locationID = location.locationID,
-                        isSelected = false
-                    });
-            }
-        }
-
     }
 
     public async void CreateRoute()
     {
-        if (DLocations != null)
+        if (routeName != null)
         {
-            ///Test Code
-            foreach (var selectedLocs in DLocations)
+            try
             {
-                if (selectedLocs.isSelected)
-                {
-                    Console.WriteLine(selectedLocs.city + " : Selected");
-                }
+                SavedRoute SavedRoute = new();
+                SavedRoute.totalDistance = "";
+                SavedRoute.routeName = routeName;
+                SavedRoute.comments = comments;
+                SavedRoute.driverID = driverid;
+                SavedRoute.driver = driver;
+                SavedRoute.vehicleNumber = vehicleNumber;
+                SavedRoute.startLocation = selectedCity1;
+                SavedRoute.vehicleIndex = vIndex;
+
+                await VRoutingStream.CreateRoute(SavedRoute);
+            }
+            catch (Exception e)
+            {
+                //handle alert
             }
 
-            //Create a SavedRoute
-            SavedRoute savedRoute = new();
-            savedRoute.locations = DLocations;
-            savedRoute.routeName = "test";
-
-            await VRoutingStream.CreateRoute(savedRoute);
         }
     }
 }

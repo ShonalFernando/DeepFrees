@@ -109,9 +109,9 @@ namespace DeepFrees.WebPro.Services
                 string apiUrl = $"https://localhost:7068/LocationService/VehicleRouting/AddLocation";
                 HttpClient client = new HttpClient();
                 var response = await client.PostAsync(apiUrl, new StringContent(JsonSerializer.Serialize(Location), Encoding.UTF8, "application/json"));
-                
+
                 await Console.Out.WriteLineAsync("Test 2" + (await response.Content.ReadAsStringAsync()));
-                
+
                 if (response.IsSuccessStatusCode)
                 {
                     // Parse the response content to get the returned ID
@@ -165,6 +165,69 @@ namespace DeepFrees.WebPro.Services
             catch (Exception ex)
             {
                 Console.WriteLine("Exception: " + ex.Message);
+            }
+        }
+
+        public async Task DeleteLocation(int LocationID)
+        {
+            try
+            {
+                HttpClient httpClient = new HttpClient();
+
+                string apiUrl = "https://localhost:7068/LocationService/VehicleRouting/DeleteLocation/" + LocationID;
+                HttpResponseMessage response = await httpClient.DeleteAsync(apiUrl); response.EnsureSuccessStatusCode();
+            }
+            catch (Exception e)
+            {
+                await Console.Out.WriteLineAsync( e.Message );
+                throw;
+            }
+        }
+
+        public async Task<List<SavedRoute>> GetAllRoutes()
+        {
+            HttpClient httpClient = new HttpClient();
+
+            string apiUrl = "https://localhost:7068/LocationService/VehicleRouting/GetRoutes";
+            HttpResponseMessage response = await httpClient.GetAsync(apiUrl);
+
+            if (response.IsSuccessStatusCode)
+            {
+                string content = await response.Content.ReadAsStringAsync();
+                if (content != null)
+                {
+                    try
+                    {
+                        List<SavedRoute>? SavedRoutes = JsonSerializer.Deserialize<List<SavedRoute>>(content);
+                        if (SavedRoutes != null)
+                        {
+
+
+                            return SavedRoutes;
+                        }
+                        else
+                        {
+
+                            return new List<SavedRoute>();
+                        }
+                    }
+                    catch (Exception e)
+                    {
+
+                        await Console.Out.WriteLineAsync(e.Message);
+                        return new List<SavedRoute>();
+                    }
+                }
+                else
+                {
+
+                    return new List<SavedRoute>();
+                }
+            }
+            else
+            {
+                await Console.Out.WriteLineAsync("2");
+                return new List<SavedRoute>();
             }
         }
 

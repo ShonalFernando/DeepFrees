@@ -1,5 +1,10 @@
 ﻿@page "/Delivery"
+@using DeepFrees.WebPro.Model.HelperModels;
+@using DeepFrees.WebPro.Model;
 @using DeepFrees.WebPro.Pages.RoutePortal
+@using DeepFrees.WebPro.Services;
+
+@inject VRoutingStream VRoutingStream
 
 <PageTitle>Delivery Routing</PageTitle>
 
@@ -21,59 +26,51 @@
 <br />
 
 <div id="accordion">
-    <div class="card">
-        <div class="card-header" id="headingOne">
-            <h5 class="mb-0">
-                <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                    Route Number 1
-                </button>
-            </h5>
-        </div>
 
-        <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
-            <div class="card-body">
-                <ul class="list-group">
-                    <li class="list-group-item">Cras justo odio</li>
-                    <li class="list-group-item"><img width="12" height="12" src="https://img.icons8.com/metro/12/228BE6/right3.png" alt="right3" />&nbsp; ac facilisis in</li>
-                    <li class="list-group-item"><img width="12" height="12" src="https://img.icons8.com/metro/12/228BE6/right3.png" alt="right3" />&nbsp; Morbi leo risus</li>
-                    <li class="list-group-item"><img width="12" height="12" src="https://img.icons8.com/metro/12/228BE6/right3.png" alt="right3" />&nbsp; Porta ac consectetur ac</li>
-                    <li class="list-group-item"><img width="12" height="12" src="https://img.icons8.com/metro/12/228BE6/right3.png" alt="right3" />&nbsp; Vestibulum at eros</li>
-                </ul>
-                <br/>
-                <h5>Total Distance: 0000</h5>
+    @if (savedRoutes == null)
+    {
+        <p><em>Loading...</em></p>
+    }
+    else
+    {
+        @foreach(var route in savedRoutes)
+        {
+            <div class="card">
+                <div class="card-header" id="headingOne">
+                    <h5 class="mb-0">
+                        <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                            @route.routeName
+                        </button>
+                    </h5>
+                </div>
+                <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+                    <div class="card-body">
+                        <ul class="list-group">
+                            <li class="list-group-item"> @Locations.FirstOrDefault(l => l.locationID == Convert.ToInt32(0))?.city</li>
+                            @foreach(var routeIndex in route.routeOrder)
+                            {
+                                <li class="list-group-item"><img width="12" height="12" src="https://img.icons8.com/metro/12/228BE6/right3.png" alt="right3" />&nbsp; @Locations.FirstOrDefault(l => l.locationID == Convert.ToInt32(routeIndex))?.city</li>
+                            }
+                        </ul>
+                        <br />
+                        <h5>Total Distance: @route.totalDistance KM</h5>
+                    </div>
+                </div>
             </div>
-        </div>
-    </div>
-    <div class="card">
-        <div class="card-header" id="headingTwo">
-            <h5 class="mb-0">
-                <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                    Route Number 2
-                </button>
-            </h5>
-        </div>
-        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
-            <div class="card-body">
-                Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-            </div>
-        </div>
-    </div>
-    <div class="card">
-        <div class="card-header" id="headingThree">
-            <h5 class="mb-0">
-                <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                    Route Number 3
-                </button>
-            </h5>
-        </div>
-        <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
-            <div class="card-body">
-                Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-            </div>
-        </div>
-    </div>
+        }
+
+    }
+
 </div>
 
 @code {
 
+    private List<SavedRoute>? savedRoutes { get; set; }
+    private List<Location>? Locations { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        Locations = await VRoutingStream.GetAllLocations();
+        savedRoutes = await VRoutingStream.GetAllRoutes();
+    }
 }
