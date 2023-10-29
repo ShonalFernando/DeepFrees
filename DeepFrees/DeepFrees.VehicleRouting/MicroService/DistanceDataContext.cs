@@ -31,8 +31,8 @@ namespace DeepFrees.VehicleRouting.MicroService
         public async Task CreateAsync(DistanceModel locations) =>
             await _UserAccountsCollection.InsertOneAsync(locations);
 
-        public async Task UpdateAsync(int _id, DistanceModel locations) =>
-            await _UserAccountsCollection.ReplaceOneAsync(x => x.locationID == _id, locations);
+        public async Task UpdateAsync(ObjectId? _id, DistanceModel locations) =>
+            await _UserAccountsCollection.ReplaceOneAsync(x => x._id == _id, locations);
 
         public async Task RemoveAsync(int _id) =>
             await _UserAccountsCollection.DeleteOneAsync(x => x.locationID == _id);

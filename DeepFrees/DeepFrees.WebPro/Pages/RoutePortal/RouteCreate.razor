@@ -1,0 +1,119 @@
+﻿@page "/Delivery/CreateRoute"
+@using DeepFrees.WebPro.Model;
+@using DeepFrees.WebPro.Model.HelperModels;
+@using DeepFrees.WebPro.Services;
+
+<PageTitle>Delivery Routing</PageTitle>
+
+@inject VRoutingStream VRoutingStream
+
+<div class="jumbotron">
+    <h1 class="display-4">Routes and Delivery Managemenet</h1>
+    <p class="lead">Create New Routes</p>
+    <hr class="my-4">
+    <p class="lead">
+        <a class="btn btn-dark btn-lg" href="/Delivery" role="button">Routes</a>
+        <a class="btn btn-dark btn-lg" href="/Delivery/AddLocation" role="button">Add Locations</a>
+        <a class="btn btn-dark btn-lg" href="/Delivery/DistanceSheet" role="button">Check Distance Between Locations</a>
+        <a class="btn btn-dark btn-lg" href="/Delivery/CreateRoute" role="button">Create New Route</a>
+        <a class="btn btn-dark btn-lg" href="/Delivery/ManageLocation" role="button">Edit Locations</a>
+        <a class="btn btn-dark btn-lg" href="/Delivery/EditDistances" role="button">Edit Distance</a>
+    </p>
+</div>
+
+<br />
+<br />
+
+
+<h3>Select Start Depot</h3>
+    <div class="form-check">
+        @if(Locations == null)
+    {
+        <p>Please Wait...</p>
+    }
+    else
+    {    
+        <select class="form-control" id="selectCity2" @bind="selectedCity">
+        @foreach (var city in Locations)
+            {
+                <option value="@city.locationID">@city.city</option>
+            }
+        </select>
+        
+    }
+
+    </div>
+<br />
+<br />
+
+<h3>Select Locations</h3>
+<ul class="list-group">
+    @if (DLocations == null)
+    {
+        <p>Please Wait...</p>
+    }
+    else
+    {
+        @foreach (var location in DLocations)
+        {
+            <li class="list-group-item">
+                <div>
+                    <input type="checkbox" @bind="location.isSelected" /> @location.city
+                </div>
+            </li>
+         }
+    }
+</ul>
+<br />
+<button @onclick="CreateRoute" class="btn btn-primary">Create Route</button>
+<br />
+<br />
+<br />
+
+@code {
+    private List<Location>? Locations;
+    private List<LocationDisplay>? DLocations;
+    private string selectedCity = "";
+
+    protected override async Task OnInitializedAsync()
+    {
+        Locations = await VRoutingStream.GetAllLocations();
+        if(Locations != null)
+        {
+            DLocations = new List<LocationDisplay>();
+            foreach (var location in Locations)
+            {
+                DLocations.Add(new LocationDisplay()
+                    {
+                        OrderIndex = 0,
+                        city = location.city,
+                        locationID = location.locationID,
+                        isSelected = false
+                    });
+            }
+        }
+
+    }
+
+    public async void CreateRoute()
+    {
+        if (DLocations != null)
+        {
+            ///Test Code
+            foreach (var selectedLocs in DLocations)
+            {
+                if (selectedLocs.isSelected)
+                {
+                    Console.WriteLine(selectedLocs.city + " : Selected");
+                }
+            }
+
+            //Create a SavedRoute
+            SavedRoute savedRoute = new();
+            savedRoute.locations = DLocations;
+            savedRoute.routeName = "test";
+
+            await VRoutingStream.CreateRoute(savedRoute);
+        }
+    }
+}

@@ -11,7 +11,7 @@ namespace Commons.DeepFrees.DatabaseConfiguration
 
         public static readonly string DatabaseName  = "DeepFrees";
 
-        public static readonly string[] DeepFreesDataCollections = new string[] { "UserAccount", "Employee", "DeepFreesPay", "Employee", "WorkTasks" , "Technicians", "RouteUnit", "Location", "DistanceModel" };
+        public static readonly string[] DeepFreesDataCollections = new string[] { "UserAccount", "Employee", "DeepFreesPay", "Employee", "WorkTasks" , "Technicians", "Route", "Location", "DistanceModel" };
 
     }
 }

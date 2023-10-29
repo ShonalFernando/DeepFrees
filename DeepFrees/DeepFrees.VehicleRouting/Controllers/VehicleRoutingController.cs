@@ -60,7 +60,7 @@ namespace DeepFrees.VehicleRouting.Controllers
             return Ok();
         }
 
-        //This is used to get the entire Distance Matrix
+        //This is used to get the entire Distance Matrix : APPROVED
         [HttpGet("GetDistance")]
         public async Task<IActionResult> GetDistanceMatrix()
         {
@@ -83,7 +83,7 @@ namespace DeepFrees.VehicleRouting.Controllers
             }
         }
 
-        //This is used to get the entire Distance Matrix
+        //This is used to get the entire Distance Matrix  : APPROVED
         [HttpGet("GetLocations")]
         public async Task<IActionResult> GetLocations()
         {
@@ -107,7 +107,7 @@ namespace DeepFrees.VehicleRouting.Controllers
             }
         }
 
-        [HttpGet("Shuffle")]
+        [HttpGet("Shuffle")] // : APPROVED
         public async Task<IActionResult> Shuffled()
         {
             var Distances = await _DistanceDataContext.GetAsync();
@@ -120,7 +120,7 @@ namespace DeepFrees.VehicleRouting.Controllers
                     RouteModel.VehicleNumber = 1;
                     RouteModel.DistanceMatrix = Distances;
 
-                    return Ok( _VehicleRouter.Shuffle(RouteModel));
+                    return Ok(_VehicleRouter.Shuffle(RouteModel));
                 }
                 catch
                 {
@@ -133,39 +133,227 @@ namespace DeepFrees.VehicleRouting.Controllers
             }
         }
 
-        //Need to update all the distancemodel collection and add a location to location collection
-        [HttpPost("AddLocations")]
-        public async Task<IActionResult> PostLocations([FromBody] Tuple<Location, DistanceModel> RequestRouteData)
+        //Just add a new Location with ID
+        [HttpPost("AddLocation")]
+        public async Task<IActionResult> PostLocations([FromBody] Location Location)
         {
             try
             {
-                var alldistances = await _DistanceDataContext.GetAsync();
-                var alllocations = await _LocationDataContext.GetAsync();
-
-                //Update all distancemodels
-                foreach (var currentdist in alldistances) //current in db
+                var Locations = await _LocationDataContext.GetAsync();
+                var locationWithLargestID = Locations.OrderByDescending(location => location.LocationID).FirstOrDefault();
+                if (locationWithLargestID != null)
                 {
-                    foreach (var newLocDistance in RequestRouteData.Item2.distances) //new request
+                    Location.LocationID = locationWithLargestID.LocationID + 1;
+                    Location._id = ObjectId.GenerateNewId();
+                    var DupIDCheck = Locations.FindAll(l => l.LocationID.Equals(Location.LocationID));
+                    if (!DupIDCheck.Any())
                     {
-                        if (newLocDistance.Key == currentdist.locationID.ToString())
-                        {
-                            currentdist.distances.Add(RequestRouteData.Item1.LocationID.ToString(), newLocDistance.Value);
-                        }
+                        await _LocationDataContext.CreateAsync(Location);
+                        return Ok(Location.LocationID);
+                    }
+                    else
+                    {
+                        Console.WriteLine("VRAL1: " + Location.LocationID);
+                        return BadRequest();
                     }
                 }
+                else
+                {
+                    Console.WriteLine("VRAL2");
+                    return NotFound();
+                }
 
-                //Add a distance Model
-                await _DistanceDataContext.CreateAsync(RequestRouteData.Item2);
 
-                //Add to location
-                await _LocationDataContext.CreateAsync(RequestRouteData.Item1);
-
-                return Ok();
             }
             catch (Exception e)
             {
+                Console.WriteLine(e.Message);
 
                 return BadRequest(e);
+            }
+        }
+
+        //Update previoud Distance and add a distance
+        [HttpPost("AddDistance")]
+        public async Task<IActionResult> PostDistance([FromBody] DistanceModel DistanceModel)
+        {
+            try
+            {
+                await _DistanceDataContext.CreateAsync(DistanceModel);
+
+                var distances = await _DistanceDataContext.GetAsync();
+
+                //update previous
+
+                foreach (var distentry in distances)
+                {
+                    if (DistanceModel.distances != null && distentry.distances != null)
+                    {
+                        var TargetDistance = DistanceModel.distances[(distentry.locationID).ToString()];
+                        distentry.distances.Add((DistanceModel.locationID).ToString(), TargetDistance); 
+                    }
+                    await _DistanceDataContext.UpdateAsync(distentry._id, distentry);
+                }
+
+                return Ok();
+            }
+
+            catch (Exception e)
+            {
+                return BadRequest(e);
+            }
+        }
+
+        //Should Delete Both Location and Distance
+        [HttpDelete("DeleteLocation/{LocationID}")]
+        public async Task<IActionResult> Delete(int LocationID)
+        {
+            try
+            {
+                int init = LocationID;
+
+                //Get all data
+                var locations = await _LocationDataContext.GetAsync();
+                var distances = await _DistanceDataContext.GetAsync();
+
+                //Jump locs
+                for(int i = LocationID; i < locations.Count - 1; i++)
+                {
+                    if (locations[i].LocationID >= LocationID)
+                    {
+                        locations[i].City = locations[i + 1].City;
+
+                        await _LocationDataContext.UpdateAsync(locations[i]._id, locations[i]);
+                    }
+                }
+
+                //remove last
+                await _LocationDataContext.RemoveAsync(locations.Count - 1);
+
+                LocationID = init;
+
+                //Jump dis
+                for (int i = LocationID; i < distances.Count - 1; i++)
+                {
+                    if (distances[i].locationID >= LocationID)
+                    {
+                        distances[i].distances = distances[i + 1].distances;
+
+                        await _DistanceDataContext.UpdateAsync(distances[i]._id, distances[i]);
+                    }
+                }
+
+                //remove last
+                await _DistanceDataContext.RemoveAsync(distances.Count - 1);
+
+                //Get Data Again
+                var distances2 = await _DistanceDataContext.GetAsync();
+
+                foreach (var distdata in distances2)
+                {
+                    // Create a new dictionary
+                    var newDistances = new Dictionary<string, long>();
+
+                    for (int i = 0; i <= distdata.distances.Count - 2; i++)
+                    {
+                        string k = (i + 0).ToString();
+                        string l = (i + 0 + 1).ToString();
+
+                        // Check if both keys exist in the original dictionary
+                        if (distdata.distances.ContainsKey(k) && distdata.distances.ContainsKey(l))
+                        {
+                            if(i>= LocationID)
+                            {
+                                // Swap values
+                                newDistances[k] = distdata.distances[l];
+                            }
+                            else
+                            {
+                                newDistances[k] = distdata.distances[k];
+                            }
+                        }
+                    }
+
+                    // Update the distances dictionary with the new dictionary
+                    distdata.distances = newDistances;
+
+                    // Remove the last entry (key LocationID + distances.Count - 1)
+                    distdata.distances.Remove((LocationID + distdata.distances.Count - 1).ToString());
+
+                    // Update the DistanceModel with the new distances
+                    await _DistanceDataContext.UpdateAsync(distdata._id, distdata);
+                }
+
+
+                //int safeIndex = LocationID;
+
+                ////Delete all dictionary entries
+                //foreach (var distancelist in distances)
+                //{
+                //    //Remove
+                //    if (distancelist.distances != null)
+                //    {
+                //        distancelist.distances.Remove(LocationID.ToString()); 
+                //    }
+                //    else
+                //    {
+                //        return BadRequest();
+                //    }
+
+                //}
+                //var locationso = await _LocationDataContext.GetAsync();
+                //var distanceso = await _DistanceDataContext.GetAsync();
+
+                ////try
+                //for (int i = LocationID+1; i < locations.Count; i++ )
+                //{
+                //    var locationU = locations[i];
+                //    locationU.LocationID -= 1;
+                //    await Console.Out.WriteLineAsync("1");
+
+                //    await _LocationDataContext.UpdateAsync(locationU._id, locationU);
+
+                //}
+
+                //for (int j = LocationID + 1; j < distances.Count; j++)
+                //{
+                //    var distancesu = distances[j];
+                //    distancesu.locationID -= 1;
+                //    await Console.Out.WriteLineAsync("2");
+
+                //    await _DistanceDataContext.UpdateAsync(distancesu._id, distancesu);
+                //}
+
+                //foreach(var distentry in distances)
+                //{
+                //    if (distentry.distances != null)
+                //    {
+                //        distentry.distances.Remove(safeIndex.ToString());
+
+                //        // Create a new dictionary with sequential keys
+                //        var newDistances = new Dictionary<string, long>();
+                //        int newKey = 0;
+
+                //        foreach (var kvp in distentry.distances)
+                //        {
+                //            newDistances[newKey.ToString()] = kvp.Value;
+                //            newKey++;
+                //        }
+                //        await Console.Out.WriteLineAsync("3");
+                //        distentry.distances = newDistances;
+                //        await _DistanceDataContext.UpdateAsync(distentry._id, distentry);
+                //    }
+                //    else
+                //    {
+                //        return BadRequest();
+                //    }
+                //}                        
+                return Ok();
+
+            }
+            catch (Exception error)
+            {
+                return Problem(error.Message);
             }
         }
     }

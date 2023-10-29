@@ -3,19 +3,21 @@
 @using DeepFrees.WebPro.Services;
 
 @inject VRoutingStream VRoutingStream
+@inject NavigationManager NavigationManager
 
 <PageTitle>Add Distances</PageTitle>
 
 <div class="jumbotron">
      <h1 class="display-4"><a href="/Delivery"><img width="44" height="44" src="https://img.icons8.com/metro/44/000000/circled-left-2.png" alt="circled-left-2" /></a>&nbsp; Routes and Delivery Managemenet</h1>
-    <p class="lead">Current Routes</p>
+    <p class="lead">Add Location >> Assign Distance Matrices</p>
     <hr class="my-4">
     <p class="lead">
-        <a class="btn btn-dark btn-lg" href="/Delivery/AddLocation" role="button">Add Locations</a>
-        <a class="btn btn-dark btn-lg" href="/Delivery/AddDistances" role="button">Add Distances</a>
-        <a class="btn btn-dark btn-lg" href="#" role="button">Manage Locations</a>
-        <a class="btn btn-dark btn-lg" href="#" role="button">Create New Route</a>
-        <a class="btn btn-dark btn-lg" href="#" role="button">Other Tools</a>
+        <a class="btn btn-dark btn-lg" href="/Delivery" role="button">Routes</a>
+        <a class="btn btn-secondary btn-lg" href="/Delivery/AddLocation" role="button">Add Locations</a>
+        <a class="btn btn-dark btn-lg" href="/Delivery/DistanceSheet" role="button">Check Distance Between Locations</a>
+        <a class="btn btn-dark btn-lg" href="/Delivery/CreateRoute" role="button">Create New Route</a>
+        <a class="btn btn-dark btn-lg" href="/Delivery/ManageLocation" role="button">Edit Locations</a>
+        <a class="btn btn-dark btn-lg" href="/Delivery/EditDistances" role="button">Edit Distance</a>
     </p>
 </div>
 
@@ -28,53 +30,68 @@
 }
 else
 {
-    <h4>City Newly Added<span class="badge badge-secondary">5</span></h4>
+    <h4>@Location<span class="badge badge-secondary">5</span></h4>
 
-    <div class="form-group">
-        <label for="selectCity2">Destination</label>
-        <select class="form-control" id="selectCity2" @bind="selectedCity2">
-            @foreach (var city in Locations)
-            {
-                <option value="@city.locationID">@city.city</option>
-            }
-        </select>
-    </div>
-    <div class="form-group">
-        <label for="distancein">Distance</label>
-        <input type="number" class="form-control" id="distancein">
-    </div>
+    @if (Locations == null)
+    {
+        <p><em>Loading...</em></p>
+    }
+    else
+    {
+        <div class="form-group">
+            <label for="selectCity1">Select Destination</label>
+            <select class="form-control" id="selectCity1" @bind="selectedCity1">
+                @foreach (var city in Locations)
+                {
+                    @if (!dkvp.ContainsKey(city.locationID.ToString()))
+                    {
+                        <option value="@city.locationID">@city.city</option>
+                    }
+                    else
+                    {
+                        <option value="@city.locationID">@city.city - Already Added</option>
+                    }
+                }
+            </select>
+        </div>
 
-    <br/>
+        <div class="form-group">
+            <label for="distance">Enter Distance</label>
+            <input type="number" class="form-control" id="distance" @bind="distance" />
+        </div>
 
-    <button @onclick="Calc" class="btn btn-primary">Add</button>
+        <br/>
 
-    <br />
-    <br />
+        <div class="form-group">
+            <button @onclick="AddDistance" class="btn btn-primary">Add Distance</button>
+        </div>
 
-    <h3>Current Distance Matrix for City</h3>
+        <br/>
+        <br/>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th scope="col">City</th>
-                <th scope="col">Distance</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>Mark</td>
-                <td>Mark</td>
-            </tr>
-            <tr>
-                <td>Jacob</td>
-                <td>Jacob</td>
-            </tr>
-            <tr>
-                <td>Larry</td>
-                <td>Larry</td>
-            </tr>
-        </tbody>
-    </table>
+        <!-- Display the added distances in a table -->
+        @if (dkvp.Count > 0)
+        {
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Destination City</th>
+                        <th>Distance</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in dkvp)
+                    {
+                        <tr>
+                            <td>@Locations.FirstOrDefault(l => l.locationID == Convert.ToInt32(item.Key))?.city</td>
+                            <td>@item.Value</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+    }
+
 
     <button @onclick="Calc" class="btn btn-danger">Confirm Distance Matrix</button>
 
@@ -83,40 +100,64 @@ else
 
 
 @code {
-    private string selectedCity1 = "5";
-    private string selectedCity2 = "";
-    private string? selectedDistance { get; set; }
+    private int selectedCity1 { get; set; }
 
+    private string distance { get; set; }
+
+
+    string? Location { get; set; }
 
     private string? CurrentValue;
     private List<Location>? Locations;
-    private List<DistanceModel>? Distances { get; set; }
+
+    Dictionary<string, long> DistanceMatrix = new Dictionary<string, long>();
+    Dictionary<string, long> dkvp = new(); //Temporary
 
     protected override async Task OnInitializedAsync()
     {
         Locations = await VRoutingStream.GetAllLocations();
-        Distances = await VRoutingStream.GetAllDistances();
+
+        var uri = new Uri(NavigationManager.Uri);
+        var query = System.Web.HttpUtility.ParseQueryString(uri.Query);
+
+        Location = query["Location"];
     }
 
-    private void Calc()
+    void Calc()
     {
+        //asd
+    }
 
-        Console.WriteLine("Wait...");
+    void AddDistance()
+    {
+        Console.WriteLine("A3");
 
-        Console.WriteLine(selectedCity1 + " : " + selectedCity2);
-
-        var l1 = Locations.Find(l => l.locationID.Equals(int.Parse(selectedCity1)));
-        var l2 = Locations.Find(li => li.locationID.Equals(int.Parse(selectedCity2)));
-
-        if (l1 != null && l2 != null)
+        if (selectedCity1 >-1 && !string.IsNullOrEmpty(distance) && Location != null)
         {
-            var distR = Distances.Find(d => d.locationID.Equals(l1.locationID));
-            selectedDistance = distR.distances[l2.locationID.ToString()].ToString();
-            //StateHasChanged();
-        }
-        else
-        {
-            Console.WriteLine("Null");
+            Console.WriteLine("A2");
+
+            @if (!dkvp.ContainsKey(selectedCity1.ToString()))
+            {
+                // Parse distance as needed (e.g., to double)
+                if (long.TryParse(distance, out long distanceValue))
+                {
+                    Console.WriteLine("A1");
+                    dkvp.Add(selectedCity1.ToString(), distanceValue);
+
+
+                    // Clear the input fields
+                    selectedCity1 = 0;
+                    distance = string.Empty;
+
+                    StateHasChanged();
+                }
+            }
+            else
+
+            {
+                //Handle error already exist
+            }
         }
     }
+
 }

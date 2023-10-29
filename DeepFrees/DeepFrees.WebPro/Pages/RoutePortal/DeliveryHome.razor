@@ -1,4 +1,5 @@
 ﻿@page "/Delivery"
+@using DeepFrees.WebPro.Pages.RoutePortal
 
 <PageTitle>Delivery Routing</PageTitle>
 
@@ -7,11 +8,12 @@
     <p class="lead">Current Routes</p>
     <hr class="my-4">
     <p class="lead">
+        <a class="btn btn-secondary btn-lg" href="/Delivery" role="button">Routes</a>
         <a class="btn btn-dark btn-lg" href="/Delivery/AddLocation" role="button">Add Locations</a>
-        <a class="btn btn-dark btn-lg" href="/Delivery/AddDistances" role="button">Add Distances</a>
-        <a class="btn btn-dark btn-lg" href="#" role="button">Manage Locations</a>
-        <a class="btn btn-dark btn-lg" href="#" role="button">Create New Route</a>
-        <a class="btn btn-dark btn-lg" href="#" role="button">Other Tools</a>
+        <a class="btn btn-dark btn-lg" href="/Delivery/DistanceSheet" role="button">Check Distance Between Locations</a>
+        <a class="btn btn-dark btn-lg" href="/Delivery/CreateRoute" role="button">Create New Route</a>
+        <a class="btn btn-dark btn-lg" href="/Delivery/ManageLocation" role="button">Edit Locations</a>
+        <a class="btn btn-dark btn-lg" href="/Delivery/EditDistances" role="button">Edit Distance</a>
     </p>
 </div>
 

@@ -1,30 +1,50 @@
 ﻿@page "/Delivery/AddLocation"
+@using DeepFrees.WebPro.Model;
+@using DeepFrees.WebPro.Services;
 
 <PageTitle>Add Location</PageTitle>
+
+@inject VRoutingStream VRoutingStream
+@inject NavigationManager NavigationManager
 
 <div class="jumbotron">
     <h1 class="display-4"><a href="/Delivery"><img width="44" height="44" src="https://img.icons8.com/metro/44/000000/circled-left-2.png" alt="circled-left-2" /></a>&nbsp; Routes and Delivery Managemenet</h1>
     <p class="lead">Add New Location</p>
     <hr class="my-4">
     <p class="lead">
-        <a class="btn btn-dark btn-lg" href="#" role="button">Add Locations</a>
-        <a class="btn btn-dark btn-lg" href="#" role="button">Manage Locations</a>
-        <a class="btn btn-dark btn-lg" href="#" role="button">Create New Route</a>
-        <a class="btn btn-dark btn-lg" href="#" role="button">Other Tools</a>
+        <a class="btn btn-dark btn-lg" href="/Delivery" role="button">Routes</a>
+        <a class="btn btn-dark btn-lg" href="/Delivery/AddLocation" role="button">Add Locations</a>
+        <a class="btn btn-dark btn-lg" href="/Delivery/DistanceSheet" role="button">Check Distance Between Locations</a>
+        <a class="btn btn-dark btn-lg" href="/Delivery/CreateRoute" role="button">Create New Route</a>
+        <a class="btn btn-dark btn-lg" href="/Delivery/ManageLocation" role="button">Edit Locations</a>
+        <a class="btn btn-dark btn-lg" href="/Delivery/EditDistances" role="button">Edit Distance</a>
     </p>
 </div>
 
 <br />
 <br />
 
-<form>
+
     <div class="form-group">
         <label for="City">City</label>
-        <input type="text" class="form-control" id="City" placeholder="Enter City/Building/Other Location">
+    <input type="text" class="form-control" @bind="cityName" id="City" placeholder="Enter City/Building/Other Location">
     </div>
-    <button type="submit" class="btn btn-primary">Add Location</button>
-</form>
+    <br/>
+    <button type="submit" @onclick="AddLocation" class="btn btn-primary">Next</button>
+
 
 @code {
+    public string cityName = "";
 
+    public async void AddLocation()
+    {
+        Location Location = new();
+
+        Location.city = cityName;
+
+        var LocID = await VRoutingStream.CreateLocation(Location);
+
+        var AllLocations = await VRoutingStream.GetLocationsAll();
+        NavigationManager.NavigateTo("/Delivery/AddDistances?Location=" + LocID);
+    }
 }

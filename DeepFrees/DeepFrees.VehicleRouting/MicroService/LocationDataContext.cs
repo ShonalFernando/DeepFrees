@@ -25,16 +25,16 @@ namespace DeepFrees.VehicleRouting.MicroService
         public async Task<List<Location>> GetAsync() =>
             await _UserAccountsCollection.Find(_ => true).ToListAsync();
 
-        public async Task<Location?> GetAsync(ObjectId _id) =>
-            await _UserAccountsCollection.Find(x => x._id == _id).FirstOrDefaultAsync();
+        public async Task<Location?> GetAsync(int _id) =>
+            await _UserAccountsCollection.Find(x => x.LocationID == _id).FirstOrDefaultAsync();
 
         public async Task CreateAsync(Location locations) =>
             await _UserAccountsCollection.InsertOneAsync(locations);
 
-        public async Task UpdateAsync(ObjectId _id, Location locations) =>
+        public async Task UpdateAsync(ObjectId? _id, Location locations) =>
             await _UserAccountsCollection.ReplaceOneAsync(x => x._id == _id, locations);
 
-        public async Task RemoveAsync(ObjectId _id) =>
-            await _UserAccountsCollection.DeleteOneAsync(x => x._id == _id);
+        public async Task RemoveAsync(int _id) =>
+            await _UserAccountsCollection.DeleteOneAsync(x => x.LocationID == _id);
     }
 }

@@ -20,6 +20,14 @@ build_property._RazorSourceGeneratorDebug =
 build_metadata.AdditionalFiles.TargetPath = QXBwLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
+[D:/Source/Repos/DeepFrees/DeepFrees/DeepFrees.WebPro/Pages/CallPortal/CallAssignmentViewer.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ2FsbFBvcnRhbFxDYWxsQXNzaWdubWVudFZpZXdlci5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Source/Repos/DeepFrees/DeepFrees/DeepFrees.WebPro/Pages/CMS/CMSHome.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ01TXENNU0hvbWUucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/Source/Repos/DeepFrees/DeepFrees/DeepFrees.WebPro/Pages/Counter.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ291bnRlci5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
@@ -70,6 +78,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [D:/Source/Repos/DeepFrees/DeepFrees/DeepFrees.WebPro/Pages/RoutePortal/LocationManage.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUm91dGVQb3J0YWxcTG9jYXRpb25NYW5hZ2UucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Source/Repos/DeepFrees/DeepFrees/DeepFrees.WebPro/Pages/RoutePortal/RouteCreate.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUm91dGVQb3J0YWxcUm91dGVDcmVhdGUucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/Source/Repos/DeepFrees/DeepFrees/DeepFrees.WebPro/Pages/RoutePortal/RouteView.razor]
