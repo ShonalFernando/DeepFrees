@@ -1,24 +1,24 @@
 ﻿@page "/Technicians"
 
-<PageTitle>Technician Portal</PageTitle>
-
 @using DeepFrees.EmployeeService.Model;
 @using DeepFrees.TechnicianService.Model;
 @using DeepFrees.WebPro.Services
 @inject TechnicianStream TechnicianStream
 
-<nav class="breadcrumbs">
-    <a href="/" class="breadcrumbs__item">Home</a>
-    <a href="/Technicians" class="breadcrumbs__item is-active">Technicians</a>
-</nav>
+<PageTitle>Technicians</PageTitle>
+
+<div class="jumbotron">
+    <h1 class="display-4">Technician Portal</h1>
+    <p class="lead">All Technicians</p>
+    <hr class="my-4">
+    <p class="lead">
+        <a class="btn btn-secondary btn-lg" href="/Technicians" role="button">All Technicians</a>
+        <a class="btn btn-dark btn-lg" href="/Technicians/Add" role="button">Add Technicians</a>
+    </p>
+</div>
 
 <br />
 <br />
-
-<h1>All Technicians</h1>
-
-<p>Click on a Technician to Edit or Delete or to View More Details. <a href="/Technicians/Add">Click Here to Add an Technician</a></p>
-
 
 @if (Technicians == null)
 {
@@ -57,7 +57,7 @@ else
 
 @code {
     private List<Technician>? Technicians;
-    private string InLink = "/Technicians/TechniciansInDetail?NIC";
+    private string InLink = "/Technicians/InDetail?NIC";
 
     protected override async Task OnInitializedAsync()
     {

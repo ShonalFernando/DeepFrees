@@ -1,0 +1,75 @@
+﻿@using System.Collections.Generic;
+@using System.Reflection;
+
+@page "/Jobs"
+
+<PageTitle>Jobs</PageTitle>
+
+@using DeepFrees.EmployeeService.Model;
+@using DeepFrees.Scheduler.Model;
+@using DeepFrees.TaskService.Model;
+@using DeepFrees.WebPro.Services
+
+@inject WorkTaskStream WorkTaskStream
+@inject NavigationManager NavigationManager
+@inject JobsStream JobsStream
+
+<div class="jumbotron">
+    <h1 class="display-4">Jobs</h1>
+    <p class="lead">All Jobs</p>
+    <hr class="my-4">
+    <p class="lead">
+        <a class="btn btn-secondary btn-lg" href="/Jobs" role="button">Jobs</a>
+        <a class="btn btn-dark btn-lg" href="/Jobs/Add" role="button">Add Job</a>
+    </p>
+</div>
+
+<br />
+<br />
+
+
+
+<h1></h1>
+
+@if (WorkTasks == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Availability</th>
+                <th>Duration</th>
+                <th>Team</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var workTask in WorkTasks)
+            {
+                <tr>
+                    <td>@workTask.isAvailable</td>
+                    <td>@workTask.duration</td>
+                    <td>@workTask.team</td>
+                </tr>
+            }
+            <tr>
+                <td><a href="/Taskboard/Add">Add + </a></td>
+                <td> </td>
+                <td> </td>
+                <td> </td>
+                <td> </td>
+            </tr>
+        </tbody>
+    </table>
+}
+@code {
+    private List<JobTask>? WorkTasks;
+    private string InLink = "/Employees/EmployeeInDetail?NIC"; //
+
+    protected override async Task OnInitializedAsync()
+    {
+        WorkTasks = await JobsStream.GetJobs();
+    }
+}

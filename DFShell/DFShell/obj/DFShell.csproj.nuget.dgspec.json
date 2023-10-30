@@ -60,6 +60,10 @@
             "Microsoft.Web.WebView2": {
               "target": "Package",
               "version": "[1.0.1823.32, )"
+            },
+            "MongoDB.Driver": {
+              "target": "Package",
+              "version": "[2.22.0, )"
             }
           },
           "imports": [

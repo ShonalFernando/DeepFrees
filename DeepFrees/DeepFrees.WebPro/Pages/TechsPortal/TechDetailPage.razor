@@ -1,0 +1,154 @@
+﻿@page "/Technicians/InDetail"
+
+@using DeepFrees.EmployeeService.Model;
+@using DeepFrees.TechnicianService.Model;
+@using DeepFrees.WebPro.Services
+@inject TechnicianStream TechnicianStream
+@inject NavigationManager NavigationManager
+
+<PageTitle>Technician In Detail</PageTitle>
+
+<div class="jumbotron">
+    <h1 class="display-4">Technician Portal</h1>
+    <p class="lead">All Technicians</p>
+    <hr class="my-4">
+    <p class="lead">
+        <a class="btn btn-secondary btn-lg" href="/Technicians" role="button">All Technicians</a>
+        <a class="btn btn-dark btn-lg" href="/Technicians/Add" role="button">Add Technicians</a>
+    </p>
+</div>
+
+<br />
+<br />
+
+<div class="form-group">
+    <label for="nicin">NIC</label>
+    <input type="text" @bind="@NIC" class="form-control" id="nicin" placeholder="Enter NIC">
+</div>
+<div class="form-group">
+    <label for="name1">First Name</label>
+    <input type="text" @bind="@FirstName" class="form-control" id="name1" placeholder="Insert First Name">
+</div>
+<div class="form-group">
+    <label for="name3">Last Name</label>
+    <input type="text" @bind="@LastName" class="form-control" id="name3" placeholder="Insert Third Name">
+</div>
+<div class="form-group">
+    <label for="Qualification">Qualification</label>
+    <input type="text" @bind="@Qualification" class="form-control" id="Qualification" placeholder="Insert Qualification">
+</div>
+<div class="form-group">
+    <label for="InstallationQ">NIC</label>
+    <input type="text" @bind="@Installation" class="form-control" id="Installation" placeholder="Installation">
+</div>
+<div class="form-group">
+    <label for="CallibrationQ">First Name</label>
+    <input type="text" @bind="@Callibration" class="form-control" id="CallibrationQ" placeholder="Callibration">
+</div>
+<div class="form-group">
+    <label for="SanitaryQ">Last Name</label>
+    <input type="text" @bind="@Sanitary" class="form-control" id="SanitaryQ" placeholder="Sanitary">
+</div>
+<div class="form-group">
+    <label for="TroubleshootingQ">Qualification</label>
+    <input type="text" @bind="@Troubleshooting" class="form-control" id="TroubleshootingQ" placeholder="Troubleshooting">
+</div>
+<div class="form-group">
+    <label for="RepairsQ">NIC</label>
+    <input type="text" @bind="@Repairs" class="form-control" id="RepairsQ" placeholder="Repairs">
+</div>
+<div class="form-group">
+    <label for="MaintainanceQ">First Name</label>
+    <input type="text" @bind="@Maintainance" class="form-control" id="MaintainanceQ" placeholder="Maintainance">
+</div>
+<div class="form-group">
+    <label for="DeliveryQ">Last Name</label>
+    <input type="text" @bind="@Delivery" class="form-control" id="DeliveryQ" placeholder="Delivery">
+</div>
+<div class="form-group">
+    <label for="Qualification">Qualification</label>
+    <input type="text" @bind="@Assembly" class="form-control" id="Qualification" placeholder="Assembly">
+</div>
+<br />
+<br />
+<button @onclick="Edit" class="btn btn-primary">Update Technician</button>
+<button @onclick="Delete" class="btn btn-primary">Delete Technician</button>
+
+@code {
+    private Technician Technician { get; set; }
+    private string? NIC { get; set; }
+
+    string FirstName = "";
+    string LastName = "";
+    string Qualification = "";
+
+    int Repairs;
+    int Maintainance;
+    int Delivery;
+    int Assembly;
+    int Troubleshooting;
+    int Installation;
+    int Callibration;
+    int Sanitary;
+
+    List<WorkTaskPoints> wtspoints { get; set; }
+
+    private async void Edit()
+    {
+        Technician.nic = NIC;
+        Technician.firstName = FirstName;
+        Technician.lastName = LastName;
+        Technician.qualification = Qualification;
+        Technician.workTaskPointTable[0].taskCategoryPoints = Repairs;
+        Technician.workTaskPointTable[1].taskCategoryPoints = Maintainance;
+        Technician.workTaskPointTable[2].taskCategoryPoints = Delivery;
+        Technician.workTaskPointTable[3].taskCategoryPoints = Assembly;
+        Technician.workTaskPointTable[4].taskCategoryPoints = Troubleshooting;
+        Technician.workTaskPointTable[5].taskCategoryPoints = Installation;
+        Technician.workTaskPointTable[6].taskCategoryPoints = Callibration;
+        Technician.workTaskPointTable[7].taskCategoryPoints = Sanitary;
+
+        await TechnicianStream.UpdateTechnician(Technician);
+    }
+    private async void Delete()
+    {
+        await TechnicianStream.DeleteTechnician(Technician);
+    }
+    protected async override void OnInitialized()
+    {
+        var uri = new Uri(NavigationManager.Uri);
+        var query = System.Web.HttpUtility.ParseQueryString(uri.Query);
+        NIC = query["NIC"];
+        Technician = await TechnicianStream.GetTechnicianSingle(NIC);
+
+        FirstName = Technician.firstName;
+        LastName = Technician.lastName;
+        Qualification = Technician.qualification;
+
+        wtspoints = Technician.workTaskPointTable;
+
+        try{
+            Repairs = wtspoints[0].taskCategoryPoints;
+            Maintainance = wtspoints[1].taskCategoryPoints;
+            Delivery = wtspoints[2].taskCategoryPoints;
+            Assembly = wtspoints[3].taskCategoryPoints;
+            Troubleshooting = wtspoints[4].taskCategoryPoints;
+            Installation = wtspoints[5].taskCategoryPoints;
+            Callibration = wtspoints[6].taskCategoryPoints;
+            Sanitary = wtspoints[7].taskCategoryPoints;
+        }
+
+        catch
+        {
+            Repairs = 0;
+            Maintainance = 0;
+            Delivery = 0;
+            Assembly = 0;
+            Troubleshooting = 0;
+            Installation = 0;
+            Callibration = 0;
+            Sanitary = 0;
+        }
+            StateHasChanged();
+    }
+}

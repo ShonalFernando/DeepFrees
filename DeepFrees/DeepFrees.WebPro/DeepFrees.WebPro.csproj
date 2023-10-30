@@ -8,7 +8,6 @@
 
   <ItemGroup>
     <Folder Include="Pages\InfoPortal\" />
-    <Folder Include="Pages\JobPortal\" />
     <Folder Include="Pages\HomePortal\" />
     <Folder Include="Pages\UserAccountsPortal\" />
     <Folder Include="Pages\SettingsPortal\" />

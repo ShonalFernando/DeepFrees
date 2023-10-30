@@ -24,27 +24,35 @@ namespace DeepFrees.WebPro.Services
                         Tuple<List<WorkTask>, List<Technician>>? DispatchSolutions = JsonSerializer.Deserialize<Tuple<List<WorkTask>, List<Technician>>>(content);
                         if (DispatchSolutions != null)
                         {
+                            Console.WriteLine("1");
                             return DispatchSolutions;
                         }
                         else
                         {
+                            Console.WriteLine("5");
+
                             return Tuple.Create(new List<WorkTask>(), new List<Technician>());
                         }
                     }
                     catch (Exception e)
                     {
+                        Console.WriteLine("2");
 
                         await Console.Out.WriteLineAsync( e.Message  );
                         return Tuple.Create(new List<WorkTask>(), new List<Technician>());
                     }
                 }
                 else
+                           
                 {
+                    Console.WriteLine("3");
                     return Tuple.Create(new List<WorkTask>(), new List<Technician>());
                 }
             }
             else
             {
+                Console.WriteLine("4");
+
                 return Tuple.Create(new List<WorkTask>(), new List<Technician>());
             }
         }

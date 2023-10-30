@@ -46,7 +46,7 @@ namespace DeepFrees.Scheduler.MicroService
             int numteams = 0;
             foreach (var job in allJobs)
             {
-                foreach (var task in job)
+                foreach (var task in job.Tasks)
                 {
                     numteams = Math.Max(numteams, 1 + task.team);
                 }
@@ -57,7 +57,7 @@ namespace DeepFrees.Scheduler.MicroService
             int horizon = 0;
             foreach (var job in allJobs)
             {
-                foreach (var task in job)
+                foreach (var task in job.Tasks)
                 {
                     horizon += task.duration;
                 }
@@ -72,7 +72,7 @@ namespace DeepFrees.Scheduler.MicroService
             for (int jobID = 0; jobID < allJobs.Count(); ++jobID)
             {
                 var job = allJobs[jobID];
-                for (int taskID = 0; taskID < job.Count(); ++taskID)
+                for (int taskID = 0; taskID < job.Tasks.Count(); ++taskID)
                 {
                     var task = job.Tasks[taskID];
                     String suffix = $"_{jobID}_{taskID}";
@@ -99,7 +99,7 @@ namespace DeepFrees.Scheduler.MicroService
             for (int jobID = 0; jobID < allJobs.Count(); ++jobID)
             {
                 var job = allJobs[jobID];
-                for (int taskID = 0; taskID < job.Count() - 1; ++taskID)
+                for (int taskID = 0; taskID < job.Tasks.Count() - 1; ++taskID)
                 {
                     var key = Tuple.Create(jobID, taskID);
                     var nextKey = Tuple.Create(jobID, taskID + 1);
@@ -114,7 +114,7 @@ namespace DeepFrees.Scheduler.MicroService
             for (int jobID = 0; jobID < allJobs.Count(); ++jobID)
             {
                 var job = allJobs[jobID];
-                var key = Tuple.Create(jobID, job.Count() - 1);
+                var key = Tuple.Create(jobID, job.Tasks.Count() - 1);
                 ends.Add(allTasks[key].Item2);
             }
             model.AddMaxEquality(objVar, ends);
@@ -133,7 +133,7 @@ namespace DeepFrees.Scheduler.MicroService
                 for (int jobID = 0; jobID < allJobs.Count(); ++jobID)
                 {
                     var job = allJobs[jobID];
-                    for (int taskID = 0; taskID < job.Count(); ++taskID)
+                    for (int taskID = 0; taskID < job.Tasks.Count(); ++taskID)
                     {
                         var task = job.Tasks[taskID];
                         var key = Tuple.Create(jobID, taskID);
@@ -146,6 +146,8 @@ namespace DeepFrees.Scheduler.MicroService
                     }
                 }
 
+                List<SolutionsModel> solutionsList = new List<SolutionsModel>();
+
                 // Create per team output lines.
                 String output = "";
                 foreach (int team in allteams)
@@ -157,6 +159,15 @@ namespace DeepFrees.Scheduler.MicroService
 
                     foreach (var assignedTask in assignedJobs[team])
                     {
+                        SolutionsModel solution = new SolutionsModel
+                        {
+                            Team = $"team {team}",
+                            JobTask = $"job_{assignedTask.jobID}_task_{assignedTask.taskID}",
+                            StartTime = assignedTask.start,
+                            EndTime = assignedTask.start + assignedTask.duration
+                        };
+                        solutionsList.Add(solution);
+
                         String name = $"job_{assignedTask.jobID}_task_{assignedTask.taskID}";
                         // Add spaces to output to align columns.
                         solLineTasks += $"{name,-15}";

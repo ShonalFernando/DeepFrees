@@ -9,9 +9,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using DFShell.View;
 using DFShell.View.Pages;
-using SourceChord.FluentWPF;
 using System;
 using System.Diagnostics;
 using System.Windows;
@@ -55,7 +53,7 @@ namespace DFShell.View.Pages {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/DFShell;V1.0.0.0;component/view/pages/homepage.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/DFShell;component/view/pages/homepage.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\..\View\Pages\HomePage.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

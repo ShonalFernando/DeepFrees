@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "IO3gxB/RLPd9iBpJFM+HGzdZ9LOromX87IB4sx/Ym5rMXhdB3NfDhTLhoKKKBoyBirdsC0/AEp/SepOchlUNPg==",
+  "dgSpecHash": "7853C8H53ku2OiWl8JVmhaiEqLN6A+QEmQRYAJ2v1BvSQ7ejjG+A0IAncToyv53VMb7wnL2BgZ8pzBxwPkkdjg==",
   "success": true,
   "projectFilePath": "D:\\Source\\Repos\\DeepFrees\\DeepFrees\\DeepFrees.TaskService\\DeepFrees.TaskService.csproj",
   "expectedPackageFiles": [
@@ -11,6 +11,7 @@
     "C:\\Users\\Shonal Fernando\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\2.0.0\\microsoft.extensions.logging.abstractions.2.0.0.nupkg.sha512",
     "C:\\Users\\Shonal Fernando\\.nuget\\packages\\microsoft.netcore.platforms\\5.0.0\\microsoft.netcore.platforms.5.0.0.nupkg.sha512",
     "C:\\Users\\Shonal Fernando\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",
+    "C:\\Users\\Shonal Fernando\\.nuget\\packages\\microsoft.visualstudio.azure.containers.tools.targets\\1.18.1\\microsoft.visualstudio.azure.containers.tools.targets.1.18.1.nupkg.sha512",
     "C:\\Users\\Shonal Fernando\\.nuget\\packages\\microsoft.win32.registry\\5.0.0\\microsoft.win32.registry.5.0.0.nupkg.sha512",
     "C:\\Users\\Shonal Fernando\\.nuget\\packages\\mongodb.bson\\2.22.0\\mongodb.bson.2.22.0.nupkg.sha512",
     "C:\\Users\\Shonal Fernando\\.nuget\\packages\\mongodb.driver\\2.22.0\\mongodb.driver.2.22.0.nupkg.sha512",

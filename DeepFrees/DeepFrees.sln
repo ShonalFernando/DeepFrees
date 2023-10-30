@@ -25,6 +25,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DeepFrees.TaskService", "De
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DeepFrees.TechnicianService", "DeepFrees.TechnicianService\DeepFrees.TechnicianService.csproj", "{537C7E15-4343-4EE9-9ED6-EC47ECE2B187}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DeepFrees.SettingsService", "DeepFrees.SettingsService\DeepFrees.SettingsService.csproj", "{388CBA5E-F56D-47B3-88ED-AC19CB4308DD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -71,6 +73,10 @@ Global
 		{537C7E15-4343-4EE9-9ED6-EC47ECE2B187}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{537C7E15-4343-4EE9-9ED6-EC47ECE2B187}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{537C7E15-4343-4EE9-9ED6-EC47ECE2B187}.Release|Any CPU.Build.0 = Release|Any CPU
+		{388CBA5E-F56D-47B3-88ED-AC19CB4308DD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{388CBA5E-F56D-47B3-88ED-AC19CB4308DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{388CBA5E-F56D-47B3-88ED-AC19CB4308DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{388CBA5E-F56D-47B3-88ED-AC19CB4308DD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -80,6 +86,7 @@ Global
 	EndGlobalSection
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		Commons.DeepFrees\Commons.DeepFrees.projitems*{136d0d87-883b-43f8-ab51-4b77f7bbc7c0}*SharedItemsImports = 5
+		Commons.DeepFrees\Commons.DeepFrees.projitems*{388cba5e-f56d-47b3-88ed-ac19cb4308dd}*SharedItemsImports = 5
 		Commons.DeepFrees\Commons.DeepFrees.projitems*{537c7e15-4343-4ee9-9ed6-ec47ece2b187}*SharedItemsImports = 5
 		Commons.DeepFrees\Commons.DeepFrees.projitems*{6d89d48b-f9d6-4ca9-be70-a4a04518072b}*SharedItemsImports = 5
 		Commons.DeepFrees\Commons.DeepFrees.projitems*{8b76ee89-d5fa-4a3e-a3ab-8da2679e00bf}*SharedItemsImports = 5

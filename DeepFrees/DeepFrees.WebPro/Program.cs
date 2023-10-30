@@ -19,6 +19,7 @@ namespace DeepFrees.WebPro
             builder.Services.AddScoped<DispatchSolutionStream>();
             builder.Services.AddScoped<TechnicianStream>();
             builder.Services.AddScoped<VRoutingStream>();
+            builder.Services.AddScoped<JobsStream>();
 
             var app = builder.Build();
 

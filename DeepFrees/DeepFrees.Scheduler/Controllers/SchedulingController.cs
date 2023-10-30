@@ -2,6 +2,7 @@
 using DeepFrees.Scheduler.Model;
 using DeepFrees.Scheduler.MicroService;
 using System.Threading.Tasks;
+using MongoDB.Bson;
 
 namespace DeepFrees.Scheduler.Controllers
 {
@@ -20,29 +21,55 @@ namespace DeepFrees.Scheduler.Controllers
             _WorkTaskScheduler = workTaskScheduler;
         }
 
+        [HttpGet("GetTasks")]
+        public async Task<IActionResult> GetTasks()
+        {
+            return Ok(await _JobDataService.GetAsync());
+        }
+
 
         //Job Creation
-        [HttpPost]
-        public async Task<IActionResult> JobPost(JobScheduleRequest JobRequestTable)
+        [HttpPost("CreatePost")]
+        public async Task<IActionResult> CreatePost(JobTask JobTask)
         {
-            JobScheduleRequest jobSchedule = new();
-
-            foreach (var jobListings in JobRequestTable.AllJobs)
-            {
-                foreach(var )
-                var job = new Job();
-
-                foreach (var task in jobTasks)
-                {
-                    job.Tasks.Add(new JobTask { team = task.team, duration = task.duration });
-                }
-
-                jobSchedule.AllJobs.Add(job);
-            }
-            _WorkTaskScheduler.Shuffle(jobSchedule);
+            JobTask._id =ObjectId.GenerateNewId();
+            await _JobDataService.CreateAsync(JobTask);
             return Ok();
         }
 
+        //Job Creation
+        [HttpPost("Shuffle")]
+        public async Task<IActionResult> Shuffle()
+        {
+            JobScheduleRequest jobSchedule = new();
+
+            var JobsListing = await _JobDataService.GetAsync();
+
+            var groupedTasks = JobsListing
+                .GroupBy(task => task.weekID)
+                .ToDictionary(group => group.Key, group => group.ToList());
+
+            var jobSchedule2 = new JobScheduleRequest();
+
+            foreach (var weekId in groupedTasks.Keys)
+            {
+                var job = new Job();
+                job.Tasks.AddRange(groupedTasks[weekId]);
+                jobSchedule.AllJobs.Add(job);
+            }
+
+            _WorkTaskScheduler.Shuffle(jobSchedule2);
+            return Ok();
+        }
+
+        //Job Creation
+        [HttpPost("Tester")]
+        public async Task<IActionResult> Shuffle(JobScheduleRequest JobRequestTable)
+        {
+
+            _WorkTaskScheduler.Shuffle(JobRequestTable);
+            return Ok();
+        }
         ////Account Update
         //[HttpPut]
         //public async Task<IActionResult> Update(WeeklyJob WeeklyJob)

@@ -11,19 +11,22 @@
 @inject TechnicianStream TechnicianStream
 @inject WorkTaskStream WorkTaskStream
 
-<nav class="breadcrumbs">
-    <a href="#home" class="breadcrumbs__item">Home</a>
-    <a href="/IRM" class="breadcrumbs__item is-active">IRM</a>
-</nav>
+<PageTitle>Technician Schedules</PageTitle>
+
+<div class="jumbotron">
+    <h1 class="display-4">Task Schedules</h1>
+    <p class="lead">All Schedules</p>
+    <hr class="my-4">
+    <p class="lead">
+        <a class="btn btn-secondary btn-lg" href="/IRM" role="button">IRM</a>
+        <a class="btn btn-dark btn-lg" href="/IRM" role="button">Refresh</a>
+    </p>
+</div>
 
 <br />
 <br />
 
-<h1>IRM</h1>
-
-<p><a href="/IRM">Click Here to Refresh Shuffle</a></p>
-
-@if (SolutionTuple == null || SolutionTuple.Item2 == null)
+@if (technicians == null)
 {
     <p><em>Loading...</em></p>
 }
@@ -33,16 +36,22 @@ else
         <thead>
             <tr>
                 <th>Technician Name</th>
+                <th>Assigned Task</th>
+                <th>Task Commencement Date</th>
                 <th>Action</th>
             </tr>
         </thead>
         <tbody>
-            @foreach (var AssignedTechs in SolutionTuple.Item2)
+            @foreach (var techs in technicians)
             {
+                @foreach (var aTasks in techs.assignedTasks)
+                {
                     <tr>
-                    <td>@AssignedTechs.firstName</td>
-                    <td><a href="@InLink=@AssignedTechs.nic">View Tasks</a></td>
-                </tr>
+                        <td>@techs.firstName</td>
+                        <td><a href="#">@aTasks.taskID</a></td>
+                        <td>M @aTasks.dateMonth : D @aTasks.dateDay</td>
+                    </tr>
+                }
             }
         </tbody>
     </table>
@@ -50,6 +59,9 @@ else
 
 @code {
     private Tuple<List<WorkTask>, List<Technician>>? SolutionTuple { get; set; }
+    public List<AssignedTask> AssignedTasks { get; set; }
+
+    public List<Technician> technicians { get; set; }
     private string InLink = "/IRM/IRMInDetail?NIC"; //
 
     public class TaskDAO
@@ -63,6 +75,8 @@ else
     protected override async Task OnInitializedAsync()
     {
         SolutionTuple = await DispatchSolutionStream.ShuffleDisSolutions();
+        technicians = await TechnicianStream.GetTechnicianAll();
+ 
         StateHasChanged();
     }
 }

@@ -11,6 +11,7 @@
 using System;
 using System.Reflection;
 
+[assembly: Microsoft.Extensions.Configuration.UserSecrets.UserSecretsIdAttribute("a0e26930-ae89-479b-9500-b2ea49f9f0af")]
 [assembly: System.Reflection.AssemblyCompanyAttribute("DeepFrees.VehicleRouting")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]

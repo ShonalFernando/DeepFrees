@@ -31,13 +31,16 @@ namespace DeepFrees.Dispatcher.Controllers
         //www.deepfrees.lk
         //www.deepfrees.net/Api/TaskAssigner/Shuffle
         //Shuffling through Post
+
+
+
         [HttpGet("Shuffle")]
         public async Task<IActionResult> Get()
         {
             List<DispatchRequest> DispatchRequestList = new();
-            var texhsall = await _TechnicianDataService.GetAsync();
+            var Technicians = await _TechnicianDataService.GetAsync();
 
-            foreach(var tex in texhsall)
+            foreach(var tex in Technicians)
             {
                 if (tex.WorkTaskPointTable != null)
                 {
@@ -50,6 +53,10 @@ namespace DeepFrees.Dispatcher.Controllers
                         DispatchRequestList.Add(_DispatchRequest);
                     } 
                 }
+            }
+            foreach(var req in DispatchRequestList)
+            {
+                await Console.Out.WriteLineAsync(req.EmployeeID + " : " + req.TaskCategoryID + " : " + req.TaskPoints);
             }
 
             var TaskArrays = _TaskTransformer.TransformTasks(DispatchRequestList);

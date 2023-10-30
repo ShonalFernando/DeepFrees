@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DFShell.Helper;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -29,9 +30,15 @@ namespace DFShell.View
         //For testing purposes only
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            Shell MainWindow = new Shell();
-            MainWindow.Show();
-            this.Hide();
+            UserAccsConsumer ucc = new();
+            var acc = ucc.GetAccs(UsernameT.Text).Result;
+            if(acc.Find(a => a.UserName.Equals(UsernameT.Text)).Password == PasswordT.Text)
+            {
+                Shell MainWindow = new Shell();
+                MainWindow.Show();
+                this.Hide();
+            }
+
         }
     }
 }

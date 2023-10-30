@@ -11,6 +11,7 @@
 using System;
 using System.Reflection;
 
+[assembly: Microsoft.Extensions.Configuration.UserSecrets.UserSecretsIdAttribute("dc2812b5-3306-4a7b-83e9-51c345a672ff")]
 [assembly: System.Reflection.AssemblyCompanyAttribute("DeepFrees.EmployeeService")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]

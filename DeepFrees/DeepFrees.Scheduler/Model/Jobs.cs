@@ -13,19 +13,18 @@ namespace DeepFrees.Scheduler.Model
         public int duration { get; set; }
     }
 
-    public class Job : IEnumerable<JobTask>
+    public class SolutionsModel
+    {
+        public string Team { get; set; }
+        public string JobTask { get; set; }
+        public int StartTime { get; set; }
+        public int EndTime { get; set; }
+    }
+
+
+    public class Job
     {
         public List<JobTask> Tasks { get; set; } = new List<JobTask>();
-
-        public IEnumerator<JobTask> GetEnumerator()
-        {
-            return Tasks.GetEnumerator();
-        }
-
-        System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
-        {
-            return GetEnumerator();
-        }
     }
 
     public class JobScheduleRequest

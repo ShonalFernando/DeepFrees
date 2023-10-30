@@ -70,7 +70,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Helper\" />
     <Folder Include="AppCore\" />
     <Folder Include="Session\" />
   </ItemGroup>
@@ -80,6 +79,7 @@
     <PackageReference Include="MahApps.Metro" Version="2.4.9" />
     <PackageReference Include="MahApps.Metro.IconPacks" Version="4.11.0" />
     <PackageReference Include="Microsoft.Web.WebView2" Version="1.0.1823.32" />
+    <PackageReference Include="MongoDB.Driver" Version="2.22.0" />
   </ItemGroup>
 
 </Project>

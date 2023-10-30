@@ -69,8 +69,11 @@ namespace DeepFrees.TechnicianService.Controllers
         [HttpPut("UpdateTechnician/{NIC}")]
         public async Task<IActionResult> Update(string NIC, [FromBody] Technician Technician)
         {
+            await Console.Out.WriteLineAsync("1");
             if (Technician != null)
             {
+                await Console.Out.WriteLineAsync("2");
+
                 await _TechnicianDataContext.UpdateAsync(NIC, Technician);
                 return Ok();
             }

@@ -70,3 +70,17 @@ D:\Source\Repos\DeepFrees\DFShell\DFShell\bin\Debug\net6.0-windows\runtimes\win-
 D:\Source\Repos\DeepFrees\DFShell\DFShell\bin\Debug\net6.0-windows\Microsoft.Web.WebView2.Core.dll
 D:\Source\Repos\DeepFrees\DFShell\DFShell\bin\Debug\net6.0-windows\Microsoft.Web.WebView2.WinForms.dll
 D:\Source\Repos\DeepFrees\DFShell\DFShell\bin\Debug\net6.0-windows\Microsoft.Web.WebView2.Wpf.dll
+D:\Source\Repos\DeepFrees\DFShell\DFShell\bin\Debug\net6.0-windows\AWSSDK.Core.dll
+D:\Source\Repos\DeepFrees\DFShell\DFShell\bin\Debug\net6.0-windows\AWSSDK.SecurityToken.dll
+D:\Source\Repos\DeepFrees\DFShell\DFShell\bin\Debug\net6.0-windows\DnsClient.dll
+D:\Source\Repos\DeepFrees\DFShell\DFShell\bin\Debug\net6.0-windows\Microsoft.Extensions.Logging.Abstractions.dll
+D:\Source\Repos\DeepFrees\DFShell\DFShell\bin\Debug\net6.0-windows\MongoDB.Bson.dll
+D:\Source\Repos\DeepFrees\DFShell\DFShell\bin\Debug\net6.0-windows\MongoDB.Driver.dll
+D:\Source\Repos\DeepFrees\DFShell\DFShell\bin\Debug\net6.0-windows\MongoDB.Driver.Core.dll
+D:\Source\Repos\DeepFrees\DFShell\DFShell\bin\Debug\net6.0-windows\MongoDB.Libmongocrypt.dll
+D:\Source\Repos\DeepFrees\DFShell\DFShell\bin\Debug\net6.0-windows\SharpCompress.dll
+D:\Source\Repos\DeepFrees\DFShell\DFShell\bin\Debug\net6.0-windows\Snappier.dll
+D:\Source\Repos\DeepFrees\DFShell\DFShell\bin\Debug\net6.0-windows\ZstdSharp.dll
+D:\Source\Repos\DeepFrees\DFShell\DFShell\bin\Debug\net6.0-windows\runtimes\linux\native\libmongocrypt.so
+D:\Source\Repos\DeepFrees\DFShell\DFShell\bin\Debug\net6.0-windows\runtimes\osx\native\libmongocrypt.dylib
+D:\Source\Repos\DeepFrees\DFShell\DFShell\bin\Debug\net6.0-windows\runtimes\win\native\mongocrypt.dll

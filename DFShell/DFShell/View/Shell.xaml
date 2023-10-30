@@ -18,39 +18,6 @@
         <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
     </mah:MetroWindow.Resources>
 
-    <mah:MetroWindow.Flyouts>
-        <mah:FlyoutsControl>
-            <mah:Flyout Theme="Accent" x:Name="LeftFlyout" Header="DeepFrees" Position="Left" IsOpen="True" Width="350">
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="75"/>
-                        <RowDefinition Height="50"/>
-                        <RowDefinition Height="1*"/>
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="1*"/>
-                        <ColumnDefinition Width="1*"/>
-                        <ColumnDefinition Width="1*"/>
-                        <ColumnDefinition Width="1*"/>
-                    </Grid.ColumnDefinitions>
-
-                    <Rectangle Grid.Column="0" Grid.Row="0" Fill="Aquamarine" Margin="5"/>
-                    <!--User Image-->
-                    <StackPanel Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="3">
-                        <!--User Details-->
-                        <Label Style="{DynamicResource MahApps.Styles.Label}" FontSize="20" Content="Shonal Fernando" />
-                        <Label Style="{DynamicResource MahApps.Styles.Label}" FontSize="18" Content="Admin" FontFamily="Segoe UI Light" Margin="0,-10,0,0"/>
-                    </StackPanel>
-
-                    <StackPanel Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="4">
-                        <!--Auxillary Functions-->
-                        <TextBlock Style="{DynamicResource BaseTextBlockStyle}" FontSize="20" ><Run Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent efficitur at lacus a tempor. Nulla pharetra laoreet libero, ut lacinia nibh ultrices sit amet. Donec metus tellus, elementum rutrum ligula ut, elementum luctus ante. Ut fermentum pellentesque lacus eu porttitor. Nullam faucibus sodales turpis a tincidunt. Vivamus ante nisl, aliquam non nisl et, mattis placerat lorem. Duis id lobortis urna, non faucibus neque."/></TextBlock>
-                    </StackPanel>
-
-                </Grid>
-            </mah:Flyout>
-        </mah:FlyoutsControl>
-    </mah:MetroWindow.Flyouts>
 
     <Grid>
         <Grid.RowDefinitions>
@@ -66,28 +33,8 @@
 
 
         <Border  Grid.Row="1" Grid.ColumnSpan="2">
-            <Wpf:WebView2 x:Name="mainView" Source="https://localhost:7035/"/>
+            <Wpf:WebView2 x:Name="mainView" Source="https://localhost:7121/"/>
         </Border>
-
-
-
-        <StackPanel Grid.Row="0" Grid.ColumnSpan="2" Orientation="Horizontal" >
-            <StackPanel.Background>
-                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                    <GradientStop Color="#7FF1F1F1" Offset="0.007"/>
-                    <GradientStop Color="#7FDADADA" Offset="1"/>
-                </LinearGradientBrush>
-            </StackPanel.Background>
-            <Button Style="{DynamicResource MahApps.Styles.Button.Circle}" Width="40" Height="40" Margin="25,0,0,0" Content="{iconPacks:Unicons Height=20, Kind=Draggabledots, Width=20}" x:Name="OpenFlyout" Click="OpenFlyout_Click"/>
-            <Button Style="{DynamicResource MahApps.Styles.Button.Circle}" Width="40" Height="40" Margin="25,0,0,0" Content="{iconPacks:Material Height=20, Kind=AccountArrowUp, Width=20}"/>
-            <Button Style="{DynamicResource MahApps.Styles.Button.Circle}" Width="40" Height="40" Margin="25,0,0,0" Content="{iconPacks:Material Height=20, Kind=ChartLine, Width=20}"/>
-            <Button Style="{DynamicResource MahApps.Styles.Button.Circle}" Width="40" Height="40" Margin="25,0,0,0" Content="{iconPacks:Material Height=20, Kind=FileTree, Width=20}"/>
-            <Button Style="{DynamicResource MahApps.Styles.Button.Circle}" Width="40" Height="40" Margin="25,0,0,0" Content="{iconPacks:Material Height=20, Kind=Overscan, Width=20}"/>
-            <Button Style="{DynamicResource MahApps.Styles.Button.Circle}" Width="40" Height="40" Margin="25,0,0,0" Content="{iconPacks:Material Height=20, Kind=FolderSearch, Width=20}"/>
-            <Button Style="{DynamicResource MahApps.Styles.Button.Circle}" Width="40" Height="40" Margin="25,0,0,0" Content="{iconPacks:Material Height=20, Kind=ChartPie, Width=20}"/>
-            <ToggleButton Style="{DynamicResource MahApps.Styles.ToggleButton.Flat}" Width="100" VerticalAlignment="Stretch" Margin="35,0,0,0" Content="Live"/>
-        </StackPanel>
-        <StatusBar Grid.Row="2"  Grid.ColumnSpan="2"/>
 
 
 
