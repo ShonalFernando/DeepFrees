@@ -10,7 +10,6 @@
     <Folder Include="Pages\InfoPortal\" />
     <Folder Include="Pages\HomePortal\" />
     <Folder Include="Pages\UserAccountsPortal\" />
-    <Folder Include="Pages\SettingsPortal\" />
   </ItemGroup>
 
   <ItemGroup>

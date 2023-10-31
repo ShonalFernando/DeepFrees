@@ -14,11 +14,12 @@ namespace DeepFrees.Dispatcher.Model
 
         public int taskID { get; set; }
         public string? taskName { get; set; }
-        public TaskCategory? taskCategory { get; set; }
+
+        public TaskCategory? taskCategory { get; set; } //This is a enumeration
 
         public int dateDay { get; set; }
         public int dateMonth { get; set; }
-        public int taskWeigth { get; set; }
+        public int taskWeigth { get; set; } //Used to calculate and assign points to an employee
         public int taskLengthInDays { get; set; }
         public int taskLengthInHours { get; set; }
 

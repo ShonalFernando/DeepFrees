@@ -29,7 +29,7 @@ namespace DeepFrees.Dispatcher.Microservice
 
 
             int numWorkers = TasksArray.GetLength(0);
-            int numTasks = TasksArray.GetLength(1);
+            int numTasks = TasksArray.GetLength(1); //Cat
 
             // Model.
             CpModel model = new CpModel();

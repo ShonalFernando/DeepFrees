@@ -32,6 +32,15 @@ namespace DeepFrees.Dispatcher.Controllers
         //www.deepfrees.net/Api/TaskAssigner/Shuffle
         //Shuffling through Post
 
+        [HttpPost("ShuffleTest")]
+        public async Task<IActionResult> ShuffleSample(List<DispatchRequest> dpList)
+        {
+            var TaskArrays = _TaskTransformer.TransformTasks(dpList);
+            var UnformattedSolutions = _DispatcherService.Shuffle(TaskArrays, dpList); //Solver
+
+            //As the Database is updated it is okay to return the unformatted solution, the front end will manage it
+            return Ok(UnformattedSolutions);
+        }
 
 
         [HttpGet("Shuffle")]
@@ -64,7 +73,7 @@ namespace DeepFrees.Dispatcher.Controllers
             var texhs = await _TechnicianDataService.GetAsync();
             var workx = await _TaskDataService.GetAsync();
 
-            var solvs = _TaskAssigner.AssignTasks(UnformattedSolutions, workx, texhs);
+            var solvs = _TaskAssigner.AssignTasks(UnformattedSolutions, workx, texhs); //THis is used to Assign tasks based on solvers recommendations (Output is Unformated)
 
             foreach(var techs in solvs.Item2)
             {

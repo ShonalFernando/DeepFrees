@@ -9,6 +9,26 @@
       "PackagePath": "staticwebassets\\Uploads\\RouteData\\DistanceMatrix.csv"
     },
     {
+      "Id": "D:\\Source\\Repos\\DeepFrees\\DeepFrees\\DeepFrees.WebPro\\wwwroot\\assets\\2539462.jpeg",
+      "PackagePath": "staticwebassets\\assets\\2539462.jpeg"
+    },
+    {
+      "Id": "D:\\Source\\Repos\\DeepFrees\\DeepFrees\\DeepFrees.WebPro\\wwwroot\\assets\\2884.jpg",
+      "PackagePath": "staticwebassets\\assets\\2884.jpg"
+    },
+    {
+      "Id": "D:\\Source\\Repos\\DeepFrees\\DeepFrees\\DeepFrees.WebPro\\wwwroot\\assets\\5463587.jpeg",
+      "PackagePath": "staticwebassets\\assets\\5463587.jpeg"
+    },
+    {
+      "Id": "D:\\Source\\Repos\\DeepFrees\\DeepFrees\\DeepFrees.WebPro\\wwwroot\\assets\\HomeRoute.png",
+      "PackagePath": "staticwebassets\\assets\\HomeRoute.png"
+    },
+    {
+      "Id": "D:\\Source\\Repos\\DeepFrees\\DeepFrees\\DeepFrees.WebPro\\wwwroot\\assets\\HomeWorker.png",
+      "PackagePath": "staticwebassets\\assets\\HomeWorker.png"
+    },
+    {
       "Id": "D:\\Source\\Repos\\DeepFrees\\DeepFrees\\DeepFrees.WebPro\\wwwroot\\css\\bootstrap\\bootstrap.min.css",
       "PackagePath": "staticwebassets\\css\\bootstrap\\bootstrap.min.css"
     },

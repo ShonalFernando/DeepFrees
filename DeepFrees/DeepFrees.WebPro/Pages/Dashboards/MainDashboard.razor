@@ -1,0 +1,53 @@
+﻿@page "/Dashboard"
+@using DeepFrees.WebPro.Services;
+
+@inject EmployeeStream EmployeeStream
+@inject VRoutingStream VRoutingStream
+@inject TechnicianStream TechnicianStream
+@inject JobsStream JobsStream
+
+
+<h3>Main Dashboard</h3>
+
+<div class="container-fluid">
+    <div class="card" style="width: 18rem;">
+      <img class="card-img-top" src="..." alt="Card image cap">
+      <div class="card-body">
+            <p class="card-text">Employees @EmpCount</p>
+      </div>
+    </div>
+    <div class="card" style="width: 18rem;">
+        <img class="card-img-top" src="..." alt="Card image cap">
+        <div class="card-body">
+            <p class="card-text">Locations @Locs</p>
+        </div>
+    </div>
+    <div class="card" style="width: 18rem;">
+        <img class="card-img-top" src="..." alt="Card image cap">
+        <div class="card-body">
+            <p class="card-text">Technicians @TechST</p>
+        </div>
+    </div>
+    <div class="card" style="width: 18rem;">
+        <img class="card-img-top" src="..." alt="Card image cap">
+        <div class="card-body">
+            <p class="card-text">Total Jobs @TasksT</p>
+        </div>
+    </div>
+</div>
+
+@code {
+    private int EmpCount;
+    private int TasksT;
+    private int TechST;
+    private int Locs;
+
+    protected override async Task OnInitializedAsync()
+    {
+        EmpCount = (await EmployeeStream.GetEmployeeAll()).Count;
+        Locs = (await VRoutingStream.GetAllLocations()).Count;
+        TechST = (await TechnicianStream.GetTechnicianAll()).Count;
+        TasksT = (await JobsStream.GetJobs()).Count;
+    }
+
+}

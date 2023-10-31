@@ -1,5 +1,29 @@
-﻿<h3>CallAssignmentViewer</h3>
+﻿@page "/Calls"
 
+@using DeepFrees.EmployeeService.Model;
+@using DeepFrees.TaskService.Model;
+@using DeepFrees.TechnicianService.Model;
+@using DeepFrees.WebPro.Model;
+@using DeepFrees.WebPro.Services
+@inject DispatchSolutionStream DispatchSolutionStream
+@inject TechnicianStream TechnicianStream
+@inject WorkTaskStream WorkTaskStream
+
+<PageTitle>Technician Schedules</PageTitle>
+
+
+<div class="jumbotron">
+    <h1 class="display-4">Task Schedules</h1>
+    <p class="lead">All Schedules</p>
+    <hr class="my-4">
+    <p class="lead">
+        <a class="btn btn-secondary btn-lg" href="/IRM" role="button">IRM</a>
+        <a class="btn btn-dark btn-lg" href="/IRM" role="button">Refresh</a>
+    </p>
+</div>
+
+<br />
+<br />
 @code {
 
 }

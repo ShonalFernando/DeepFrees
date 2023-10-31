@@ -32,6 +32,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ291bnRlci5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
+[D:/Source/Repos/DeepFrees/DeepFrees/DeepFrees.WebPro/Pages/Dashboards/MainDashboard.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRGFzaGJvYXJkc1xNYWluRGFzaGJvYXJkLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/Source/Repos/DeepFrees/DeepFrees/DeepFrees.WebPro/Pages/Dashboards/PayrollHFJobs.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRGFzaGJvYXJkc1xQYXlyb2xsSEZKb2JzLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
@@ -90,6 +94,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [D:/Source/Repos/DeepFrees/DeepFrees/DeepFrees.WebPro/Pages/RoutePortal/RouteView.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUm91dGVQb3J0YWxcUm91dGVWaWV3LnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Source/Repos/DeepFrees/DeepFrees/DeepFrees.WebPro/Pages/SettingsPortal/PayrollViewer.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2V0dGluZ3NQb3J0YWxcUGF5cm9sbFZpZXdlci5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/Source/Repos/DeepFrees/DeepFrees/DeepFrees.WebPro/Pages/TaskPortal/TaskBoard.razor]

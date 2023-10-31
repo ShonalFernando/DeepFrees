@@ -1,0 +1,82 @@
+﻿@using DeepFrees.EmployeeService.Model;
+@using DeepFrees.WebPro.Services;
+<h3>Payroll Viewer</h3>
+
+@inject EmployeeStream EmployeeStream
+
+<div class="form-group">
+    <label for="selectCity1">Select Destination</label>
+    <select class="form-control" id="selectCity1" @bind="selectedemp">
+        @foreach (var employee in employees)
+        {
+            <option value="@employee.nic">@employee.commonName</option>
+        }
+    </select>
+</div>
+<button type="button" class="btn btn-primary" @onclick="GetSallary">Get Data</button>
+
+@if (saved)
+{
+    <div class="alert alert-success">Sallary Data saved successfully!</div>
+}
+
+<form>
+    <div class="form-group">
+        <label for="BaseSallary">Base Sallary</label>
+        <input type="number" class="form-control" id="BaseSallary" @bind="sallaryData.baseSallary" />
+    </div>
+
+    <div class="form-group">
+        <label for="AllocatedYearlyPaidLeaves">Allocated Yearly Paid Leaves</label>
+        <input type="number" class="form-control" id="AllocatedYearlyPaidLeaves" @bind="sallaryData.allocatedYearlyPaidLeaves" />
+    </div>
+
+    <div class="form-group">
+        <label for="allocatedYearlyPaidMedicalLeaves">Allocated Yearly Paid Medical Leaves</label>
+        <input type="number" class="form-control" id="allocatedYearlyPaidMedicalLeaves" @bind="sallaryData.allocatedYearlyPaidMedicalLeaves" />
+    </div>
+    <div class="form-group">
+        <label for="monthlyCutOff">Base Sallary</label>
+        <input type="number" class="form-control" id="monthlyCutOff" @bind="sallaryData.monthlyCutOff" />
+    </div>
+
+    <div class="form-group">
+        <label for="fineTune">Allocated Yearly Paid Leaves</label>
+        <input type="number" class="form-control" id="fineTune" @bind="sallaryData.fineTune" />
+    </div>
+
+    <div class="form-group">
+        <label for="otRatePerHour">Allocated Yearly Paid Medical Leaves</label>
+        <input type="number" class="form-control" id="otRatePerHour" @bind="sallaryData.otRatePerHour" />
+    </div>
+
+    <button type="button" class="btn btn-primary" @onclick="SaveSallaryData">Save</button>
+</form>
+
+@code {
+    private SallaryData sallaryData = new SallaryData();
+    private bool saved = false;
+    private List<Employee> employees = new List<Employee>();
+
+    private string selectedemp { get; set; }
+
+
+    protected override async Task OnInitializedAsync()
+    {
+        employees = await EmployeeStream.GetEmployeeAll();
+
+    }
+
+    private async void SaveSallaryData()
+    {
+        var emp = await EmployeeStream.GetEmployeeSingle(selectedemp);
+        emp.sallaryData = sallaryData;
+        await EmployeeStream.UpdateEmployee(emp);
+        saved = true;
+    }
+
+    private async void GetSallary()
+    {
+        sallaryData = (await EmployeeStream.GetEmployeeSingle(selectedemp)).sallaryData;
+    }
+}
