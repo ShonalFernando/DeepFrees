@@ -1,0 +1,75 @@
+﻿@using System.Collections.Generic;
+@using System.Reflection;
+
+@page "/Jobs/Add"
+
+<PageTitle>Jobs</PageTitle>
+
+@using DeepFrees.EmployeeService.Model;
+@using DeepFrees.Scheduler.Model;
+@using DeepFrees.TaskService.Model;
+@using DeepFrees.WebPro.Services
+
+@inject WorkTaskStream WorkTaskStream
+@inject NavigationManager NavigationManager
+@inject JobsStream JobsStream
+
+<div class="jumbotron">
+    <h1 class="display-4">Jobs</h1>
+    <p class="lead">All Jobs</p>
+    <hr class="my-4">
+    <p class="lead">
+        <a class="btn btn-secondary btn-lg" href="/Jobs" role="button">Jobs</a>
+        <a class="btn btn-dark btn-lg" href="/Jobs/Add" role="button">Add Job</a>
+    </p>
+</div>
+
+<br />
+<br />
+
+
+<form>
+    <h4>Task Information</h4>
+    <div class="form-group">
+        <label for="Dateofyear">Running Date</label>
+        <input type="date" @bind="@Dateofyear" class="form-control" id="Dateofyear" placeholder="Insert Date of Commencement">
+    </div>
+    <br/>
+    <div class="form-group">
+        <label for="Dateofmonth">Task Name</label>
+        <input type="text" @bind="@Dateofmonth" class="form-control" id="Dateofmonth" placeholder="Insert Running Year">
+    </div>
+    <br />
+    <div class="form-group">
+        <label for="tasksarr">Task Name</label>
+        <input type="text" @bind="@tasksarr" class="form-control" id="tasksarr" placeholder="Enter Task Name">
+    </div>
+    <br />
+    <button @onclick="Add" class="btn btn-primary">Add</button>
+</form>
+
+
+@code {
+    private int Dateofyear { get; set; }
+    private int Dateofmonth { get; set; }
+    private string tasksarr { get; set; }
+
+    private async void Add()
+    {
+        string[] strings = tasksarr.Split();
+        List<NewJobModel> newJobModels = new();
+        JobCollection JobCollection = new();
+        foreach(var st in strings)
+        {
+            NewJobModel newJobModel = new();
+            newJobModel.machine = Convert.ToInt32(st.Split()[0]);
+            newJobModel.duration = Convert.ToInt32(st.Split()[1]);
+            newJobModels.Add(newJobModel);
+        }
+
+        JobCollection.weekJobs = newJobModels;
+        JobCollection.dateDay = Dateofyear;
+        JobCollection.dateYear = Dateofmonth;
+
+    }
+}

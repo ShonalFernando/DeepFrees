@@ -21,6 +21,7 @@
     <p class="lead">
         <a class="btn btn-secondary btn-lg" href="/Jobs" role="button">Jobs</a>
         <a class="btn btn-dark btn-lg" href="/Jobs/Add" role="button">Add Job</a>
+        <a class="btn btn-dark btn-lg" href="/Jobs/Add" role="button">All Job</a>
     </p>
 </div>
 
@@ -40,18 +41,20 @@ else
     <table class="table">
         <thead>
             <tr>
-                <th>Availability</th>
+                <th>JobID</th>
+                <th>TaskID</th>
+                <th>TeamID</th>
                 <th>Duration</th>
-                <th>Team</th>
             </tr>
         </thead>
         <tbody>
             @foreach (var workTask in WorkTasks)
             {
                 <tr>
-                    <td>@workTask.isAvailable</td>
+                    <td>@workTask.jobID</td>
+                    <td>@workTask.taskID</td>
+                    <td>@workTask.teamID.</td>
                     <td>@workTask.duration</td>
-                    <td>@workTask.team</td>
                 </tr>
             }
             <tr>
@@ -65,11 +68,11 @@ else
     </table>
 }
 @code {
-    private List<JobTask>? WorkTasks;
+    private List<AssignedJobs>? WorkTasks;
     private string InLink = "/Employees/EmployeeInDetail?NIC"; //
 
     protected override async Task OnInitializedAsync()
     {
-        WorkTasks = await JobsStream.GetJobs();
+        WorkTasks = await JobsStream.Shuffle();
     }
 }

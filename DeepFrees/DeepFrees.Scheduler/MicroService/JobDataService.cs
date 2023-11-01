@@ -1,12 +1,14 @@
 ﻿using DeepFrees.Scheduler.Model;
 using Microsoft.Extensions.Options;
+using MongoDB.Bson;
 using MongoDB.Driver;
+using System.Security.Cryptography;
 
 namespace DeepFrees.Scheduler.MicroService
 {
     public class JobDataService
     {
-        private readonly IMongoCollection<JobTask> _WeeklyTaskSolutions;
+        private readonly IMongoCollection<JobCollection> _WeeklyTaskSolutions;
 
         public JobDataService(IOptions<DatabaseSettings> deepfreesDatabaseSettings)
         {
@@ -16,23 +18,23 @@ namespace DeepFrees.Scheduler.MicroService
             var mongoDatabase = mongoClient.GetDatabase(
                 deepfreesDatabaseSettings.Value.DatabaseName);
 
-            _WeeklyTaskSolutions = mongoDatabase.GetCollection<JobTask>(
+            _WeeklyTaskSolutions = mongoDatabase.GetCollection<JobCollection>(
                 deepfreesDatabaseSettings.Value.ShoppinzUsersCollectionName[0]);
         }
 
-        public async Task<List<JobTask>> GetAsync() =>
+        public async Task<List<JobCollection>> GetAsync() =>
             await _WeeklyTaskSolutions.Find(_ => true).ToListAsync();
 
-        public async Task<JobTask?> GetAsync(int WeekID) =>
-            await _WeeklyTaskSolutions.Find(x => x.weekID == WeekID).FirstOrDefaultAsync();
+        public async Task<JobCollection?> GetAsync(ObjectId _id) =>
+            await _WeeklyTaskSolutions.Find(x => x._id == _id).FirstOrDefaultAsync();
 
-        public async Task CreateAsync(JobTask WeeklyTaskSolutions) =>
-            await _WeeklyTaskSolutions.InsertOneAsync(WeeklyTaskSolutions);
+        public async Task CreateAsync(JobCollection WeeklyTaskSolution) =>
+            await _WeeklyTaskSolutions.InsertOneAsync(WeeklyTaskSolution);
 
-        public async Task UpdateAsync(int WeekID, JobTask WeeklyTaskSolutions) =>
-            await _WeeklyTaskSolutions.ReplaceOneAsync(x => x.weekID == WeekID, WeeklyTaskSolutions);
+        public async Task UpdateAsync(ObjectId _id, JobCollection WeeklyTaskSolutions) =>
+            await _WeeklyTaskSolutions.ReplaceOneAsync(x => x._id == _id, WeeklyTaskSolutions);
 
-        public async Task RemoveAsync(int WeekID) =>
-            await _WeeklyTaskSolutions.DeleteOneAsync(x => x.weekID == WeekID);
+        public async Task RemoveAsync(ObjectId _id) =>
+            await _WeeklyTaskSolutions.DeleteOneAsync(x => x._id == _id);
     }
 }

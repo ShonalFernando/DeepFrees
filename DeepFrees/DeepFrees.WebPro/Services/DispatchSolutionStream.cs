@@ -10,7 +10,7 @@ namespace DeepFrees.WebPro.Services
         public async Task<Tuple<List<WorkTask>, List<Technician>>> ShuffleDisSolutions()
         {
             string responseContent;
-            string apiUrl = $"https://localhost:7256/DispatchSolver/Dispatcher/Shuffle/";
+            string apiUrl = $"https://localhost:7210/DispatchSolver/Dispatcher/Shuffle/";
             HttpClient client = new HttpClient();
             var response = await client.GetAsync(apiUrl);
 

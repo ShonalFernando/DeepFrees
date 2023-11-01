@@ -7,6 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="Pages\JobPortal\JobCreate.razor" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="Pages\InfoPortal\" />
     <Folder Include="Pages\HomePortal\" />
     <Folder Include="Pages\UserAccountsPortal\" />
@@ -15,6 +19,18 @@
   <ItemGroup>
     <PackageReference Include="CsvHelper" Version="30.0.1" />
     <PackageReference Include="MongoDB.Driver" Version="2.22.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <UpToDateCheckInput Remove="Pages\JobPortal\JobCreate.razor" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <_ContentIncludedByDefault Remove="Pages\JobPortal\JobCreate.razor" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Pages\JobPortal\JobCreate.razor" />
   </ItemGroup>
 
 </Project>

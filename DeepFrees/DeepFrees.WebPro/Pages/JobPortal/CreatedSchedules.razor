@@ -1,0 +1,78 @@
+﻿@page "/JobPortal/Shuffled"
+
+@using DeepFrees.EmployeeService.Model;
+@using DeepFrees.Scheduler.Model;
+@using DeepFrees.TaskService.Model;
+@using DeepFrees.TechnicianService.Model;
+@using DeepFrees.WebPro.Model;
+@using DeepFrees.WebPro.Services
+@inject DispatchSolutionStream DispatchSolutionStream
+@inject TechnicianStream TechnicianStream
+@inject JobsStream JobsStream
+
+<PageTitle>Technician Schedules</PageTitle>
+
+<div class="jumbotron">
+    <h1 class="display-4">Job Schedules</h1>
+    <p class="lead">All Schedules</p>
+    <hr class="my-4">
+    <p class="lead">
+        <a class="btn btn-secondary btn-lg" href="/IRM" role="button">IRM</a>
+        <a class="btn btn-dark btn-lg" href="/IRM" role="button">Refresh</a>
+    </p>
+</div>
+
+<br />
+<br />
+
+@if (technicians == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Job ID</th>
+                <th>Task ID</th>
+                <th>Job Duration</th>
+                <th>Team</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var techs in technicians)
+            {
+                    <tr>
+                        <td>@techs.jobID</td>
+                        <td>@techs.taskID</td>
+                        <td>@techs.duration</td>
+                        <td>@techs.teamID</td>
+                    </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+    private Tuple<List<WorkTask>, List<Technician>>? SolutionTuple { get; set; }
+    public List<AssignedTask> AssignedTasks { get; set; }
+
+    public List<AssignedJobs> technicians { get; set; }
+
+    public class TaskDAO
+    {
+        public string? EmployeeID { get; set; } //NIC of Technician, Here Employee is Tech
+        public string? EmployeeName { get; set; } //NIC of Technician, Here Employee is Tech
+        public string? TaskName { get; set; }
+        public int TaskID { get; set; }
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        SolutionTuple = await DispatchSolutionStream.ShuffleDisSolutions();
+        technicians = await JobsStream.Shuffle();
+
+        StateHasChanged();
+    }
+}

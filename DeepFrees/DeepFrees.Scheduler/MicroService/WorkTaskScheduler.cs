@@ -39,25 +39,75 @@ namespace DeepFrees.Scheduler.MicroService
             }
         }
 
-        public void Shuffle(JobScheduleRequest JobScheduleRequest)
+        public List<AssignedJobs> Shuffle(List<JobCollection> jobCollections)
         {
-            var allJobs = JobScheduleRequest.AllJobs;
+            List<List<NewJobModel>> compJobs = new();
 
-            int numteams = 0;
+
+            foreach (var jc in jobCollections)
+            {
+                List<NewJobModel> njms = new();
+
+                foreach (var jobs in jc.WeekJobs)
+                {
+                    njms.Add(jobs);
+                }
+
+                compJobs.Add(njms);
+            }
+
+            //foreach (var jc in jobCollections)
+            //{
+            //    List<NewJobModel> njms = new();
+
+            //    foreach (var jobs in jc.WeekJobs)
+            //    {
+            //        njms.Add(jobs);
+            //    }
+
+            //    compJobs.Add(njms);
+            //}
+
+
+            var allJobs = compJobs;
+            new[] 
+            {
+                new[] 
+                {
+                    // job0
+                    new { machine = 0, duration = 3 }, // task0
+                    new { machine = 1, duration = 2 }, // task1
+                    new { machine = 2, duration = 2 }, // task2
+                }.ToList(),
+                new[] 
+                {
+                    // job1
+                    new { machine = 0, duration = 2 }, // task0
+                    new { machine = 2, duration = 1 }, // task1
+                    new { machine = 1, duration = 4 }, // task2
+                }.ToList(),
+                new[] {
+                    // job2
+                    new { machine = 1, duration = 4 }, // task0
+                    new { machine = 2, duration = 3 }, // task1
+                }.ToList(),
+            }.ToList();
+
+            int numMachines = 0;
             foreach (var job in allJobs)
             {
-                foreach (var task in job.Tasks)
+                foreach (var task in job)
                 {
-                    numteams = Math.Max(numteams, 1 + task.team);
+                    numMachines = Math.Max(numMachines, 1 + task.machine);
                 }
             }
-            int[] allteams = Enumerable.Range(0, numteams).ToArray();
+            int[] allMachines = Enumerable.Range(0, numMachines).ToArray();
 
             // Computes horizon dynamically as the sum of all durations.
             int horizon = 0;
             foreach (var job in allJobs)
             {
-                foreach (var task in job.Tasks)
+                foreach (var task in job)
                 {
                     horizon += task.duration;
                 }
@@ -68,38 +118,38 @@ namespace DeepFrees.Scheduler.MicroService
 
             Dictionary<Tuple<int, int>, Tuple<IntVar, IntVar, IntervalVar>> allTasks =
                 new Dictionary<Tuple<int, int>, Tuple<IntVar, IntVar, IntervalVar>>(); // (start, end, duration)
-            Dictionary<int, List<IntervalVar>> teamToIntervals = new Dictionary<int, List<IntervalVar>>();
+            Dictionary<int, List<IntervalVar>> machineToIntervals = new Dictionary<int, List<IntervalVar>>();
             for (int jobID = 0; jobID < allJobs.Count(); ++jobID)
             {
                 var job = allJobs[jobID];
-                for (int taskID = 0; taskID < job.Tasks.Count(); ++taskID)
+                for (int taskID = 0; taskID < job.Count(); ++taskID)
                 {
-                    var task = job.Tasks[taskID];
+                    var task = job[taskID];
                     String suffix = $"_{jobID}_{taskID}";
                     IntVar start = model.NewIntVar(0, horizon, "start" + suffix);
                     IntVar end = model.NewIntVar(0, horizon, "end" + suffix);
                     IntervalVar interval = model.NewIntervalVar(start, task.duration, end, "interval" + suffix);
                     var key = Tuple.Create(jobID, taskID);
                     allTasks[key] = Tuple.Create(start, end, interval);
-                    if (!teamToIntervals.ContainsKey(task.team))
+                    if (!machineToIntervals.ContainsKey(task.machine))
                     {
-                        teamToIntervals.Add(task.team, new List<IntervalVar>());
+                        machineToIntervals.Add(task.machine, new List<IntervalVar>());
                     }
-                    teamToIntervals[task.team].Add(interval);
+                    machineToIntervals[task.machine].Add(interval);
                 }
             }
 
             // Create and add disjunctive constraints.
-            foreach (int team in allteams)
+            foreach (int machine in allMachines)
             {
-                model.AddNoOverlap(teamToIntervals[team]);
+                model.AddNoOverlap(machineToIntervals[machine]);
             }
 
             // Precedences inside a job.
             for (int jobID = 0; jobID < allJobs.Count(); ++jobID)
             {
                 var job = allJobs[jobID];
-                for (int taskID = 0; taskID < job.Tasks.Count() - 1; ++taskID)
+                for (int taskID = 0; taskID < job.Count() - 1; ++taskID)
                 {
                     var key = Tuple.Create(jobID, taskID);
                     var nextKey = Tuple.Create(jobID, taskID + 1);
@@ -114,7 +164,7 @@ namespace DeepFrees.Scheduler.MicroService
             for (int jobID = 0; jobID < allJobs.Count(); ++jobID)
             {
                 var job = allJobs[jobID];
-                var key = Tuple.Create(jobID, job.Tasks.Count() - 1);
+                var key = Tuple.Create(jobID, job.Count() - 1);
                 ends.Add(allTasks[key].Item2);
             }
             model.AddMaxEquality(objVar, ends);
@@ -133,44 +183,43 @@ namespace DeepFrees.Scheduler.MicroService
                 for (int jobID = 0; jobID < allJobs.Count(); ++jobID)
                 {
                     var job = allJobs[jobID];
-                    for (int taskID = 0; taskID < job.Tasks.Count(); ++taskID)
+                    for (int taskID = 0; taskID < job.Count(); ++taskID)
                     {
-                        var task = job.Tasks[taskID];
+                        var task = job[taskID];
                         var key = Tuple.Create(jobID, taskID);
                         int start = (int)solver.Value(allTasks[key].Item1);
-                        if (!assignedJobs.ContainsKey(task.team))
+                        if (!assignedJobs.ContainsKey(task.machine))
                         {
-                            assignedJobs.Add(task.team, new List<AssignedTask>());
+                            assignedJobs.Add(task.machine, new List<AssignedTask>());
                         }
-                        assignedJobs[task.team].Add(new AssignedTask(jobID, taskID, start, task.duration));
+                        assignedJobs[task.machine].Add(new AssignedTask(jobID, taskID, start, task.duration));
                     }
                 }
 
-                List<SolutionsModel> solutionsList = new List<SolutionsModel>();
-
-                // Create per team output lines.
+                List<AssignedJobs> ajobs = new();
+                // Create per machine output lines.
                 String output = "";
-                foreach (int team in allteams)
+                foreach (int machine in allMachines)
                 {
                     // Sort by starting time.
-                    assignedJobs[team].Sort();
-                    String solLineTasks = $"team {team}: ";
+                    assignedJobs[machine].Sort();
+                    String solLineTasks = $"Machine {machine}: ";
                     String solLine = "           ";
 
-                    foreach (var assignedTask in assignedJobs[team])
+                    foreach (var assignedTask in assignedJobs[machine])
                     {
-                        SolutionsModel solution = new SolutionsModel
-                        {
-                            Team = $"team {team}",
-                            JobTask = $"job_{assignedTask.jobID}_task_{assignedTask.taskID}",
-                            StartTime = assignedTask.start,
-                            EndTime = assignedTask.start + assignedTask.duration
-                        };
-                        solutionsList.Add(solution);
+                        AssignedJobs AssignedJobs = new();
 
                         String name = $"job_{assignedTask.jobID}_task_{assignedTask.taskID}";
                         // Add spaces to output to align columns.
                         solLineTasks += $"{name,-15}";
+
+                        AssignedJobs.teamID = machine;
+                        AssignedJobs.taskID = assignedTask.taskID;
+                        AssignedJobs.jobID = assignedTask.jobID;
+                        AssignedJobs.duration = assignedTask.duration;
+
+                        ajobs.Add(AssignedJobs);
 
                         String solTmp = $"[{assignedTask.start},{assignedTask.start + assignedTask.duration}]";
                         // Add spaces to output to align columns.
@@ -182,16 +231,21 @@ namespace DeepFrees.Scheduler.MicroService
                 // Finally print the solution found.
                 Console.WriteLine($"Optimal Schedule Length: {solver.ObjectiveValue}");
                 Console.WriteLine($"\n{output}");
+                Console.WriteLine("Statistics");
+                Console.WriteLine($"  conflicts: {solver.NumConflicts()}");
+                Console.WriteLine($"  branches : {solver.NumBranches()}");
+                Console.WriteLine($"  wall time: {solver.WallTime()}s");
+                return ajobs;
             }
             else
             {
                 Console.WriteLine("No solution found.");
+                Console.WriteLine("Statistics");
+                Console.WriteLine($"  conflicts: {solver.NumConflicts()}");
+                Console.WriteLine($"  branches : {solver.NumBranches()}");
+                Console.WriteLine($"  wall time: {solver.WallTime()}s");
+                return new List<AssignedJobs>();
             }
-
-            Console.WriteLine("Statistics");
-            Console.WriteLine($"  conflicts: {solver.NumConflicts()}");
-            Console.WriteLine($"  branches : {solver.NumBranches()}");
-            Console.WriteLine($"  wall time: {solver.WallTime()}s");
         }
     }
 }

@@ -64,6 +64,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSVJNUG9ydGFsXElSTVBhbmVsLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
+[D:/Source/Repos/DeepFrees/DeepFrees/DeepFrees.WebPro/Pages/JobPortal/CreatedSchedules.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSm9iUG9ydGFsXENyZWF0ZWRTY2hlZHVsZXMucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/Source/Repos/DeepFrees/DeepFrees/DeepFrees.WebPro/Pages/JobPortal/JobsAll.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSm9iUG9ydGFsXEpvYnNBbGwucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 

@@ -5,29 +5,13 @@ namespace DeepFrees.WebPro.Services
 {
     public class JobsStream
     {
-        public async Task AddWorkTask(JobTask WorkTask)
+        public async Task AddJob(JobCollection JobCollection)
         {
             try
             {
-                WorkTask.isAvailable = true;
-                string apiUrl = "https://localhost:7296/api/Scheduling/CreatePost";
+                string apiUrl = "https://localhost:7296/api/Scheduling/AddNewWeekjobs";
                 HttpClient client = new HttpClient();
-                var response = await client.PostAsJsonAsync(apiUrl, WorkTask);
-                await Console.Out.WriteLineAsync(await response.Content.ReadAsStringAsync());
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Exception: " + ex.Message);
-            }
-        }
-        public async Task Shuffle(JobTask WorkTask)
-        {
-            try
-            {
-                WorkTask.isAvailable = true;
-                string apiUrl = "https://localhost:7296/api/Scheduling/Shuffle";
-                HttpClient client = new HttpClient();
-                var response = await client.PostAsJsonAsync(apiUrl, WorkTask);
+                var response = await client.PostAsJsonAsync(apiUrl, JobCollection);
                 await Console.Out.WriteLineAsync(await response.Content.ReadAsStringAsync());
             }
             catch (Exception ex)
@@ -36,7 +20,57 @@ namespace DeepFrees.WebPro.Services
             }
         }
 
-        public async Task<List<JobTask>> GetJobs()
+
+        public async Task<List<AssignedJobs>> Shuffle()
+        {
+            try
+            {
+                string apiUrl = "https://localhost:7296/api/Scheduling/GetSchedules";
+                HttpClient client = new HttpClient();
+                var response = await client.GetAsync(apiUrl);
+                await Console.Out.WriteLineAsync(await response.Content.ReadAsStringAsync());
+
+                if (response.IsSuccessStatusCode)
+                {
+                    string content = await response.Content.ReadAsStringAsync();
+                    if (content != null)
+                    {
+                        try
+                        {
+                            List<AssignedJobs> Employees = JsonSerializer.Deserialize<List<AssignedJobs>>(content);
+                            if (Employees != null)
+                            {
+                                return Employees;
+                            }
+                            else
+                            {
+                                return new List<AssignedJobs>();
+                            }
+                        }
+                        catch (Exception)
+                        {
+
+                            return new List<AssignedJobs>();
+                        }
+                    }
+                    else
+                    {
+                        return new List<AssignedJobs>();
+                    }
+                }
+                else
+                {
+                    return new List<AssignedJobs>();
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Exception: " + ex.Message);
+                return new List<AssignedJobs>();
+            }
+        }
+
+        public async Task<List<JobCollection>> GetJobs()
         {
             HttpClient httpClient = new HttpClient();
 
@@ -50,30 +84,30 @@ namespace DeepFrees.WebPro.Services
                 {
                     try
                     {
-                        List<JobTask> Employees = JsonSerializer.Deserialize<List<JobTask>>(content);
+                        List<JobCollection> Employees = JsonSerializer.Deserialize<List<JobCollection>>(content);
                         if (Employees != null)
                         {
                             return Employees;
                         }
                         else
                         {
-                            return new List<JobTask>();
+                            return new List<JobCollection>();
                         }
                     }
                     catch (Exception)
                     {
 
-                        return new List<JobTask>();
+                        return new List<JobCollection>();
                     }
                 }
                 else
                 {
-                    return new List<JobTask>();
+                    return new List<JobCollection>();
                 }
             }
             else
             {
-                return new List<JobTask>();
+                return new List<JobCollection>();
             }
         }
     }

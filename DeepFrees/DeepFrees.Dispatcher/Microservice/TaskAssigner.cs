@@ -12,8 +12,6 @@ namespace DeepFrees.Dispatcher.Microservice
 
                 foreach (var Worktask in WorkTasks.Where(wt => wt.isAvailable && !wt.isCompleted && wt.taskCategory == taskCategory))
                 {
-                    // Assignment
-                    Worktask.isAvailable = false;
 
                     AssignedTask assignedTask = new()
                     {
@@ -22,15 +20,21 @@ namespace DeepFrees.Dispatcher.Microservice
                         TaskID = Worktask.taskID
                     };
 
+                    Console.WriteLine("hooooooooooooooooooo");
+                    // Assignment
+                    Worktask.isAvailable = false;
+
+                    //First Come First Server
+                    Technicians.Find(t => t.NIC.Equals(DispatchSolution.EmployeeID)).AssignedTasks.Add(assignedTask);
+
                     // PointTable
-                    foreach (var technician in Technicians)
-                    {
+                    Technician technician = Technicians.Find(t => t.NIC.Equals(DispatchSolution.EmployeeID));
                         foreach (var points in technician.WorkTaskPointTable.Where(pt => pt.TaskCategory == DispatchSolution.TaskCategoryID))
                         {
-                            points.TaskCategoryPoints += 10;
+                            points.TaskCategoryPoints += 10; //Formula
                         }
-                    }
                 }
+
             }
 
             //DBOperations on Technicians and WorkTasks

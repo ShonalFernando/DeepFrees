@@ -38,12 +38,8 @@ namespace DeepFrees.TechnicianService.Model
     public enum TaskCategory
     {
         Repairs,
-        Maintainance,
-        Delivery,
-        Assembly,
-        Troubleshooting,
         Installation,
-        Callibration,
-        Sanitary
+        Delivery,
+        Assembly
     }
 }

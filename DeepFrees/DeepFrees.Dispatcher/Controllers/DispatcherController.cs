@@ -41,6 +41,34 @@ namespace DeepFrees.Dispatcher.Controllers
             //As the Database is updated it is okay to return the unformatted solution, the front end will manage it
             return Ok(UnformattedSolutions);
         }
+        [HttpPost("TestGettr")]
+        public async Task<IActionResult> TestGettr(List<DispatchRequest> dpList)
+        {
+                List<DispatchRequest> DispatchRequestList = new();
+                var Technicians = await _TechnicianDataService.GetAsync();
+
+                foreach (var tex in Technicians)
+                {
+                    if (tex.WorkTaskPointTable != null)
+                    {
+                        foreach (var dtp in tex.WorkTaskPointTable)
+                        {
+                            DispatchRequest _DispatchRequest = new();
+                            _DispatchRequest.TaskCategoryID = dtp.TaskCategory;
+                            _DispatchRequest.EmployeeID = tex.NIC;
+                            _DispatchRequest.TaskPoints = dtp.TaskCategoryPoints;
+                            DispatchRequestList.Add(_DispatchRequest);
+                        }
+                    }
+                }
+                foreach (var req in DispatchRequestList)
+                {
+                    req.TaskCategoryID += 1;
+                    await Console.Out.WriteLineAsync(req.EmployeeID + " : " + req.TaskCategoryID + " : " + req.TaskPoints);
+                }
+
+            return Ok(DispatchRequestList);
+         }
 
 
         [HttpGet("Shuffle")]
@@ -94,7 +122,7 @@ namespace DeepFrees.Dispatcher.Controllers
             }
 
             //As the Database is updated it is okay to return the unformatted solution, the front end will manage it
-            return Ok(solvs);
+            return Ok(UnformattedSolutions);
         }
 
     }
